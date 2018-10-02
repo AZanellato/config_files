@@ -35,8 +35,11 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'dracula/vim'
 call plug#end()
 "
+let g:dracula_italic=0
 colorscheme dracula
 let g:airline_theme='violet'
+
+let mapleader = " "
 
 if executable('ag')
   if !exists(":Ag")
@@ -46,11 +49,11 @@ if executable('ag')
   endif
 endif
 
-let mapleader = " "
+let g:airline_powerline_fonts = 1
+
 let NERDTreeShowHidden=1
 let g:mix_format_on_save = 1
 let g:mix_format_silent_errors = 1
-let g:airline_powerline_fonts = 1
 set foldmethod=indent
 set nofoldenable
 set backspace=2   " Backspace deletes like most programs in insert mode
@@ -89,4 +92,3 @@ map <C-t> :NERDTreeToggle<CR>
 map <C-p> :FZF<CR>
 " set termguicolors
 command CurrentFilePath let @+ = expand("%")
-
