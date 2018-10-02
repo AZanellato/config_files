@@ -17,7 +17,7 @@ https://github.com/pascaldevink/spaceship-zsh-theme
 
 
 I assuming you'll have this repository on the home folder, then you just do:
-```
+```bash
 $ ln -s ~/.vim ~/nvim\
 $ ln -s -f .tmux/.tmux.conf
 $ ln -s .zshrc config_files/.zshrc
