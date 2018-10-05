@@ -5,11 +5,10 @@ Plug 'matze/vim-move'
 Plug 'cloudhead/neovim-fuzzy'
 Plug 'w0rp/ale'
 Plug 'vim-airline/vim-airline'
-Plug 'elixir-lang/vim-elixir'
+Plug 'sheerun/vim-polyglot'
 Plug 'mhinz/vim-mix-format'
 Plug 'tpope/vim-bundler'
 Plug 'tpope/vim-rails'
-Plug 'vim-ruby/vim-ruby'
 Plug 'airblade/vim-gitgutter'
 Plug 'ryanoasis/vim-devicons'
 Plug 'lifepillar/vim-cheat40'
@@ -22,6 +21,13 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'vim-scripts/upAndDown'
 Plug 'jeetsukumaran/vim-buffergator'
 Plug 'ervandew/supertab'
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
 " Themes!
 Plug 'drewtempelmeyer/palenight.vim'
 Plug 'rakr/vim-one'
@@ -35,6 +41,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'dracula/vim'
 call plug#end()
 "
+let g:deoplete#enable_at_startup = 1
 let g:dracula_italic=0
 colorscheme dracula
 let g:airline_theme='violet'
@@ -84,7 +91,6 @@ nnoremap <Right> :echoe "Use l"<CR>
 nnoremap <Up> :echoe "Use j"<CR> 
 nnoremap <Down> :echoe "Use k" <CR> 
 vnoremap <C-c> "+y
-
 autocmd StdinReadPre * let s:std_in=1
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q! | endif
 
