@@ -12,6 +12,7 @@ Plug 'tpope/vim-rails'
 Plug 'airblade/vim-gitgutter'
 Plug 'ryanoasis/vim-devicons'
 Plug 'lifepillar/vim-cheat40'
+Plug 'slashmili/alchemist.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-eunuch'
@@ -22,6 +23,7 @@ Plug 'vim-scripts/upAndDown'
 Plug 'jeetsukumaran/vim-buffergator'
 Plug 'ervandew/supertab'
 if has('nvim')
+  Plug 'autozimu/LanguageClient-neovim', {'branch': 'next', 'do': 'bash install.sh'}
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 else
   Plug 'Shougo/deoplete.nvim'
@@ -39,6 +41,7 @@ Plug 'srcery-colors/srcery-vim'
 Plug 'zanglg/nova.vim'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'dracula/vim'
+Plug 'ryanoasis/vim-devicons' " must be the last one
 call plug#end()
 "
 let g:deoplete#enable_at_startup = 1
@@ -98,3 +101,23 @@ map <C-t> :NERDTreeToggle<CR>
 map <C-p> :FZF<CR>
 " set termguicolors
 command CurrentFilePath let @+ = expand("%")
+au InsertLeave * set nopaste
+
+set number relativenumber
+
+augroup numbertoggle
+  autocmd!
+  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+augroup END
+
+set hidden
+" to make eli-ls work, visit these pages:
+" https://github.com/JakeBecker/elixir-ls and 
+" https://github.com/autozimu/LanguageClient-neovim/issues/234
+let g:LanguageClient_serverCommands = {
+    \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
+    \ 'elixir': ['eli-ls'] 
+    \ }
+
+
