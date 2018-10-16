@@ -64,6 +64,7 @@ let g:airline_powerline_fonts = 1
 
 let g:mix_format_on_save = 1
 let g:mix_format_silent_errors = 1
+let g:rustfmt_autosave = 1
 set foldmethod=indent
 set nofoldenable
 set backspace=2   " Backspace deletes like most programs in insert mode
@@ -102,7 +103,6 @@ command CurrentFilePath let @+ = expand("%")
 au InsertLeave * set nopaste
 
 set number relativenumber
-
 augroup numbertoggle
   autocmd!
   autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
