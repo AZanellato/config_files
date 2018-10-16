@@ -1,8 +1,7 @@
 call plug#begin('~/.vim/plugged')
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'matze/vim-move'
-Plug 'cloudhead/neovim-fuzzy'
+" Plug 'cloudhead/neovim-fuzzy'
 Plug 'w0rp/ale'
 Plug 'vim-airline/vim-airline'
 Plug 'sheerun/vim-polyglot'
@@ -10,6 +9,7 @@ Plug 'mhinz/vim-mix-format'
 Plug 'tpope/vim-bundler'
 Plug 'tpope/vim-rails'
 Plug 'airblade/vim-gitgutter'
+Plug 'jreybert/vimagit'
 Plug 'ryanoasis/vim-devicons'
 Plug 'lifepillar/vim-cheat40'
 Plug 'slashmili/alchemist.vim'
@@ -18,6 +18,7 @@ Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-vinegar'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'vim-scripts/upAndDown'
 Plug 'jeetsukumaran/vim-buffergator'
@@ -61,7 +62,6 @@ endif
 
 let g:airline_powerline_fonts = 1
 
-let NERDTreeShowHidden=1
 let g:mix_format_on_save = 1
 let g:mix_format_silent_errors = 1
 set foldmethod=indent
@@ -95,9 +95,7 @@ nnoremap <Up> :echoe "Use j"<CR>
 nnoremap <Down> :echoe "Use k" <CR> 
 vnoremap <C-c> "+y
 autocmd StdinReadPre * let s:std_in=1
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q! | endif
 
-map <C-t> :NERDTreeToggle<CR>
 map <C-p> :FZF<CR>
 " set termguicolors
 command CurrentFilePath let @+ = expand("%")
@@ -116,8 +114,11 @@ set hidden
 " https://github.com/JakeBecker/elixir-ls and 
 " https://github.com/autozimu/LanguageClient-neovim/issues/234
 let g:LanguageClient_serverCommands = {
-    \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
+    \ 'rust': ['~/.cargo/bin/rustup', 'run', 'nightly', 'rls'],
     \ 'elixir': ['eli-ls'] 
     \ }
 
-
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {}
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['ex'] = ''
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['exs'] = ''
+let g:SuperTabDefaultCompletionType = "<c-n>"
