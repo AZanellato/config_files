@@ -298,4 +298,11 @@ unbind '"'
 unbind %
 bind -n C-x kill-pane
 set -g mouse on
-
+unbind h
+unbind l
+unbind j
+unbind k
+bind-key -n C-h select-pane -L
+bind-key -n C-l select-pane -R
+bind-key -n C-j select-pane -D
+bind-key -n C-k select-pane -U

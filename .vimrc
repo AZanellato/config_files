@@ -1,7 +1,6 @@
 call plug#begin('~/.vim/plugged')
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'matze/vim-move'
-" Plug 'cloudhead/neovim-fuzzy'
 Plug 'w0rp/ale'
 Plug 'vim-airline/vim-airline'
 Plug 'sheerun/vim-polyglot'
@@ -90,16 +89,18 @@ set splitbelow
 set splitright
 set mouse=a
 
+command YankCurrentFilePath let @+ = expand("%")
+nnoremap yfp :YankCurrentFilePath<CR>
 nnoremap <Left> :echoe "Use h"<CR>
 nnoremap <Right> :echoe "Use l"<CR>
 nnoremap <Up> :echoe "Use j"<CR> 
 nnoremap <Down> :echoe "Use k" <CR> 
+nnoremap fb :e# <CR> 
+nnoremap <F5> :call LanguageClient_contextMenu()<CR>
 vnoremap <C-c> "+y
 autocmd StdinReadPre * let s:std_in=1
-
 map <C-p> :FZF<CR>
 " set termguicolors
-command CurrentFilePath let @+ = expand("%")
 au InsertLeave * set nopaste
 
 set number relativenumber

@@ -127,13 +127,13 @@ SPACESHIP_PROMPT_ORDER=(
   # hg            # Mercurial section (hg_branch  + hg_status)
   # package     # Package version (Disabled)
   # node          # Node.js section
-  # ruby          # Ruby section
-  # elixir        # Elixir section
+  ruby          # Ruby section
+  elixir        # Elixir section
   # xcode       # Xcode section (Disabled)
   # swift         # Swift section
   # golang        # Go section
   # php           # PHP section
-  # rust          # Rust section
+  rust          # Rust section
   # haskell       # Haskell Stack section
   # julia       # Julia section (Disabled)
   # docker      # Docker section (Disabled)
@@ -152,7 +152,11 @@ SPACESHIP_PROMPT_ORDER=(
   exit_code     # Exit code section
   char          # Prompt character
 )
-
+SPACESHIP_RUST_SYMBOL=
+SPACESHIP_RUST_COLOR=red
+SPACESHIP_RUBY_SYMBOL= 
+SPACESHIP_RUBY_COLOR=red
+SPACESHIP_ELIXIR_SYMBOL=
 export TERM=xterm-256color
 if [[ -z "$TMUX" ]];then
         tmux
