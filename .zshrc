@@ -94,6 +94,10 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh" 
+pfzf() {
+  fzf --preview '[[ $(file --mime {}) =~ binary ]] && echo {} is a binary file || (rougify {} || cat {}) 2> /dev/null | head -500'
+}
+
 alias gopipe="cd ~/Projects/pipefy"
 alias goevents="cd ~/Projects/pipefy_events"
 alias stoppostgres="sudo service postgresql stop"
