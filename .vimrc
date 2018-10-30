@@ -123,3 +123,10 @@ let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {}
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['ex'] = ''
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['exs'] = ''
 let g:SuperTabDefaultCompletionType = "<c-n>"
+nmap <C-S-j> <Plug>upAndDownDown
+nmap <C-S-k> <Plug>upAndDownUp
+imap <C-S-k> <Plug>upAndDownInsertUp
+imap <C-S-j> <Plug>upAndDownInsertDown
+vmap <C-S-k> <Plug>upAndDownVisualUp
+vmap <C-S-j> <Plug>upAndDownVisualDown
+nmap <Leader>hh :noh <CR>
