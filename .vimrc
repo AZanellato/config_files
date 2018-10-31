@@ -90,6 +90,8 @@ set splitright
 set mouse=a
 
 command YankCurrentFilePath let @+ = expand("%")
+nnoremap zq :wq<CR>
+nnoremap W :w<CR>
 nnoremap yfp :YankCurrentFilePath<CR>
 nnoremap <Left> :echoe "Use h"<CR>
 nnoremap <Right> :echoe "Use l"<CR>
