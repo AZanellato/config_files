@@ -98,6 +98,26 @@ pfzf() {
   fzf --preview '[[ $(file --mime {}) =~ binary ]] && echo {} is a binary file || (rougify {} || cat {}) 2> /dev/null | head -500'
 }
 
+reb-master() { 
+  git checkout master &&
+  git pull --rebase && 
+  git checkout - && 
+  git rebase master
+}
+
+reb-branch() {
+  local branch="$1"
+  if [ $branch == '' ]; then
+    echo $(reb-master)
+  else 
+    git checkout $branch &&
+    git pull --rebase && 
+    git checkout - && 
+    git rebase $branch
+  fi
+}
+
+
 alias gopipe="cd ~/Projects/pipefy"
 alias goevents="cd ~/Projects/pipefy_events"
 alias stoppostgres="sudo service postgresql stop"

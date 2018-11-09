@@ -46,8 +46,8 @@ call plug#end()
 "
 let g:deoplete#enable_at_startup = 1
 let g:dracula_italic=0
-colorscheme dracula
-let g:airline_theme='violet'
+colorscheme palenight
+let g:airline_theme='dark'
 
 let mapleader = " "
 
@@ -117,9 +117,9 @@ set hidden
 " https://github.com/JakeBecker/elixir-ls and 
 " https://github.com/autozimu/LanguageClient-neovim/issues/234
 let g:LanguageClient_serverCommands = {
-    \ 'rust': ['~/.cargo/bin/rustup', 'run', 'nightly', 'rls'],
-    \ 'elixir': ['eli-ls'] 
-    \ }
+      \ 'rust': ['~/.cargo/bin/rustup', 'run', 'nightly', 'rls'],
+      \ 'elixir': ['eli-ls'] 
+      \ }
 
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {}
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['ex'] = ''
@@ -132,3 +132,4 @@ imap <C-S-j> <Plug>upAndDownInsertDown
 vmap <C-S-k> <Plug>upAndDownVisualUp
 vmap <C-S-j> <Plug>upAndDownVisualDown
 nmap <Leader>hh :noh <CR>
+nmap <Leader>== gg=G
