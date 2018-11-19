@@ -32,22 +32,28 @@ else
 endif
 " Themes!
 Plug 'drewtempelmeyer/palenight.vim'
-Plug 'rakr/vim-one'
-Plug 'arcticicestudio/nord-vim'
-Plug 'mhartington/oceanic-next'
 Plug 'jacoborus/tender.vim'
-Plug 'kaicataldo/material.vim'
-Plug 'srcery-colors/srcery-vim'
 Plug 'zanglg/nova.vim'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'dracula/vim'
+Plug 'hzchirs/vim-material'
+Plug 'rakr/vim-two-firewatch'
+Plug 'liuchengxu/space-vim-dark'
+Plug 'zeis/vim-kolor'
 Plug 'ryanoasis/vim-devicons' " must be the last one
 call plug#end()
-"
+
+
 let g:deoplete#enable_at_startup = 1
 let g:dracula_italic=0
 colorscheme palenight
 let g:airline_theme='dark'
+let g:space_vim_dark_background = 234
+" set background=dark " or light if you prefer the light version
+" let g:two_firewatch_italics=1
+" colorscheme two-firewatch
+
+let g:airline_theme='dark' " if you have Airline installed and want the associated theme
 
 let mapleader = " "
 
@@ -58,7 +64,7 @@ if executable('ag')
     nnoremap \ :Ag<SPACE>
   endif
 endif
-
+set termguicolors
 let g:airline_powerline_fonts = 1
 
 let g:mix_format_on_save = 1
