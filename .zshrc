@@ -60,6 +60,7 @@ ZSH_THEME="spaceship"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
+  rails
   git
   zsh-autosuggestions
 )
@@ -121,8 +122,8 @@ reb-branch() {
 alias gopipe="cd ~/Projects/pipefy"
 alias goevents="cd ~/Projects/pipefy_events"
 alias stoppostgres="sudo service postgresql stop"
-alias docker-up="sudo docker-compose -f ~/Projects/pipefy/docker-compose.yml up"
-alias run-pipe="cd ~/Projects/pipefy && bin/rails s"
+alias docker-up="docker-compose -f ~/Projects/pipefy/docker-compose.yml up"
+alias rpipefy="cd ~ && ./start_pipefy && cd -"
 alias projects="cd ~/Projects"
 
 export PATH="$HOME/.rbenv/bin:$PATH"

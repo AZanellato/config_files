@@ -108,7 +108,6 @@ nnoremap <F5> :call LanguageClient_contextMenu()<CR>
 vnoremap <C-c> "+y
 autocmd StdinReadPre * let s:std_in=1
 map <C-p> :FZF<CR>
-" set termguicolors
 au InsertLeave * set nopaste
 
 set number relativenumber
