@@ -48,13 +48,6 @@ let g:deoplete#enable_at_startup = 1
 let g:dracula_italic=0
 colorscheme palenight
 let g:airline_theme='dark'
-let g:space_vim_dark_background = 234
-" set background=dark " or light if you prefer the light version
-" let g:two_firewatch_italics=1
-" colorscheme two-firewatch
-
-let g:airline_theme='dark' " if you have Airline installed and want the associated theme
-
 let mapleader = " "
 
 if executable('ag')
@@ -65,7 +58,23 @@ if executable('ag')
   endif
 endif
 set termguicolors
+let g:airline_mode_map = {
+    \ '__' : '-',
+    \ 'n'  : 'N',
+    \ 'i'  : 'I',
+    \ 'R'  : 'R',
+    \ 'c'  : 'C',
+    \ 'v'  : 'V',
+    \ 'V'  : 'V',
+    \ '' : 'V',
+    \ 's'  : 'S',
+    \ }
 let g:airline_powerline_fonts = 1
+let g:airline_skip_empty_sections = 1
+let g:airline_section_b = '%{airline#util#wrap(airline#extensions#branch#get_head(),0)}'
+let g:airline_section_z = '%3p%% %3l/%L:%3v'
+let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
+let g:airline#extensions#wordcount#formatter#default#fmt = '%d w'
 
 let g:mix_format_on_save = 1
 let g:mix_format_silent_errors = 1
