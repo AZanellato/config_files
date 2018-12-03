@@ -1,8 +1,10 @@
 call plug#begin('~/.vim/plugged')
+Plug 'thoughtbot/vim-rspec'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'matze/vim-move'
 Plug 'w0rp/ale'
+Plug 'matze/vim-move'
 Plug 'vim-airline/vim-airline'
+Plug 'christoomey/vim-tmux-navigator'
 Plug 'sheerun/vim-polyglot'
 Plug 'mhinz/vim-mix-format'
 Plug 'tpope/vim-bundler'
@@ -18,6 +20,7 @@ Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-vinegar'
+Plug 'tpope/vim-dispatch'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'vim-scripts/upAndDown'
 Plug 'jeetsukumaran/vim-buffergator'
@@ -43,7 +46,14 @@ Plug 'zeis/vim-kolor'
 Plug 'ryanoasis/vim-devicons' " must be the last one
 call plug#end()
 
+set <F20>=j
+set <F21>=k
+vmap <F20> <Plug>MoveBlockDown
+vmap <F21> <Plug>MoveBlockUp
+nmap <F20> <Plug>MoveLineDown
+nmap <F21> <Plug>MoveLineUp
 
+let g:rspec_command = "Dispatch bin/rspec {spec}"
 let g:deoplete#enable_at_startup = 1
 let g:dracula_italic=0
 colorscheme palenight
@@ -72,7 +82,7 @@ let g:airline_mode_map = {
 let g:airline_powerline_fonts = 1
 let g:airline_skip_empty_sections = 1
 let g:airline_section_b = '%{airline#util#wrap(airline#extensions#branch#get_head(),0)}'
-let g:airline_section_z = '%3p%% %3l/%L:%3v'
+let g:airline_section_z = ''
 let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
 let g:airline#extensions#wordcount#formatter#default#fmt = '%d w'
 
@@ -104,7 +114,12 @@ set splitbelow
 set splitright
 set mouse=a
 
-command YankCurrentFilePath let @+ = expand("%")
+if !exists(":YankCurrentFilePath")
+  command YankCurrentFilePath let @+ = expand("%")
+endif
+map <Leader>s :call RunNearestSpec()<CR>
+nnoremap rcs :call RunCurrentSpecFile()<CR>
+nnoremap rls :call RunLastSpec()<CR>
 nnoremap zq :wq<CR>
 nnoremap W :w<CR>
 nnoremap yfp :YankCurrentFilePath<CR>
@@ -149,11 +164,13 @@ let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {}
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['ex'] = ''
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['exs'] = ''
 let g:SuperTabDefaultCompletionType = "<c-n>"
-nmap <C-S-j> <Plug>upAndDownDown
-nmap <C-S-k> <Plug>upAndDownUp
-imap <C-S-k> <Plug>upAndDownInsertUp
-imap <C-S-j> <Plug>upAndDownInsertDown
-vmap <C-S-k> <Plug>upAndDownVisualUp
-vmap <C-S-j> <Plug>upAndDownVisualDown
 nmap <Leader>hh :noh <CR>
 nmap <Leader>== gg=G
+
+" tmux bindings
+" let g:tmux_navigator_no_mappings = 1
+" nnoremap <silent> C-h :TmuxNavigateLeft<cr>
+" nnoremap <silent> C-j :TmuxNavigateDown<cr>
+" nnoremap <silent> C-k :TmuxNavigateUp<cr>
+" nnoremap <silent> C-l :TmuxNavigateRight<cr>
+" nnoremap <silent> C-b :TmuxNavigatePrevious<cr>

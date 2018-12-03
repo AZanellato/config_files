@@ -123,7 +123,7 @@ alias gopipe="cd ~/Projects/pipefy"
 alias goevents="cd ~/Projects/pipefy_events"
 alias stoppostgres="sudo service postgresql stop"
 alias docker-up="docker-compose -f ~/Projects/pipefy/docker-compose.yml up"
-alias rpipefy="cd ~ && ./start_pipefy && cd -"
+alias rpipefy="sudo cd ~ && ./start_pipefy && cd -"
 alias projects="cd ~/Projects"
 
 export PATH="$HOME/.rbenv/bin:$PATH"
@@ -152,13 +152,13 @@ SPACESHIP_PROMPT_ORDER=(
   # hg            # Mercurial section (hg_branch  + hg_status)
   # package     # Package version (Disabled)
   # node          # Node.js section
-  ruby          # Ruby section
-  elixir        # Elixir section
+  # ruby          # Ruby section
+  # elixir        # Elixir section
   # xcode       # Xcode section (Disabled)
   # swift         # Swift section
   # golang        # Go section
   # php           # PHP section
-  rust          # Rust section
+  # rust          # Rust section
   # haskell       # Haskell Stack section
   # julia       # Julia section (Disabled)
   # docker      # Docker section (Disabled)
