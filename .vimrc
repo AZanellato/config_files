@@ -1,50 +1,53 @@
 call plug#begin('~/.vim/plugged')
-Plug 'thoughtbot/vim-rspec'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'w0rp/ale'
-Plug 'matze/vim-move'
-Plug 'vim-airline/vim-airline'
-Plug 'christoomey/vim-tmux-navigator'
-Plug 'sheerun/vim-polyglot'
-Plug 'mhinz/vim-mix-format'
-Plug 'tpope/vim-bundler'
-Plug 'tpope/vim-rails'
-Plug 'airblade/vim-gitgutter'
-Plug 'jreybert/vimagit'
-Plug 'ryanoasis/vim-devicons'
-Plug 'lifepillar/vim-cheat40'
-Plug 'slashmili/alchemist.vim'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-endwise'
-Plug 'tpope/vim-eunuch'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-vinegar'
-Plug 'tpope/vim-dispatch'
-Plug 'terryma/vim-multiple-cursors'
-Plug 'vim-scripts/upAndDown'
-Plug 'jeetsukumaran/vim-buffergator'
-Plug 'ervandew/supertab'
-if has('nvim')
-  Plug 'autozimu/LanguageClient-neovim', {'branch': 'next', 'do': 'bash install.sh'}
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
-endif
-" Themes!
-Plug 'drewtempelmeyer/palenight.vim'
-Plug 'jacoborus/tender.vim'
-Plug 'zanglg/nova.vim'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'dracula/vim'
-Plug 'hzchirs/vim-material'
-Plug 'rakr/vim-two-firewatch'
-Plug 'liuchengxu/space-vim-dark'
-Plug 'zeis/vim-kolor'
-Plug 'ryanoasis/vim-devicons' " must be the last one
+  Plug 'airblade/vim-gitgutter'
+  Plug 'Konfekt/FastFold'
+  Plug 'christoomey/vim-tmux-navigator'
+  Plug 'ervandew/supertab'
+  Plug 'jeetsukumaran/vim-buffergator'
+  Plug 'jgdavey/vim-blockle'
+  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+  Plug 'kana/vim-textobj-user'
+  Plug 'matze/vim-move'
+  Plug 'mhinz/vim-mix-format'
+  Plug 'nelstrom/vim-textobj-rubyblock'
+  Plug 'sheerun/vim-polyglot'
+  Plug 'terryma/vim-multiple-cursors'
+  Plug 'thoughtbot/vim-rspec'
+  Plug 'tpope/vim-bundler'
+  Plug 'tpope/vim-commentary'
+  Plug 'tpope/vim-dispatch'
+  Plug 'tpope/vim-endwise'
+  Plug 'tpope/vim-eunuch'
+  Plug 'tpope/vim-fugitive'
+  Plug 'tpope/vim-rails'
+  Plug 'tpope/vim-surround'
+  Plug 'tpope/vim-vinegar'
+  Plug 'vim-airline/vim-airline'
+  Plug 'w0rp/ale'
+  if has('nvim')
+    Plug 'autozimu/LanguageClient-neovim', {'branch': 'next', 'do': 'bash install.sh'}
+    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  else
+    Plug 'Shougo/deoplete.nvim'
+    Plug 'roxma/nvim-yarp'
+    Plug 'roxma/vim-hug-neovim-rpc'
+  endif
+  " Themes!
+  Plug 'hzchirs/vim-material'
+  Plug 'drewtempelmeyer/palenight.vim' " slow :(
+  Plug 'dracula/vim'
+  " Plug 'jacoborus/tender.vim'
+  " Plug 'liuchengxu/space-vim-dark'
+  " Plug 'rakr/vim-two-firewatch'
+  " Plug 'vim-airline/vim-airline-themes'
+  " Plug 'zanglg/nova.vim'
+  " Plug 'zeis/vim-kolor'
+  Plug 'ryanoasis/vim-devicons' " must be the last one
 call plug#end()
+
+if exists('&inccommand')
+  set inccommand=split
+endif
 
 set <F20>=j
 set <F21>=k
@@ -56,9 +59,10 @@ nmap <F21> <Plug>MoveLineUp
 let g:rspec_command = "Dispatch bin/rspec {spec}"
 let g:deoplete#enable_at_startup = 1
 let g:dracula_italic=0
-colorscheme palenight
+colorscheme vim-material
 let g:airline_theme='dark'
 let mapleader = " "
+set background=dark
 
 if executable('ag')
   if !exists(":Ag")
@@ -85,48 +89,54 @@ let g:airline_section_b = '%{airline#util#wrap(airline#extensions#branch#get_hea
 let g:airline_section_z = ''
 let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
 let g:airline#extensions#wordcount#formatter#default#fmt = '%d w'
-
+let g:blockle_mapping = ''
 let g:mix_format_on_save = 1
 let g:mix_format_silent_errors = 1
 let g:rustfmt_autosave = 1
-set foldmethod=indent
-set nofoldenable
+
+set autowrite     " Automatically :write before running commands
 set backspace=2   " Backspace deletes like most programs in insert mode
-set nobackup
-set nowritebackup
-set noswapfile    " http://robots.thoughtbot.com/post/18739402579/global-gitignore#comment-458413287
+set expandtab
+set foldmethod=indent
 set history=50
-set ruler         " show the cursor position all the time
-set showcmd       " display incomplete commands
 set incsearch     " do incremental searching
 set laststatus=2  " Always display the status line
-set autowrite     " Automatically :write before running commands
-set tabstop=2
-set shiftwidth=2
-set shiftround
-set expandtab
-set splitbelow
-set splitright
+set mouse=a
+set nobackup
+set nofoldenable
+set noswapfile    " http://robots.thoughtbot.com/post/18739402579/global-gitignore#comment-458413287
+set nowritebackup
 set number
 set numberwidth=5
-
+set regexpengine=1
+set ruler         " show the cursor position all the time
+set shiftround
+set shiftwidth=2
+set showcmd       " display incomplete commands
 set splitbelow
 set splitright
-set mouse=a
+set tabstop=2
+set ttyfast
 
 if !exists(":YankCurrentFilePath")
   command YankCurrentFilePath let @+ = expand("%")
 endif
+map <Leader>r :redraw!<CR>
 map <Leader>s :call RunNearestSpec()<CR>
+nmap <Leader>hh :noh <CR>
+nmap <Leader>== gg=G
 nnoremap rcs :call RunCurrentSpecFile()<CR>
 nnoremap rls :call RunLastSpec()<CR>
+nnoremap <Leader>al :call RunAllSpecs()<CR>
 nnoremap zq :wq<CR>
 nnoremap W :w<CR>
 nnoremap yfp :YankCurrentFilePath<CR>
+
 nnoremap <Left> :echoe "Use h"<CR>
 nnoremap <Right> :echoe "Use l"<CR>
-nnoremap <Up> :echoe "Use j"<CR> 
-nnoremap <Down> :echoe "Use k" <CR> 
+nnoremap <Up> :echoe "Use k"<CR> 
+nnoremap <Down> :echoe "Use j" <CR> 
+
 nnoremap fb :e# <CR> 
 nnoremap <F5> :call LanguageClient_contextMenu()<CR>
 vnoremap <C-c> "+y
@@ -134,12 +144,12 @@ autocmd StdinReadPre * let s:std_in=1
 map <C-p> :FZF<CR>
 au InsertLeave * set nopaste
 
-set number relativenumber
-augroup numbertoggle
-  autocmd!
-  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
-  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
-augroup END
+" set number relativenumber
+" augroup numbertoggle
+"   autocmd!
+"   autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+"   autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+" augroup END
 
 fun! <SID>StripTrailingWhitespaces()
     let l = line(".")
@@ -164,8 +174,6 @@ let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {}
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['ex'] = ''
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['exs'] = ''
 let g:SuperTabDefaultCompletionType = "<c-n>"
-nmap <Leader>hh :noh <CR>
-nmap <Leader>== gg=G
 
 " tmux bindings
 " let g:tmux_navigator_no_mappings = 1

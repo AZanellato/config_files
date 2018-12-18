@@ -123,7 +123,7 @@ alias gopipe="cd ~/Projects/pipefy"
 alias goevents="cd ~/Projects/pipefy_events"
 alias stoppostgres="sudo service postgresql stop"
 alias docker-up="docker-compose -f ~/Projects/pipefy/docker-compose.yml up"
-alias rpipefy="sudo cd ~ && ./start_pipefy && cd -"
+alias rpipefy="cd ~ && ./start_pipefy && cd -"
 alias projects="cd ~/Projects"
 
 export PATH="$HOME/.rbenv/bin:$PATH"
@@ -182,7 +182,7 @@ SPACESHIP_RUST_COLOR=red
 SPACESHIP_RUBY_SYMBOL= 
 SPACESHIP_RUBY_COLOR=red
 SPACESHIP_ELIXIR_SYMBOL=
-export TERM=xterm-256color
+# export TERM=xterm-256color
 if [[ -z "$TMUX" ]];then
         tmux
 fi
