@@ -33,15 +33,12 @@ call plug#begin('~/.vim/plugged')
     Plug 'roxma/vim-hug-neovim-rpc'
   endif
   " Themes!
+  Plug 'nightsense/snow'
   Plug 'hzchirs/vim-material'
   Plug 'drewtempelmeyer/palenight.vim' " slow :(
   Plug 'dracula/vim'
-  " Plug 'jacoborus/tender.vim'
-  " Plug 'liuchengxu/space-vim-dark'
-  " Plug 'rakr/vim-two-firewatch'
-  " Plug 'vim-airline/vim-airline-themes'
-  " Plug 'zanglg/nova.vim'
-  " Plug 'zeis/vim-kolor'
+  Plug 'whatyouhide/vim-gotham'
+  Plug 'mhartington/oceanic-next'
   Plug 'ryanoasis/vim-devicons' " must be the last one
 call plug#end()
 
@@ -56,13 +53,18 @@ vmap <F21> <Plug>MoveBlockUp
 nmap <F20> <Plug>MoveLineDown
 nmap <F21> <Plug>MoveLineUp
 
+set background=dark
 let g:rspec_command = "Dispatch bin/rspec {spec}"
 let g:deoplete#enable_at_startup = 1
 let g:dracula_italic=0
-colorscheme vim-material
+colorscheme OceanicNext
+
+let g:oceanic_next_terminal_bold = 1
+  let g:oceanic_next_terminal_italic = 1
+let g:airline_theme='oceanicnext'
+let g:material_style='palenight'
 let g:airline_theme='dark'
 let mapleader = " "
-set background=dark
 
 if executable('ag')
   if !exists(":Ag")
@@ -125,6 +127,8 @@ map <Leader>r :redraw!<CR>
 map <Leader>s :call RunNearestSpec()<CR>
 nmap <Leader>hh :noh <CR>
 nmap <Leader>== gg=G
+nnoremap <Leader>vs :vsplit <CR> 
+nnoremap <Leader>hs :split <CR> 
 nnoremap rcs :call RunCurrentSpecFile()<CR>
 nnoremap rls :call RunLastSpec()<CR>
 nnoremap <Leader>al :call RunAllSpecs()<CR>
@@ -144,12 +148,12 @@ autocmd StdinReadPre * let s:std_in=1
 map <C-p> :FZF<CR>
 au InsertLeave * set nopaste
 
-" set number relativenumber
-" augroup numbertoggle
-"   autocmd!
-"   autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
-"   autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
-" augroup END
+set number relativenumber
+augroup numbertoggle
+  autocmd!
+  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+augroup END
 
 fun! <SID>StripTrailingWhitespaces()
     let l = line(".")
