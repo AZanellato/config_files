@@ -178,6 +178,7 @@ let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {}
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['ex'] = ''
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['exs'] = ''
 let g:SuperTabDefaultCompletionType = "<c-n>"
+highlight Search guibg=none guifg=none gui=underline
 
 " tmux bindings
 " let g:tmux_navigator_no_mappings = 1
