@@ -1,5 +1,5 @@
 [Appearance]
-ColorScheme=GloomDark
+ColorScheme=Dracula
 Font=Fira Code,11,-1,5,57,0,0,0,0,0
 
 [Cursor Options]
