@@ -1,46 +1,47 @@
-call plug#begin('~/.vim/plugged')
-  Plug 'airblade/vim-gitgutter'
-  Plug 'Konfekt/FastFold'
-  Plug 'christoomey/vim-tmux-navigator'
-  Plug 'ervandew/supertab'
-  Plug 'jeetsukumaran/vim-buffergator'
-  Plug 'jgdavey/vim-blockle'
-  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-  Plug 'kana/vim-textobj-user'
-  Plug 'matze/vim-move'
-  Plug 'mhinz/vim-mix-format'
-  Plug 'nelstrom/vim-textobj-rubyblock'
-  Plug 'sheerun/vim-polyglot'
-  Plug 'terryma/vim-multiple-cursors'
-  Plug 'thoughtbot/vim-rspec'
-  Plug 'tpope/vim-bundler'
-  Plug 'tpope/vim-commentary'
-  Plug 'tpope/vim-dispatch'
-  Plug 'tpope/vim-endwise'
-  Plug 'tpope/vim-eunuch'
-  Plug 'tpope/vim-fugitive'
-  Plug 'tpope/vim-rails'
-  Plug 'tpope/vim-surround'
-  Plug 'tpope/vim-vinegar'
-  Plug 'vim-airline/vim-airline'
-  Plug 'w0rp/ale'
-  if has('nvim')
-    Plug 'autozimu/LanguageClient-neovim', {'branch': 'next', 'do': 'bash install.sh'}
-    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-  else
-    Plug 'Shougo/deoplete.nvim'
-    Plug 'roxma/nvim-yarp'
-    Plug 'roxma/vim-hug-neovim-rpc'
-  endif
-  " Themes!
-  Plug 'nightsense/snow'
-  Plug 'hzchirs/vim-material'
-  Plug 'drewtempelmeyer/palenight.vim' " slow :(
-  Plug 'dracula/vim'
-  Plug 'whatyouhide/vim-gotham'
-  Plug 'mhartington/oceanic-next'
-  Plug 'ryanoasis/vim-devicons' " must be the last one
-call plug#end()
+ call plug#begin('~/.vim/plugged')
+   Plug 'Konfekt/FastFold'
+   Plug 'airblade/vim-gitgutter'
+   Plug 'christoomey/vim-tmux-navigator'
+   Plug 'ervandew/supertab'
+   Plug 'google/vim-searchindex'
+   Plug 'jeetsukumaran/vim-buffergator'
+   Plug 'jgdavey/vim-blockle'
+   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+   Plug 'kana/vim-textobj-user'
+   Plug 'matze/vim-move'
+   Plug 'mhinz/vim-mix-format'
+   Plug 'nelstrom/vim-textobj-rubyblock'
+   Plug 'sheerun/vim-polyglot'
+   Plug 'terryma/vim-multiple-cursors'
+   Plug 'thoughtbot/vim-rspec'
+   Plug 'tpope/vim-bundler'
+   Plug 'tpope/vim-commentary'
+   Plug 'tpope/vim-dispatch'
+   Plug 'tpope/vim-endwise'
+   Plug 'tpope/vim-eunuch'
+   Plug 'tpope/vim-fugitive'
+   Plug 'tpope/vim-rails'
+   Plug 'tpope/vim-surround'
+   Plug 'tpope/vim-vinegar'
+   Plug 'vim-airline/vim-airline'
+   Plug 'w0rp/ale'
+   if has('nvim')
+     Plug 'autozimu/LanguageClient-neovim', {'branch': 'next', 'do': 'bash install.sh'}
+     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+   else
+     Plug 'Shougo/deoplete.nvim'
+     Plug 'roxma/nvim-yarp'
+     Plug 'roxma/vim-hug-neovim-rpc'
+   endif
+   " Themes!
+   Plug 'nightsense/snow'
+   Plug 'hzchirs/vim-material'
+   Plug 'drewtempelmeyer/palenight.vim' " slow :(
+   Plug 'dracula/vim'
+   Plug 'whatyouhide/vim-gotham'
+   Plug 'mhartington/oceanic-next'
+   Plug 'ryanoasis/vim-devicons' " must be the last one
+ call plug#end()
 
 if exists('&inccommand')
   set inccommand=split
@@ -123,26 +124,26 @@ set ttyfast
 if !exists(":YankCurrentFilePath")
   command YankCurrentFilePath let @+ = expand("%")
 endif
-map <Leader>r :redraw!<CR>
+
+
+map <Leader>fmt :call LanguageClient#textDocument_formatting()<CR>
+map <Leader>rd :redraw!<CR>
 map <Leader>s :call RunNearestSpec()<CR>
 nmap <Leader>hh :noh <CR>
-nmap <Leader>== gg=G
-nnoremap <Leader>vs :vsplit <CR> 
+nnoremap <F5> :call LanguageClient_contextMenu()<CR>
+nnoremap <Leader>al :call RunAllSpecs()<CR>
 nnoremap <Leader>hs :split <CR> 
+nnoremap <Leader>vs :vsplit <CR> 
+nnoremap <Left> :echoe "Use h"<CR>
+nnoremap <Down> :echoe "Use j" <CR> 
+nnoremap <Up> :echoe "Use k"<CR> 
+nnoremap <Right> :echoe "Use l"<CR>
+nnoremap W :w<CR>
+nnoremap fb :e# <CR> 
 nnoremap rcs :call RunCurrentSpecFile()<CR>
 nnoremap rls :call RunLastSpec()<CR>
-nnoremap <Leader>al :call RunAllSpecs()<CR>
-nnoremap zq :wq<CR>
-nnoremap W :w<CR>
 nnoremap yfp :YankCurrentFilePath<CR>
-
-nnoremap <Left> :echoe "Use h"<CR>
-nnoremap <Right> :echoe "Use l"<CR>
-nnoremap <Up> :echoe "Use k"<CR> 
-nnoremap <Down> :echoe "Use j" <CR> 
-
-nnoremap fb :e# <CR> 
-nnoremap <F5> :call LanguageClient_contextMenu()<CR>
+nnoremap zq :wq<CR>
 vnoremap <C-c> "+y
 autocmd StdinReadPre * let s:std_in=1
 map <C-p> :FZF<CR>
@@ -169,7 +170,10 @@ set hidden
 " to make eli-ls work, visit these pages:
 " https://github.com/JakeBecker/elixir-ls and 
 " https://github.com/autozimu/LanguageClient-neovim/issues/234
+" To make it solargraph work, just run gem install solargraph
+" See https://github.com/castwide/solargraph
 let g:LanguageClient_serverCommands = {
+      \ 'ruby': ['solargraph', 'stdio'],
       \ 'rust': ['~/.cargo/bin/rustup', 'run', 'nightly', 'rls'],
       \ 'elixir': ['eli-ls'] 
       \ }
@@ -178,12 +182,11 @@ let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {}
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['ex'] = ''
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['exs'] = ''
 let g:SuperTabDefaultCompletionType = "<c-n>"
-highlight Search guibg=none guifg=none gui=underline
+if ('nvim')
+  hi Search guibg=none guifg=none gui=underline
+else
+  " set Vim-specific sequences for RGB colors
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+endif
 
-" tmux bindings
-" let g:tmux_navigator_no_mappings = 1
-" nnoremap <silent> C-h :TmuxNavigateLeft<cr>
-" nnoremap <silent> C-j :TmuxNavigateDown<cr>
-" nnoremap <silent> C-k :TmuxNavigateUp<cr>
-" nnoremap <silent> C-l :TmuxNavigateRight<cr>
-" nnoremap <silent> C-b :TmuxNavigatePrevious<cr>
