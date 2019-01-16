@@ -119,12 +119,20 @@ reb-branch() {
 }
 
 
-alias gopipe="cd ~/Projects/pipefy"
-alias goevents="cd ~/Projects/pipefy_events"
-alias stoppostgres="sudo service postgresql stop"
+
+if command lsd > /dev/null; then
+  alias ls="lsd"
+fi
+alias n="nvim ."
+alias nv="nvim "
 alias docker-up="docker-compose -f ~/Projects/pipefy/docker-compose.yml up"
-alias rpipefy="cd ~ && ./start_pipefy && cd -"
+alias goevents="cd ~/Projects/pipefy_events"
+alias gopipe="cd ~/Projects/pipefy"
 alias projects="cd ~/Projects"
+alias rpipefy="cd ~ && ./start_pipefy && cd -"
+alias stoppostgres="sudo service postgresql stop"
+alias rstest="RAILS_ENV=test rs"
+
 
 export PATH="$HOME/.rbenv/bin:$PATH"
 if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
@@ -145,7 +153,7 @@ eval "$(rbenv init -)"
 
 SPACESHIP_PROMPT_ORDER=(
   # time          # Time stampts section (Disabled)
-  user          # Username section
+  # user          # Username section
   dir           # Current directory section
   # host          # Hostname section
   git           # Git section (git_branch + git_status)
@@ -186,3 +194,4 @@ SPACESHIP_ELIXIR_SYMBOL=
 if [[ -z "$TMUX" ]];then
         tmux
 fi
+
