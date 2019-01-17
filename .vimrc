@@ -11,17 +11,22 @@ call plug#begin('~/.vim/plugged')
   " Formatting for Elixir 
   Plug 'mhinz/vim-mix-format'
 
+  " Make delete actually delete instead of cut
+  Plug 'svermeulen/vim-cutlass'
+  " Registers stuff
+  Plug 'svermeulen/vim-yoink'
+
   Plug 'tpope/vim-rails'
   Plug 'tpope/vim-bundler'
   Plug 'tpope/vim-commentary'
   Plug 'tpope/vim-endwise'
   Plug 'tpope/vim-surround'
 
-  " Replacing netrw (trying out instead of tpope/vim-vinegar)
-  Plug 'justinmk/vim-dirvish'
+  " Try again after some time tpope/vim-vinegar)
+  " Plug 'justinmk/vim-dirvish'
+  Plug 'tpope/vim-vinegar'
 
   " Git Stuff
-  Plug 'kristijanhusak/vim-dirvish-git'
   Plug 'airblade/vim-gitgutter'
   Plug 'tpope/vim-fugitive'
 
@@ -50,6 +55,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'google/vim-searchindex'
   Plug 'ryanoasis/vim-devicons' 
   " Themes!
+  Plug 'endel/vim-github-colorscheme'
   Plug 'Nequo/vim-allomancer'
   Plug 'nightsense/snow'
   Plug 'hzchirs/vim-material'
@@ -77,9 +83,9 @@ let g:deoplete#enable_at_startup = 1
 
 let g:oceanic_next_terminal_bold = 1
 let g:oceanic_next_terminal_italic = 1
-let g:airline_theme='oceanicnext'
+" let g:airline_theme='oceanicnext'
 let g:material_style='palenight'
-let g:airline_theme='dark'
+let g:airline_theme='oceanicnextlight'
 let mapleader = " "
 
 if executable('ag')
@@ -144,12 +150,14 @@ endif
 
 
 
-map <Leader>fmt :call LanguageClient#textDocument_formatting()<CR>
+map <Leader>f :FZF<CR>
+map <Leader>lft :call LanguageClient#textDocument_formatting()<CR>
 map <Leader>rd :redraw!<CR>
 map <Leader>ss :call RunNearestSpec()<CR>
 map <Leader>soi :SourceAndInstall<CR>
 map <Leader>sor :Source<CR>
-nmap <Leader>hh :noh <CR>
+nmap <Leader>nh :noh <CR>
+nmap <Leader>yh :Yanks <CR>
 nnoremap <F5> :call LanguageClient_contextMenu()<CR>
 nnoremap <Leader>al :call RunAllSpecs()<CR>
 nnoremap <Leader>hs :split <CR> 
@@ -166,7 +174,6 @@ nnoremap yfp :YankCurrentFilePath<CR>
 nnoremap zq :wq<CR>
 vnoremap <C-c> "+y
 autocmd StdinReadPre * let s:std_in=1
-map <C-p> :FZF<CR>
 au InsertLeave * set nopaste
 
 set number relativenumber
@@ -195,8 +202,8 @@ set hidden
 let g:LanguageClient_serverCommands = {
       \ 'ruby': ['solargraph', 'stdio'],
       \ 'rust': ['~/.cargo/bin/rustup', 'run', 'nightly', 'rls'],
-      \ 'elixir': ['eli-ls'] 
       \ }
+" \ 'elixir': ['eli-ls'] 
 
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {}
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['ex'] = ''
@@ -210,3 +217,15 @@ else
   let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 endif
 
+" Use M to cut instead of D
+nnoremap m d
+xnoremap m d
+
+nnoremap mm dd
+nnoremap M D
+nmap <c-n> <plug>(YoinkPostPasteSwapBack)
+nmap <c-p> <plug>(YoinkPostPasteSwapForward)
+
+nmap p <plug>(YoinkPaste_p)
+nmap P <plug>(YoinkPaste_P)
+let g:yoinkIncludeDeleteOperations=1

@@ -132,6 +132,7 @@ alias projects="cd ~/Projects"
 alias rpipefy="cd ~ && ./start_pipefy && cd -"
 alias stoppostgres="sudo service postgresql stop"
 alias rstest="RAILS_ENV=test rs"
+alias tasn="tmux attach-session -t"
 
 
 export PATH="$HOME/.rbenv/bin:$PATH"
