@@ -229,3 +229,8 @@ nmap <c-p> <plug>(YoinkPostPasteSwapForward)
 nmap p <plug>(YoinkPaste_p)
 nmap P <plug>(YoinkPaste_P)
 let g:yoinkIncludeDeleteOperations=1
+
+nnoremap <left>   <c-w><
+nnoremap <right>  <c-w>>
+nnoremap <up>     <c-w>+
+nnoremap <down> <c-w>-
