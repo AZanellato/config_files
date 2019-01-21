@@ -29,9 +29,12 @@ call plug#begin('~/.vim/plugged')
   " Git Stuff
   Plug 'airblade/vim-gitgutter'
   Plug 'tpope/vim-fugitive'
+  Plug 'sodapopcan/vim-twiggy'
 
+  " Tmux integration. YAY :D 
   Plug 'christoomey/vim-tmux-navigator'
   Plug 'wellle/tmux-complete.vim'
+
   " Dispatch tests to tmux
   Plug 'tpope/vim-dispatch'
   Plug 'thoughtbot/vim-rspec'
@@ -50,7 +53,12 @@ call plug#begin('~/.vim/plugged')
     Plug 'roxma/vim-hug-neovim-rpc'
   endif
 
+  " Snippets :)
+  Plug 'SirVer/ultisnips'
+  Plug 'honza/vim-snippets'
+
   " Visual Stuff
+  Plug 'Yggdroot/indentLine'
   Plug 'vim-airline/vim-airline'
   Plug 'google/vim-searchindex'
   Plug 'ryanoasis/vim-devicons' 
@@ -171,7 +179,7 @@ nnoremap fb :e# <CR>
 nnoremap rcs :call RunCurrentSpecFile()<CR>
 nnoremap rls :call RunLastSpec()<CR>
 nnoremap yfp :YankCurrentFilePath<CR>
-nnoremap zq :wq<CR>
+nnoremap wq :wq<CR>
 vnoremap <C-c> "+y
 autocmd StdinReadPre * let s:std_in=1
 au InsertLeave * set nopaste
@@ -229,3 +237,13 @@ nmap <c-p> <plug>(YoinkPostPasteSwapForward)
 nmap p <plug>(YoinkPaste_p)
 nmap P <plug>(YoinkPaste_P)
 let g:yoinkIncludeDeleteOperations=1
+
+nnoremap <left>   <c-w><
+nnoremap <right>  <c-w>>
+nnoremap <up>     <c-w>+
+nnoremap <down> <c-w>-
+let g:indentLine_char = '|'
+
+let g:UltiSnipsExpandTrigger="<c-t>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
