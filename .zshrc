@@ -125,6 +125,10 @@ if command lsd > /dev/null; then
 fi
 alias n="nvim ."
 alias nv="nvim "
+alias nvimrc="nvim ~/config_files/.vimrc"
+alias nvzshrc="nvim ~/config_files/.zshrc"
+alias config_files="cd ~/config_files/"
+alias pull_config="cd ~/config_files/ && git pull"
 alias docker-up="docker-compose -f ~/Projects/pipefy/docker-compose.yml up"
 alias goevents="cd ~/Projects/pipefy_events"
 alias gopipe="cd ~/Projects/pipefy"
