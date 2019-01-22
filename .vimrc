@@ -67,6 +67,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'Nequo/vim-allomancer'
   Plug 'nightsense/snow'
   Plug 'hzchirs/vim-material'
+  Plug 'dikiaap/minimalist'
   Plug 'dracula/vim'
   Plug 'whatyouhide/vim-gotham'
   Plug 'mhartington/oceanic-next'
