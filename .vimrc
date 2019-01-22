@@ -179,7 +179,6 @@ nnoremap fb :e# <CR>
 nnoremap rcs :call RunCurrentSpecFile()<CR>
 nnoremap rls :call RunLastSpec()<CR>
 nnoremap yfp :YankCurrentFilePath<CR>
-nnoremap wq :wq<CR>
 vnoremap <C-c> "+y
 autocmd StdinReadPre * let s:std_in=1
 au InsertLeave * set nopaste
