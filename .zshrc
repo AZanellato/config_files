@@ -7,7 +7,7 @@ export ZSH=~/.oh-my-zsh
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="spaceship"
+ZSH_THEME="oxide"
 # ZSH_THEME="oxide"
 # Set list of themes to load
 # Setting this variable when ZSH_THEME=random
@@ -23,14 +23,9 @@ ZSH_THEME="spaceship"
 # sensitive completion must be off. _ and - will be interchangeable.
 # HYPHEN_INSENSITIVE="true"
 
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
+# Change following line to change how often to auto-update (in days).
+export UPDATE_ZSH_DAYS=5
 
-# Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
-
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
 
 # Uncomment the following line to disable auto-setting terminal title.
 # DISABLE_AUTO_TITLE="true"
@@ -60,8 +55,10 @@ ZSH_THEME="spaceship"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  rails
-  git
+  asdf
+  git 
+  rails 
+  tmux 
   zsh-autosuggestions
 )
 
@@ -86,15 +83,8 @@ source $ZSH/oh-my-zsh.sh
 
 # ssh
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
 #
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh" 
+# Functions
 pfzf() {
   fzf --preview '[[ $(file --mime {}) =~ binary ]] && echo {} is a binary file || (rougify {} || cat {}) 2> /dev/null | head -500'
 }
@@ -118,6 +108,15 @@ reb-branch() {
   fi
 }
 
+# Set personal aliases, overriding those provided by oh-my-zsh libs,
+# plugins, and themes. Aliases can be placed here, though oh-my-zsh
+# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+# For a full list of active aliases, run `alias`.
+#
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh" 
+
 
 
 if command lsd > /dev/null; then
@@ -136,8 +135,6 @@ alias projects="cd ~/Projects"
 alias rpipefy="cd ~ && ./start_pipefy && cd -"
 alias stoppostgres="sudo service postgresql stop"
 alias rstest="RAILS_ENV=test rs"
-alias tasn="tmux attach-session -t"
-
 
 export PATH="$HOME/.rbenv/bin:$PATH"
 if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
@@ -195,7 +192,6 @@ SPACESHIP_RUST_COLOR=red
 SPACESHIP_RUBY_SYMBOL= 
 SPACESHIP_RUBY_COLOR=red
 SPACESHIP_ELIXIR_SYMBOL=
-# export TERM=xterm-256color
 if [[ -z "$TMUX" ]];then
         tmux
 fi
