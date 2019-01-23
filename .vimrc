@@ -7,7 +7,9 @@ call plug#begin('~/.vim/plugged')
   Plug 'jeetsukumaran/vim-buffergator'
   " Sublime like cursors and text moving
   Plug 'matze/vim-move'
-  Plug 'terryma/vim-multiple-cursors'
+  " Plug 'terryma/vim-multiple-cursors'
+  " f, but with two chars
+  Plug 'justinmk/vim-sneak'
   " Formatting for Elixir 
   Plug 'mhinz/vim-mix-format'
 
@@ -22,7 +24,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-endwise'
   Plug 'tpope/vim-surround'
 
-  " Try again after some time tpope/vim-vinegar)
+  " Try again after some time
   " Plug 'justinmk/vim-dirvish'
   Plug 'tpope/vim-vinegar'
 
@@ -247,3 +249,4 @@ let g:indentLine_char = '|'
 let g:UltiSnipsExpandTrigger="<c-t>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+let g:sneak#s_next = 1
