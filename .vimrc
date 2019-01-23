@@ -108,6 +108,8 @@ if executable('ag')
     nnoremap \ :Ag<SPACE>
   endif
 endif
+
+
 set termguicolors
 let g:airline_mode_map = {
     \ '__' : '-',
@@ -252,3 +254,8 @@ let g:UltiSnipsExpandTrigger="<c-t>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 let g:sneak#s_next = 1
+
+let g:fzf_action = {
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-s': 'split',
+  \ 'ctrl-v': 'vsplit' }
