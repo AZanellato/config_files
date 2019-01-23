@@ -85,6 +85,7 @@ source $ZSH/oh-my-zsh.sh
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
 #
 # Functions
+# fzf --preview '[[ $(file --mime {}) =~ binary ]] && echo {} is a binary file || (rougify {} || cat {}) 2> /dev/null | head -500'
 pfzf() {
   fzf --preview '[[ $(file --mime {}) =~ binary ]] && echo {} is a binary file || (bat --theme="TwoDark" --color always {}) 2> /dev/null | head -500'
 }
@@ -135,7 +136,9 @@ alias projects="cd ~/Projects"
 alias rpipefy="cd ~ && ./start_pipefy && cd -"
 alias stoppostgres="sudo service postgresql stop"
 alias rstest="RAILS_ENV=test rs"
+unalias rg
 
+export BAT_THEME="TwoDark"
 export PATH="$HOME/.rbenv/bin:$PATH"
 if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
         source /etc/profile.d/vte.sh
@@ -195,4 +198,5 @@ SPACESHIP_ELIXIR_SYMBOL=
 if [[ -z "$TMUX" ]];then
         tmux
 fi
-
+# Setting ag as the default source for fzf
+export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
