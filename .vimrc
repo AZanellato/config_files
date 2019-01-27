@@ -49,6 +49,7 @@ call plug#begin('~/.vim/plugged')
   if has('nvim')
     Plug 'autozimu/LanguageClient-neovim', {'branch': 'next', 'do': 'bash install.sh'}
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+    Plug 'tbodt/deoplete-tabnine', { 'do': './install.sh' }
   else
     Plug 'Shougo/deoplete.nvim'
     Plug 'roxma/nvim-yarp'
@@ -211,7 +212,7 @@ set hidden
 " See https://github.com/castwide/solargraph
 let g:LanguageClient_serverCommands = {
       \ 'ruby': ['solargraph', 'stdio'],
-      \ 'rust': ['~/.cargo/bin/rustup', 'run', 'nightly', 'rls'],
+      \ 'rust': ['~/.cargo/bin/rustup', 'run', 'beta', 'rls'],
       \ }
 " \ 'elixir': ['eli-ls'] 
 
