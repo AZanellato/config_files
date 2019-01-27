@@ -86,7 +86,7 @@ source $ZSH/oh-my-zsh.sh
 #
 # Functions
 pfzf() {
-  fzf --preview '[[ $(file --mime {}) =~ binary ]] && echo {} is a binary file || (rougify {} || cat {}) 2> /dev/null | head -500'
+  fzf --preview '[[ $(file --mime {}) =~ binary ]] && echo {} is a binary file || (bat --theme="TwoDark" --color always {}) 2> /dev/null | head -500'
 }
 
 reb-master() { 
