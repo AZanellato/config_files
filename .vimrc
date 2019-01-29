@@ -31,6 +31,7 @@ call plug#begin('~/.vim/plugged')
   " Git Stuff
   Plug 'airblade/vim-gitgutter'
   Plug 'tpope/vim-fugitive'
+  Plug 'lambdalisue/gina.vim'
   Plug 'sodapopcan/vim-twiggy'
 
   " Tmux integration. YAY :D 
@@ -110,7 +111,7 @@ if executable('ag')
 endif
 
 
-set termguicolors
+
 let g:airline_mode_map = {
     \ '__' : '-',
     \ 'n'  : 'N',
@@ -132,6 +133,7 @@ let g:mix_format_on_save = 1
 let g:mix_format_silent_errors = 1
 let g:rustfmt_autosave = 1
 
+set termguicolors
 set autowrite     " Automatically :write before running commands
 set backspace=2   " Backspace deletes like most programs in insert mode
 set expandtab " Tab => spaces
@@ -152,6 +154,16 @@ set splitbelow "Split horizontal shows up from below
 set splitright " Split vertical shows up to the right
 set tabstop=2 " Tab equals to 2 spaces
 set ttyfast
+set hidden
+
+" Relative number when on normal mode
+" absolute numbers when on insert mode
+set number relativenumber
+augroup numbertoggle
+  autocmd!
+  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+augroup END
 
 if !exists(":YankCurrentFilePath")
   command YankCurrentFilePath let @+ = expand("%")
@@ -187,15 +199,15 @@ nnoremap rcs :call RunCurrentSpecFile()<CR>
 nnoremap rls :call RunLastSpec()<CR>
 nnoremap yfp :YankCurrentFilePath<CR>
 vnoremap <C-c> "+y
+
+" Use M to cut instead of D
+nnoremap m d
+xnoremap m d
+
+nnoremap mm dd
+nnoremap M D
 autocmd StdinReadPre * let s:std_in=1
 au InsertLeave * set nopaste
-
-set number relativenumber
-augroup numbertoggle
-  autocmd!
-  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
-  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
-augroup END
 
 fun! <SID>StripTrailingWhitespaces()
     let l = line(".")
@@ -207,7 +219,6 @@ endfun
 autocmd FileType c,cpp,java,php,ruby,elixir,rust,python autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
 
 
-set hidden
 " to make eli-ls work, visit these pages:
 " https://github.com/JakeBecker/elixir-ls and 
 " https://github.com/autozimu/LanguageClient-neovim/issues/234
@@ -231,12 +242,6 @@ else
   let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 endif
 
-" Use M to cut instead of D
-nnoremap m d
-xnoremap m d
-
-nnoremap mm dd
-nnoremap M D
 nmap <c-n> <plug>(YoinkPostPasteSwapBack)
 nmap <c-p> <plug>(YoinkPostPasteSwapForward)
 
@@ -259,3 +264,5 @@ let g:fzf_action = {
   \ 'ctrl-t': 'tab split',
   \ 'ctrl-s': 'split',
   \ 'ctrl-v': 'vsplit' }
+
+call deoplete#custom#source('tabnine', 'rank', 100)
