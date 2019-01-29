@@ -136,6 +136,9 @@ alias projects="cd ~/Projects"
 alias rpipefy="cd ~ && ./start_pipefy && cd -"
 alias stoppostgres="sudo service postgresql stop"
 alias rstest="RAILS_ENV=test rs"
+alias node='unalias nvm; unalias node; unalias npm; nvm_load; node $@'
+alias npm='unalias nvm; unalias node; unalias npm; nvm_load; npm $@'
+alias nvm='unalias nvm; unalias node; unalias npm; nvm_load; nvm $@'
 unalias rg
 
 export BAT_THEME="TwoDark"
@@ -146,7 +149,10 @@ fi
 eval "$(rbenv init -)"
 
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+nvm_load () {
+  . $NVM_DIR/nvm.sh
+  . $NVM_DIR/bash_completion
+}
 
 . $HOME/.asdf/asdf.sh
 
