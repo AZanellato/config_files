@@ -61,6 +61,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'honza/vim-snippets'
 
   " Visual Stuff
+  Plug 'junegunn/rainbow_parentheses.vim'
   Plug 'Yggdroot/indentLine'
   Plug 'vim-airline/vim-airline'
   Plug 'google/vim-searchindex'
@@ -160,9 +161,9 @@ if !exists(":SourceAndInstall")
   command SourceAndInstall source ~/config_files/.vimrc <bar> :PlugInstall
 endif
 
-
-
 map <Leader>f :FZF<CR>
+map <Leader>p  o<ESC>"+p
+map <Leader>P  O<ESC>"+p
 map <Leader>lft :call LanguageClient#textDocument_formatting()<CR>
 map <Leader>rd :redraw!<CR>
 map <Leader>ss :call RunNearestSpec()<CR>
