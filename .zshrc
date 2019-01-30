@@ -206,3 +206,4 @@ if [[ -z "$TMUX" ]];then
 fi
 # Setting ag as the default source for fzf
 export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
+export CDPATH=.:~/Projects
