@@ -3,6 +3,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'Konfekt/FastFold'
   " Amazing fuzzy finder and global search
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+  Plug 'junegunn/fzf.vim'
   Plug 'junegunn/vim-peekaboo'
   Plug 'jeetsukumaran/vim-buffergator'
   " Sublime like cursors and text moving
@@ -73,7 +74,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'nightsense/snow'
   Plug 'hzchirs/vim-material'
   Plug 'dikiaap/minimalist'
-  Plug 'dracula/vim'
+  Plug 'dracula/vim', { 'as': 'dracula-vim' }
   Plug 'whatyouhide/vim-gotham'
   Plug 'mhartington/oceanic-next'
 call plug#end()
@@ -107,6 +108,12 @@ if executable('ag')
     set grepprg=ag\ --nogroup\ --nocolor
     command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
     nnoremap \ :Ag<SPACE>
+  endif
+endif
+
+if executable('rg')
+  if exists(":Rg")
+    nnoremap \ :Rg<SPACE>
   endif
 endif
 
