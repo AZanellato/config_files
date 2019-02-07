@@ -22,8 +22,10 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-rails'
   Plug 'tpope/vim-bundler'
   Plug 'tpope/vim-commentary'
-  Plug 'tpope/vim-endwise'
   Plug 'tpope/vim-surround'
+
+  Plug 'tpope/vim-endwise'
+  Plug 'rstacruz/vim-closer'
 
   " Try again after some time
   " Plug 'justinmk/vim-dirvish'
