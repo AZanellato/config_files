@@ -187,6 +187,7 @@ endif
 map <Leader>f :FZF<CR>
 map <Leader>p  o<ESC>"+p
 map <Leader>P  O<ESC>"+p
+map <Leader>w :w<CR>
 map <Leader>lft :call LanguageClient#textDocument_formatting()<CR>
 map <Leader>rd :redraw!<CR>
 map <Leader>ss :call RunNearestSpec()<CR>
@@ -202,7 +203,6 @@ nnoremap <Left> :echoe "Use h"<CR>
 nnoremap <Down> :echoe "Use j" <CR> 
 nnoremap <Up> :echoe "Use k"<CR> 
 nnoremap <Right> :echoe "Use l"<CR>
-nnoremap W :w<CR>
 nnoremap fb :e# <CR> 
 nnoremap rcs :call RunCurrentSpecFile()<CR>
 nnoremap rls :call RunLastSpec()<CR>
