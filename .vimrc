@@ -26,6 +26,7 @@ call plug#begin('~/.vim/plugged')
   " Increment text-objects
   Plug 'wellle/targets.vim'
   Plug 'michaeljsmith/vim-indent-object'
+  Plug 'andymass/vim-matchup'
 
   " Repeat any command -- even plugins!
   Plug 'tpope/vim-repeat'
@@ -123,7 +124,7 @@ let g:deoplete#enable_at_startup = 1
 let g:oceanic_next_terminal_bold = 1
 let g:oceanic_next_terminal_italic = 1
 let g:material_style='palenight'
-let g:airline_theme='oceanicnextlight'
+let g:airline_theme='oceanicnext'
 
 " to make eli-ls work, visit these pages:
 " https://github.com/JakeBecker/elixir-ls and 
