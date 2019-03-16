@@ -27,6 +27,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'wellle/targets.vim'
   Plug 'michaeljsmith/vim-indent-object'
   Plug 'andymass/vim-matchup'
+  Plug 'kana/vim-textobj-user'
+  Plug 'nelstrom/vim-textobj-rubyblock'
 
   " Repeat any command -- even plugins!
   Plug 'tpope/vim-repeat'
@@ -34,6 +36,7 @@ call plug#begin('~/.vim/plugged')
   " Some usefull stuff for ruby/rails
   Plug 'tpope/vim-rails'
   Plug 'tpope/vim-bundler'
+  Plug 'tpope/vim-rake'
   " Shortcut to comment anything
   Plug 'tpope/vim-commentary'
   " Surround stuff quickly!
