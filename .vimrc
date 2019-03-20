@@ -105,23 +105,49 @@ call plug#begin('~/.vim/plugged')
   Plug 'whatyouhide/vim-gotham'
   Plug 'mhartington/oceanic-next'
 call plug#end()
-
-set background=dark
 colorscheme allomancer
+let mapleader = " "
+
+set <F20>=j
+set <F21>=k
+set background=dark
+
+set termguicolors
+set autowrite     " Automatically :write before running commands
+set backspace=2   " Backspace deletes like most programs in insert mode
+set expandtab " Tab => spaces
+set foldmethod=indent
+set history=50
+set incsearch     " do incremental searching
+set laststatus=2  " Always display the status line
+set mouse=a " Mouse works inside vim
+set nobackup
+set nofoldenable
+set noswapfile    " http://robots.thoughtbot.com/post/18739402579/global-gitignore#comment-458413287 
+set nowritebackup
+set regexpengine=1 " Better for ruby syntax
+set shiftround
+set shiftwidth=2
+set showcmd       " display incomplete commands
+set splitbelow  "Split horizontal shows up from below 
+set splitright  " Split vertical shows up to the right
+set tabstop=2   " Tab equals to 2 spaces
+set hidden
+set ttyfast
+
+" Relative number when on normal mode
+" absolute numbers when on insert mode
+set number relativenumber
+augroup numbertoggle
+  autocmd!
+  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+augroup END
 
 if exists('&inccommand')
   set inccommand=split
 endif
 
-set <F20>=j
-set <F21>=k
-vmap <F20> <Plug>MoveBlockDown
-vmap <F21> <Plug>MoveBlockUp
-nmap <F20> <Plug>MoveLineDown
-nmap <F21> <Plug>MoveLineUp
-
-
-let mapleader = " "
 let test#strategy = "neovim"
 " let test#strategy = "neovim"
 let g:deoplete#enable_at_startup = 1
@@ -194,39 +220,6 @@ if executable('rg')
 endif
 
 
-
-set termguicolors
-set autowrite     " Automatically :write before running commands
-set backspace=2   " Backspace deletes like most programs in insert mode
-set expandtab " Tab => spaces
-set foldmethod=indent
-set history=50
-set incsearch     " do incremental searching
-set laststatus=2  " Always display the status line
-set mouse=a " Mouse works inside vim
-set nobackup
-set nofoldenable
-set noswapfile    " http://robots.thoughtbot.com/post/18739402579/global-gitignore#comment-458413287 j
-set nowritebackup
-set regexpengine=1 " Better for ruby syntax
-set shiftround
-set shiftwidth=2
-set showcmd       " display incomplete commands
-set splitbelow "Split horizontal shows up from below 
-set splitright " Split vertical shows up to the right
-set tabstop=2 " Tab equals to 2 spaces
-set ttyfast
-set hidden
-
-" Relative number when on normal mode
-" absolute numbers when on insert mode
-set number relativenumber
-augroup numbertoggle
-  autocmd!
-  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
-  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
-augroup END
-
 if !exists(":YankCurrentFilePath")
   command YankCurrentFilePath let @+ = expand("%")
 endif
@@ -236,6 +229,11 @@ endif
 if !exists(":SourceAndInstall")
   command SourceAndInstall source ~/config_files/.vimrc <bar> :PlugInstall
 endif
+
+vmap <F20> <Plug>MoveBlockDown
+vmap <F21> <Plug>MoveBlockUp
+nmap <F20> <Plug>MoveLineDown
+nmap <F21> <Plug>MoveLineUp
 
 map <Leader>f :FZF<CR>
 map <Leader>w :w<CR>
@@ -255,10 +253,6 @@ nnoremap <Leader>sh :split <CR>
 nnoremap <Leader>sv :vsplit <CR> 
 nnoremap <Leader>qq :q <CR> 
 nnoremap <F5> :call LanguageClient_contextMenu()<CR>
-nnoremap <Left> :echoe "Use h"<CR>
-nnoremap <Down> :echoe "Use j" <CR> 
-nnoremap <Up> :echoe "Use k"<CR> 
-nnoremap <Right> :echoe "Use l"<CR>
 nnoremap rcs :TestFile<CR>
 nnoremap rls :TestLast<CR>
 nnoremap yfp :YankCurrentFilePath<CR>
@@ -284,6 +278,7 @@ autocmd FileType c,cpp,java,php,ruby,elixir,rust,python autocmd BufWritePre <buf
 
 
 if has('nvim')
+  tmap <C-n> <C-\><C-n>
   hi Search guibg=none guifg=none gui=underline
 else
   " set Vim-specific sequences for RGB colors
@@ -297,9 +292,9 @@ nmap <c-p> <plug>(YoinkPostPasteSwapForward)
 nmap p <plug>(YoinkPaste_p)
 nmap P <plug>(YoinkPaste_P)
 
-nnoremap <left>   <c-w><
-nnoremap <right>  <c-w>>
-nnoremap <up>     <c-w>+
-nnoremap <down> <c-w>-
+nnoremap <LEFT>   <c-w><
+nnoremap <RIGHT>  <c-w>>
+nnoremap <UP>     <c-w>+
+nnoremap <DOWN>   <c-w>-
 
 call deoplete#custom#source('tabnine', 'rank', 100)
