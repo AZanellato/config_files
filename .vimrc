@@ -11,6 +11,9 @@ call plug#begin('~/.vim/plugged')
   " text moving
   Plug 'matze/vim-move'
 
+  " Moving windows in a non-weird way
+  Plug 'andymass/vim-tradewinds'
+
   " better f
   Plug 'rhysd/clever-f.vim'
   " f, but with two chars
