@@ -7,7 +7,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
   Plug 'junegunn/fzf.vim'
   Plug 'junegunn/vim-peekaboo'
-  Plug 'jeetsukumaran/vim-buffergator'
   " text moving
   Plug 'matze/vim-move'
 
@@ -242,6 +241,7 @@ map <Leader>f :FZF<CR>
 map <Leader>w :w<CR>
 map <Leader>p  o<ESC>"+p
 map <Leader>P  O<ESC>"+p
+map <Leader>bb :Buffers <CR> 
 map <Leader>bf :e# <CR> 
 map <Leader>rd :redraw!<CR>
 map <Leader>nh :noh <CR>
@@ -251,8 +251,8 @@ map <Leader>lft :call LanguageClient#textDocument_formatting()<CR>
 map <Leader>soi :SourceAndInstall<CR>
 map <Leader>sor :Source<CR>
 nnoremap <Leader>al :TestSuite<CR>
-nnoremap <Leader>hs :split <CR> 
-nnoremap <Leader>hs :vsplit <CR> 
+nnoremap <Leader>sh :split <CR> 
+nnoremap <Leader>sv :vsplit <CR> 
 nnoremap <Leader>qq :q <CR> 
 nnoremap <F5> :call LanguageClient_contextMenu()<CR>
 nnoremap <Left> :echoe "Use h"<CR>
