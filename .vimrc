@@ -15,6 +15,8 @@ call plug#begin('~/.vim/plugged')
 
   " better f
   Plug 'rhysd/clever-f.vim'
+  " What it says on the tin 
+  Plug 'terryma/vim-smooth-scroll'
   " f, but with two chars
   Plug 'justinmk/vim-sneak'
   " Formatting for Elixir 
@@ -31,6 +33,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'andymass/vim-matchup'
   Plug 'kana/vim-textobj-user'
   Plug 'nelstrom/vim-textobj-rubyblock'
+  Plug 'michaeljsmith/vim-indent-object'
 
   " Repeat any command -- even plugins!
   Plug 'tpope/vim-repeat'
@@ -96,6 +99,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'google/vim-searchindex'
   Plug 'ryanoasis/vim-devicons' 
   " Themes!
+  Plug 'altercation/vim-colors-solarized'
   Plug 'endel/vim-github-colorscheme'
   Plug 'Nequo/vim-allomancer'
   Plug 'nightsense/snow'
@@ -253,6 +257,10 @@ nnoremap <Leader>sh :split <CR>
 nnoremap <Leader>sv :vsplit <CR> 
 nnoremap <Leader>qq :q <CR> 
 nnoremap <F5> :call LanguageClient_contextMenu()<CR>
+noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 10)<CR>
+noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 0, 10)<CR>
+noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 0, 10)<CR>
+noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 10)<CR>
 nnoremap rcs :TestFile<CR>
 nnoremap rls :TestLast<CR>
 nnoremap yfp :YankCurrentFilePath<CR>
