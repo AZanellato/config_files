@@ -83,6 +83,9 @@ if command lsd > /dev/null; then
 fi
 alias n="nvim ."
 alias nv="nvim "
+alias nvd="nvim \$(git diff HEAD --name-only --diff-filter=ACMR)"
+alias nvds="nvim \$(git diff --staged --name-only --diff-filter=ACMR)"
+alias nvdc="nvim \$(git diff HEAD^ --name-only --diff-filter=ACMR)"
 alias nvimrc="nvim ~/config_files/.vimrc"
 alias nvzshrc="nvim ~/config_files/.zshrc"
 alias configfiles="cd ~/config_files/"
