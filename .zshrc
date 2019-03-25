@@ -166,3 +166,5 @@ fi
 # Setting ag as the default source for fzf
 export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
 export CDPATH=.:~/Projects
+
+source $HOME/anaconda3/etc/profile.d/conda.sh
