@@ -286,7 +286,7 @@ autocmd FileType c,cpp,java,php,ruby,elixir,rust,python autocmd BufWritePre <buf
 
 
 if has('nvim')
-  tmap <C-n> <C-\><C-n>
+  tmap <C-i> <C-\><C-n>
   hi Search guibg=none guifg=none gui=underline
 else
   " set Vim-specific sequences for RGB colors

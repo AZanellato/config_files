@@ -54,6 +54,9 @@ pfzf() {
   fzf --preview '[[ $(file --mime {}) =~ binary ]] && echo {} is a binary file || (bat --theme="TwoDark" --color always {}) 2> /dev/null | head -500'
 }
 
+co-unstaged() { 
+  gco $(gst -s | grep M | awk '{print $2}' ) 
+}
 reb-master() { 
   git checkout master &&
   git pull --rebase && 
