@@ -17,13 +17,13 @@ call plug#begin('~/.vim/plugged')
   Plug 'rhysd/clever-f.vim'
   " What it says on the tin 
   Plug 'terryma/vim-smooth-scroll'
-  " f, but with two chars
-  Plug 'justinmk/vim-sneak'
   " Formatting for Elixir 
   Plug 'mhinz/vim-mix-format'
 
   " Make delete actually delete instead of cut
   Plug 'svermeulen/vim-cutlass'
+  " Substitute text with motions!
+  Plug 'svermeulen/vim-subversive'
   " Registers stuff
   Plug 'svermeulen/vim-yoink'
 
