@@ -75,16 +75,18 @@ call plug#begin('~/.vim/plugged')
   Plug 'w0rp/ale'
 
   " Autocompletion
-  Plug 'ervandew/supertab'
-  if has('nvim')
-    Plug 'autozimu/LanguageClient-neovim', {'branch': 'next', 'do': 'bash install.sh'}
-    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-    Plug 'tbodt/deoplete-tabnine', { 'do': './install.sh' }
-  else
-    Plug 'Shougo/deoplete.nvim'
-    Plug 'roxma/nvim-yarp'
-    Plug 'roxma/vim-hug-neovim-rpc'
-  endif
+  Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
+
+  " Plug 'ervandew/supertab'
+  " if has('nvim')
+  "   Plug 'autozimu/LanguageClient-neovim', {'branch': 'next', 'do': 'bash install.sh'}
+  "   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  "   Plug 'tbodt/deoplete-tabnine', { 'do': './install.sh' }
+  " else
+  "   Plug 'Shougo/deoplete.nvim'
+  "   Plug 'roxma/nvim-yarp'
+  "   Plug 'roxma/vim-hug-neovim-rpc'
+  " endif
 
   " Snippets :)
   Plug 'SirVer/ultisnips'
@@ -109,6 +111,25 @@ call plug#begin('~/.vim/plugged')
   Plug 'whatyouhide/vim-gotham'
   Plug 'mhartington/oceanic-next'
 call plug#end()
+" coc stuff, testing
+
+" use <tab> for trigger completion and navigate to next complete item
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~ '\s'
+endfunction
+
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+
+
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
+
 colorscheme allomancer
 let mapleader = " "
 
@@ -152,9 +173,8 @@ if exists('&inccommand')
   set inccommand=split
 endif
 
-let test#strategy = "neovim"
-" let test#strategy = "neovim"
-let g:deoplete#enable_at_startup = 1
+let test#strategy = "dispatch"
+" let g:deoplete#enable_at_startup = 1
 
 let g:oceanic_next_terminal_bold = 1
 let g:oceanic_next_terminal_italic = 1
@@ -176,9 +196,8 @@ let g:yoinkIncludeDeleteOperations=1
 let g:indentLine_char = '|'
 
 let g:UltiSnipsExpandTrigger="<c-t>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-let g:sneak#s_next = 1
+let g:UltiSnipsJumpForwardTrigger="<c-f>"
+let g:UltiSnipsJumpBackwardTrigger="<c-b>"
 
 let g:fzf_action = {
       \ 'ctrl-t': 'tab split',
@@ -305,4 +324,4 @@ nnoremap <RIGHT>  <c-w>>
 nnoremap <UP>     <c-w>+
 nnoremap <DOWN>   <c-w>-
 
-call deoplete#custom#source('tabnine', 'rank', 100)
+" call deoplete#custom#source('tabnine', 'rank', 100)
