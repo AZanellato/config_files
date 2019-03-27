@@ -50,6 +50,13 @@ source $ZSH/oh-my-zsh.sh
  fi
 
 # Functions
+#
+source_if_possible() {
+    if [[ -r $1 ]]; then
+        source $1
+    fi
+}
+
 pfzf() {
   fzf --preview '[[ $(file --mime {}) =~ binary ]] && echo {} is a binary file || (bat --theme="TwoDark" --color always {}) 2> /dev/null | head -500'
 }
@@ -167,4 +174,5 @@ fi
 export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
 export CDPATH=.:~/Projects
 
-source $HOME/anaconda3/etc/profile.d/conda.sh
+source_if_possible $HOME/anaconda3/etc/profile.d/conda.sh
+

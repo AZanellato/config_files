@@ -132,6 +132,7 @@ autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 
 colorscheme allomancer
 let mapleader = " "
+let g:tmuxcomplete#trigger = 'omnifunc'
 
 set <F20>=j
 set <F21>=k
@@ -253,6 +254,10 @@ if !exists(":SourceAndInstall")
   command SourceAndInstall source ~/config_files/.vimrc <bar> :PlugInstall
 endif
 
+nmap s <plug>(SubversiveSubstitute)
+nmap ss <plug>(SubversiveSubstituteLine)
+nmap S <plug>(SubversiveSubstituteToEndOfLine)
+
 vmap <F20> <Plug>MoveBlockDown
 vmap <F21> <Plug>MoveBlockUp
 nmap <F20> <Plug>MoveLineDown
@@ -323,5 +328,4 @@ nnoremap <LEFT>   <c-w><
 nnoremap <RIGHT>  <c-w>>
 nnoremap <UP>     <c-w>+
 nnoremap <DOWN>   <c-w>-
-
 " call deoplete#custom#source('tabnine', 'rank', 100)
