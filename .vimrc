@@ -58,9 +58,8 @@ call plug#begin('~/.vim/plugged')
 
   " Git Stuff
   Plug 'airblade/vim-gitgutter'
+  Plug 'zivyangll/git-blame.vim'
   Plug 'tpope/vim-fugitive'
-  Plug 'lambdalisue/gina.vim'
-  Plug 'sodapopcan/vim-twiggy'
 
   " Tmux integration. YAY :D 
   Plug 'christoomey/vim-tmux-navigator'
@@ -77,7 +76,7 @@ call plug#begin('~/.vim/plugged')
   " Autocompletion
   Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
 
-  " Plug 'ervandew/supertab'
+  Plug 'ervandew/supertab'
   " if has('nvim')
   "   Plug 'autozimu/LanguageClient-neovim', {'branch': 'next', 'do': 'bash install.sh'}
   "   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -110,30 +109,12 @@ call plug#begin('~/.vim/plugged')
   Plug 'dracula/vim', { 'as': 'dracula-vim' }
   Plug 'whatyouhide/vim-gotham'
   Plug 'mhartington/oceanic-next'
+  Plug 'rhysd/reply.vim'
 call plug#end()
-" coc stuff, testing
-
-" use <tab> for trigger completion and navigate to next complete item
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~ '\s'
-endfunction
-
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-
-
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 
 colorscheme allomancer
 let mapleader = " "
 let g:tmuxcomplete#trigger = 'omnifunc'
-
 set <F20>=j
 set <F21>=k
 set background=dark
@@ -280,6 +261,7 @@ nnoremap <Leader>al :TestSuite<CR>
 nnoremap <Leader>sh :split <CR> 
 nnoremap <Leader>sv :vsplit <CR> 
 nnoremap <Leader>qq :q <CR> 
+nnoremap <Leader>bl :<C-u>call gitblame#echo()<CR>
 nnoremap <F5> :call LanguageClient_contextMenu()<CR>
 noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 10)<CR>
 noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 0, 10)<CR>
