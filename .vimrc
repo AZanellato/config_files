@@ -29,7 +29,6 @@ call plug#begin('~/.vim/plugged')
 
   " Increment text-objects
   Plug 'wellle/targets.vim'
-  Plug 'michaeljsmith/vim-indent-object'
   Plug 'andymass/vim-matchup'
   Plug 'kana/vim-textobj-user'
   Plug 'nelstrom/vim-textobj-rubyblock'
@@ -244,6 +243,7 @@ vmap <F21> <Plug>MoveBlockUp
 nmap <F20> <Plug>MoveLineDown
 nmap <F21> <Plug>MoveLineUp
 
+map <Leader>* :Rg <C-r><C-w><CR>
 map <Leader>f :FZF<CR>
 map <Leader>w :w<CR>
 map <Leader>p  o<ESC>"+p
