@@ -13,6 +13,8 @@ call plug#begin('~/.vim/plugged')
   " Moving windows in a non-weird way
   Plug 'andymass/vim-tradewinds'
 
+  " Visualize the undotree
+  Plug 'mbbill/undotree'
   " better f
   Plug 'rhysd/clever-f.vim'
   " What it says on the tin 
