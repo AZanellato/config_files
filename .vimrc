@@ -73,7 +73,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'w0rp/ale'
 
   " Autocompletion
-  Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
+  Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 
   Plug 'ervandew/supertab'
   " if has('nvim')

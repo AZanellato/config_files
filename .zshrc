@@ -111,6 +111,8 @@ unalias rg
 
 export BAT_THEME="TwoDark"
 export PATH="$HOME/.rbenv/bin:$PATH"
+export PATH="$HOME/bin:/usr/local/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 
 eval "$(rbenv init -)"
 
