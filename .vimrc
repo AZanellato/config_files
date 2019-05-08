@@ -104,6 +104,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'altercation/vim-colors-solarized'
   Plug 'endel/vim-github-colorscheme'
   Plug 'Nequo/vim-allomancer'
+  Plug 'trevordmiller/nova-vim'
   Plug 'nightsense/snow'
   Plug 'hzchirs/vim-material'
   Plug 'dikiaap/minimalist'
@@ -113,7 +114,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'rhysd/reply.vim'
 call plug#end()
 
-colorscheme allomancer
+colorscheme nova
 let mapleader = " "
 let g:tmuxcomplete#trigger = 'omnifunc'
 set <F20>=j
