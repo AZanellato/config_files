@@ -114,7 +114,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'rhysd/reply.vim'
 call plug#end()
 
-colorscheme nova
+colorscheme allomancer
 let mapleader = " "
 let g:tmuxcomplete#trigger = 'omnifunc'
 set <F20>=j
