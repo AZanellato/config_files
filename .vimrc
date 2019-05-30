@@ -13,6 +13,8 @@ call plug#begin('~/.vim/plugged')
   " Moving windows in a non-weird way
   Plug 'andymass/vim-tradewinds'
 
+  " Change one liners to multiple and vice-versa
+  Plug 'AndrewRadev/splitjoin.vim'
   " Visualize the undotree
   Plug 'mbbill/undotree'
   " better f
@@ -76,17 +78,6 @@ call plug#begin('~/.vim/plugged')
 
   " Autocompletion
   Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
-
-  Plug 'ervandew/supertab'
-  " if has('nvim')
-  "   Plug 'autozimu/LanguageClient-neovim', {'branch': 'next', 'do': 'bash install.sh'}
-  "   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-  "   Plug 'tbodt/deoplete-tabnine', { 'do': './install.sh' }
-  " else
-  "   Plug 'Shougo/deoplete.nvim'
-  "   Plug 'roxma/nvim-yarp'
-  "   Plug 'roxma/vim-hug-neovim-rpc'
-  " endif
 
   " Snippets :)
   Plug 'SirVer/ultisnips'
@@ -262,6 +253,7 @@ map <Leader>ss :TestNearest<CR>
 map <Leader>lft :call LanguageClient#textDocument_formatting()<CR>
 map <Leader>soi :SourceAndInstall<CR>
 map <Leader>sor :Source<CR>
+map gD <C-]>
 nnoremap <Leader>al :TestSuite<CR>
 nnoremap <Leader>sh :split <CR> 
 nnoremap <Leader>sv :vsplit <CR> 
@@ -275,6 +267,9 @@ noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 10)<CR>
 nnoremap rcs :TestFile<CR>
 nnoremap rls :TestLast<CR>
 nnoremap yfp :YankCurrentFilePath<CR>
+" Jump to tag
+nnoremap <Leader>d :call fzf#vim#tags('^' . expand('<cword>'), {'options': '--exact --select-1 --exit-0 +i'})<CR>
+nnoremap <Leader>D :call fzf#vim#tags('^' . expand('<cword>'))<CR>
 vnoremap <C-c> "+y
 
 " Use M to cut instead of D
@@ -285,6 +280,16 @@ nnoremap mm dd
 nnoremap M D
 autocmd StdinReadPre * let s:std_in=1
 au InsertLeave * set nopaste
+
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>CheckBackSpace() ? "\<TAB>" :
+      \ coc#refresh()
+
+fun! <SID>CheckBackSpace() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfun
 
 fun! <SID>StripTrailingWhitespaces()
     let l = line(".")
@@ -317,3 +322,4 @@ nnoremap <RIGHT>  <c-w>>
 nnoremap <UP>     <c-w>+
 nnoremap <DOWN>   <c-w>-
 " call deoplete#custom#source('tabnine', 'rank', 100)
+set tags=./tags;,tags;
