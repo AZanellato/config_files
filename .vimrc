@@ -101,20 +101,19 @@ call plug#begin('~/.vim/plugged')
   Plug 'google/vim-searchindex'
   Plug 'ryanoasis/vim-devicons' 
   " Themes!
-  Plug 'altercation/vim-colors-solarized'
   Plug 'endel/vim-github-colorscheme'
   Plug 'Nequo/vim-allomancer'
-  Plug 'trevordmiller/nova-vim'
-  Plug 'nightsense/snow'
-  Plug 'hzchirs/vim-material'
-  Plug 'dikiaap/minimalist'
   Plug 'dracula/vim', { 'as': 'dracula-vim' }
   Plug 'whatyouhide/vim-gotham'
+  Plug 'yuttie/hydrangea-vim'
+  Plug 'liuchengxu/space-vim-theme'
+  Plug 'aonemd/kuroi.vim'
   Plug 'mhartington/oceanic-next'
-  Plug 'rhysd/reply.vim'
 call plug#end()
 
-colorscheme allomancer
+"different one for Rust
+autocmd FileType rust colorscheme space_vim_theme
+autocmd BufEnter * colorscheme allomancer
 let mapleader = " "
 let g:tmuxcomplete#trigger = 'omnifunc'
 set <F20>=j
