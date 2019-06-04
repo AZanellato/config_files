@@ -112,8 +112,11 @@ call plug#begin('~/.vim/plugged')
 call plug#end()
 
 "different one for Rust
-autocmd FileType rust colorscheme space_vim_theme
-autocmd BufEnter * colorscheme allomancer
+augroup colorscheme_for_filetypes
+  au!
+  autocmd BufEnter * colorscheme allomancer
+  autocmd BufEnter *.rs,*.toml colorscheme space_vim_theme
+augroup END
 let mapleader = " "
 let g:tmuxcomplete#trigger = 'omnifunc'
 set <F20>=j
@@ -290,8 +293,9 @@ fun! <SID>StripTrailingWhitespaces()
     call cursor(l, c)
 endfun
 
-autocmd FileType c,cpp,java,php,ruby,elixir,rust,python autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
-
+augroup kill_trailing_whitespace
+  autocmd FileType c,cpp,java,php,ruby,elixir,rust,python autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
+augroup END
 
 if has('nvim')
   tmap <C-i> <C-\><C-n>
