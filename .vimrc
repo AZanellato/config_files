@@ -87,27 +87,33 @@ call plug#begin('~/.vim/plugged')
   Plug 'junegunn/rainbow_parentheses.vim'
   Plug 'machakann/vim-highlightedyank'
   Plug 'TaDaa/vimade'
-  Plug 'Yggdroot/indentLine'
+  Plug 'nathanaelkane/vim-indent-guides'
   Plug 'vim-airline/vim-airline'
   Plug 'google/vim-searchindex'
   Plug 'ryanoasis/vim-devicons' 
   " Themes!
-  Plug 'endel/vim-github-colorscheme'
   Plug 'Nequo/vim-allomancer'
+  Plug 'aonemd/kuroi.vim'
+  Plug 'bluz71/vim-moonfly-colors'
   Plug 'dracula/vim', { 'as': 'dracula-vim' }
+  Plug 'endel/vim-github-colorscheme'
+  Plug 'flrnprz/plastic.vim'
+  Plug 'kristijanhusak/vim-hybrid-material'
+  Plug 'liuchengxu/space-vim-theme'
+  Plug 'mhartington/oceanic-next'
   Plug 'whatyouhide/vim-gotham'
   Plug 'yuttie/hydrangea-vim'
-  Plug 'liuchengxu/space-vim-theme'
-  Plug 'aonemd/kuroi.vim'
-  Plug 'mhartington/oceanic-next'
 call plug#end()
 
+colorscheme allomancer
 "different one for Rust
-augroup colorscheme_for_filetypes
-  au!
-  autocmd BufEnter * colorscheme allomancer
-  autocmd BufEnter *.rs,*.toml colorscheme space_vim_theme
-augroup END
+"it is interfering with indent_lines right now
+
+" augroup colorscheme_for_filetypes
+"   au!
+"   autocmd BufEnter * color allomancer
+"   autocmd BufEnter *.rs,*.toml color space_vim_theme
+" augroup END
 let mapleader = " "
 let g:tmuxcomplete#trigger = 'omnifunc'
 set <F20>=j
@@ -170,8 +176,10 @@ let g:LanguageClient_serverCommands = {
 " \ 'elixir': ['eli-ls'] 
 
 let g:yoinkIncludeDeleteOperations=1
-let g:indentLine_char = '|'
-
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_auto_colors = 0
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#2c323c
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#3e4452
 let g:UltiSnipsExpandTrigger="<c-t>"
 let g:UltiSnipsJumpForwardTrigger="<c-f>"
 let g:UltiSnipsJumpBackwardTrigger="<c-b>"
