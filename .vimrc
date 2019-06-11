@@ -9,6 +9,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'junegunn/vim-peekaboo'
   " text moving
   Plug 'matze/vim-move'
+  Plug 'AndrewRadev/sideways.vim'
 
   " Moving windows in a non-weird way
   Plug 'andymass/vim-tradewinds'
@@ -248,10 +249,13 @@ nmap <F20> <Plug>MoveLineDown
 nmap <F21> <Plug>MoveLineUp
 
 map <Leader>* :Rg <C-r><C-w><CR>
+map <Leader>e :e#<CR>
 map <Leader>f :FZF<CR>
 map <Leader>w :w<CR>
 map <Leader>p  o<ESC>"+p
 map <Leader>P  O<ESC>"+p
+map <Leader>ah :SidewaysLeft<CR>
+map <Leader>al :SidewaysRight<CR>
 map <Leader>bb :Buffers <CR> 
 map <Leader>bf :e# <CR> 
 map <Leader>rd :redraw!<CR>
