@@ -117,6 +117,7 @@ colorscheme allomancer
 " augroup END
 let mapleader = " "
 let g:tmuxcomplete#trigger = 'omnifunc'
+set nomodeline
 set <F20>=j
 set <F21>=k
 set background=dark
