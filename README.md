@@ -19,7 +19,7 @@ https://github.com/gpakosz/.tmux
 
 https://github.com/robbyrussell/oh-my-zsh
 
-https://github.com/pascaldevink/spaceship-zsh-theme
+https://github.com/dikiaap/dotfiles/blob/master/.oh-my-zsh/themes/oxide.zsh-theme
 
 
 I'm assuming you'll have this repository on the home folder, if so just do:
