@@ -29,7 +29,9 @@ $ ln -s ~/config_files/.zshrc ~/.zshrc
 $ ln -s ~/config_files/.vimrc ~/.vimrc
 $ ln -s ~/.vimrc ~/.config/nvim/init.vim
 $ ln -s ~/config_files/.tmux.conf.local ~/.tmux.conf.local
+$ ln -s ~/config_files/oxide.zsh-theme ~/.oh-my-zsh/themes/oxide.zsh-theme
 ```
+
 If any of them fail, remove the existing file and try again.
 
 If the project is in another folder, adjust the paths accordingly.
