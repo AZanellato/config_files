@@ -21,7 +21,6 @@ export UPDATE_ZSH_DAYS=5
 plugins=(
   asdf
   git 
-  rails 
   zsh-autosuggestions
   tmux 
 )
