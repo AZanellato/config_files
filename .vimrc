@@ -32,6 +32,9 @@ call plug#begin('~/.vim/plugged')
   " Registers stuff
   Plug 'svermeulen/vim-yoink'
 
+  " Add a exchange movement
+  Plug 'tommcdo/vim-exchange'
+
   " Increment text-objects
   Plug 'wellle/targets.vim'
   Plug 'andymass/vim-matchup'
