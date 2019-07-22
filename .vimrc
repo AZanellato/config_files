@@ -94,6 +94,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'nathanaelkane/vim-indent-guides'
   Plug 'vim-airline/vim-airline'
   Plug 'google/vim-searchindex'
+  Plug 'RRethy/vim-illuminate'
   Plug 'ryanoasis/vim-devicons' 
   " Themes!
   Plug 'Nequo/vim-allomancer'
@@ -107,6 +108,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'mhartington/oceanic-next'
   Plug 'whatyouhide/vim-gotham'
   Plug 'yuttie/hydrangea-vim'
+  Plug 'ntk148v/vim-horizon'
 call plug#end()
 
 colorscheme allomancer
@@ -339,3 +341,4 @@ nnoremap <UP>     <c-w>+
 nnoremap <DOWN>   <c-w>-
 " call deoplete#custom#source('tabnine', 'rank', 100)
 set tags=./tags;,tags;
+hi illuminatedWord cterm=standout gui=standout
