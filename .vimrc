@@ -341,4 +341,4 @@ nnoremap <UP>     <c-w>+
 nnoremap <DOWN>   <c-w>-
 " call deoplete#custom#source('tabnine', 'rank', 100)
 set tags=./tags;,tags;
-hi illuminatedWord cterm=standout gui=standout
+hi illuminatedWord cterm=italic gui=italic

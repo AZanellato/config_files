@@ -1,6 +1,7 @@
 # If you come from bash you might have to change your $PATH.
 # zmodload zsh/zprof
 export ZSH=~/.oh-my-zsh
+export TERM=xterm-256color
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
