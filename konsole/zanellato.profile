@@ -1,6 +1,6 @@
 [Appearance]
 ColorScheme=Sweet
-Font=Fira Code,11,-1,5,57,0,0,0,0,0
+Font=Fira Code,12,-1,5,57,0,0,0,0,0
 
 [Cursor Options]
 CursorShape=1
