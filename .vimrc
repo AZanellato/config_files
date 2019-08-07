@@ -343,9 +343,13 @@ nnoremap <DOWN>   <c-w>-
 set tags=./tags;,tags;
 hi illuminatedWord cterm=italic gui=italic
 
-tnoremap <C-h> <C-\><C-N><C-w>h
-tnoremap <C-j> <C-\><C-N><C-w>j
-tnoremap <C-k> <C-\><C-N><C-w>k
-tnoremap <C-l> <C-\><C-N><C-w>l
+tnoremap <A-h> <C-\><C-N><C-w>h
+tnoremap <A-j> <C-\><C-N><C-w>j
+tnoremap <A-k> <C-\><C-N><C-w>k
+tnoremap <A-l> <C-\><C-N><C-w>l
 
 tnoremap <C-i> <C-\><C-n>
+
+nnoremap <Leader>hh :SidewaysLeft<cr>
+nnoremap <Leader>ll :SidewaysRight<cr>
+nnoremap <Leader>u :UndotreeToggle<cr>
