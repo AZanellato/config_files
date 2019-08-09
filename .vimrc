@@ -35,6 +35,8 @@ call plug#begin('~/.vim/plugged')
   " Add a exchange movement
   Plug 'tommcdo/vim-exchange'
 
+  Plug 'triglav/vim-visual-increment'
+
   " Increment text-objects
   Plug 'wellle/targets.vim'
   Plug 'andymass/vim-matchup'
