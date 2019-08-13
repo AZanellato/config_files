@@ -100,28 +100,26 @@ call plug#begin('~/.vim/plugged')
   Plug 'ryanoasis/vim-devicons' 
   " Themes!
   Plug 'Nequo/vim-allomancer'
-  Plug 'aonemd/kuroi.vim'
-  Plug 'bluz71/vim-moonfly-colors'
   Plug 'dracula/vim', { 'as': 'dracula-vim' }
   Plug 'endel/vim-github-colorscheme'
-  Plug 'flrnprz/plastic.vim'
   Plug 'kristijanhusak/vim-hybrid-material'
-  Plug 'liuchengxu/space-vim-theme'
   Plug 'mhartington/oceanic-next'
   Plug 'whatyouhide/vim-gotham'
-  Plug 'yuttie/hydrangea-vim'
-  Plug 'ntk148v/vim-horizon'
+  Plug 'danilo-augusto/vim-afterglow'
+  Plug 'AlessandroYorba/Alduin' 
+  Plug 'tlhr/anderson.vim'
+  Plug 'zacanger/angr.vim'
+  Plug 'chase/focuspoint-vim'
+  Plug 'rakr/vim-two-firewatch'
+  Plug 'ayu-theme/ayu-vim'
+  Plug 'drewtempelmeyer/palenight.vim'
+  Plug 'rakr/vim-one'
 call plug#end()
 
-colorscheme allomancer
-"different one for Rust
-"it is interfering with indent_lines right now
+colorscheme two-firewatch
+let g:two_firewatch_italics=1
+let g:airline_theme='twofirewatch'
 
-" augroup colorscheme_for_filetypes
-"   au!
-"   autocmd BufEnter * color allomancer
-"   autocmd BufEnter *.rs,*.toml color space_vim_theme
-" augroup END
 let mapleader = " "
 let g:tmuxcomplete#trigger = 'omnifunc'
 set nomodeline
@@ -166,32 +164,11 @@ if exists('&inccommand')
 endif
 
 let test#strategy = "dispatch"
-" let g:deoplete#enable_at_startup = 1
-
-let g:oceanic_next_terminal_bold = 1
-let g:oceanic_next_terminal_italic = 1
-let g:material_style='palenight'
-let g:airline_theme='oceanicnext'
-
-" to make eli-ls work, visit these pages:
-" https://github.com/JakeBecker/elixir-ls and 
-" https://github.com/autozimu/LanguageClient-neovim/issues/234
-" To make it solargraph work, just run gem install solargraph
-" See https://github.com/castwide/solargraph
-let g:LanguageClient_serverCommands = {
-      \ 'ruby': ['solargraph', 'stdio'],
-      \ 'rust': ['~/.cargo/bin/rustup', 'run', 'beta', 'rls'],
-      \ }
-" \ 'elixir': ['eli-ls'] 
-
 let g:yoinkIncludeDeleteOperations=1
 let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_auto_colors = 0
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#2c323c
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#3e4452
-let g:UltiSnipsExpandTrigger="<c-t>"
-let g:UltiSnipsJumpForwardTrigger="<c-f>"
-let g:UltiSnipsJumpBackwardTrigger="<c-b>"
 
 let g:fzf_action = {
       \ 'ctrl-t': 'tab split',
@@ -222,20 +199,11 @@ let g:mix_format_on_save = 1
 let g:mix_format_silent_errors = 1
 let g:rustfmt_autosave = 1
 
-if executable('ag')
-  if !exists(":Ag")
-    set grepprg=ag\ --nogroup\ --nocolor
-    command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
-    nnoremap \ :Ag<SPACE>
-  endif
-endif
-
 if executable('rg')
   if exists(":Rg")
     nnoremap \ :Rg<SPACE>
   endif
 endif
-
 
 if !exists(":YankCurrentFilePath")
   command YankCurrentFilePath let @+ = expand("%")
@@ -247,39 +215,36 @@ if !exists(":SourceAndInstall")
   command SourceAndInstall source ~/config_files/.vimrc <bar> :PlugInstall
 endif
 
-nmap s <plug>(SubversiveSubstitute)
-nmap ss <plug>(SubversiveSubstituteLine)
-nmap S <plug>(SubversiveSubstituteToEndOfLine)
-
 vmap <F20> <Plug>MoveBlockDown
 vmap <F21> <Plug>MoveBlockUp
 nmap <F20> <Plug>MoveLineDown
 nmap <F21> <Plug>MoveLineUp
 
-map <Leader>* :Rg <C-r><C-w><CR>
-map <Leader>e :e#<CR>
-map <Leader>f :FZF<CR>
-map <Leader>w :w<CR>
-map <Leader>p  o<ESC>"+p
-map <Leader>P  O<ESC>"+p
-map <Leader>ah :SidewaysLeft<CR>
-map <Leader>al :SidewaysRight<CR>
-map <Leader>bb :Buffers <CR> 
-map <Leader>bf :e# <CR> 
-map <Leader>rd :redraw!<CR>
-map <Leader>nh :noh <CR>
-map <Leader>yh :Yanks <CR>
-map <Leader>ss :TestNearest<CR>
-map <Leader>lft :call LanguageClient#textDocument_formatting()<CR>
-map <Leader>soi :SourceAndInstall<CR>
-map <Leader>sor :Source<CR>
 map gD <C-]>
+nnoremap <Leader>* :Rg <C-r><C-w><CR>
+nnoremap <Leader>d :call fzf#vim#tags('^' . expand('<cword>'), {'options': '--exact --select-1 --exit-0 +i'})<CR>
+nnoremap <Leader>D :call fzf#vim#tags('^' . expand('<cword>'))<CR>
+nnoremap <Leader>e :e#<CR>
+nnoremap <Leader>f :FZF<CR>
+nnoremap <Leader>p  o<ESC>"+p
+nnoremap <Leader>P  O<ESC>"+p
+nnoremap <Leader>u :UndotreeToggle<cr>
+nnoremap <Leader>w :w<CR>
 nnoremap <Leader>al :TestSuite<CR>
+nnoremap <Leader>bb :Buffers <CR> 
+nnoremap <Leader>bl :GitBlame<CR>
+nnoremap <Leader>hh :SidewaysLeft<cr>
+nnoremap <Leader>ll :SidewaysRight<cr>
+nnoremap <Leader>nh :noh <CR>
+nnoremap <Leader>rd :redraw!<CR>
 nnoremap <Leader>sh :split <CR> 
+nnoremap <Leader>ss :TestNearest<CR>
 nnoremap <Leader>sv :vsplit <CR> 
-nnoremap <Leader>qq :q <CR> 
-nnoremap <Leader>bl :<C-u>call gitblame#echo()<CR>
-nnoremap <F5> :call LanguageClient_contextMenu()<CR>
+nnoremap <Leader>yh :Yanks <CR>
+nnoremap <Leader>lft :call LanguageClient#textDocument_formatting()<CR>
+nnoremap <Leader>soi :SourceAndInstall<CR>
+nnoremap <Leader>sor :Source<CR>
+
 noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 10)<CR>
 noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 0, 10)<CR>
 noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 0, 10)<CR>
@@ -287,17 +252,28 @@ noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 10)<CR>
 nnoremap rcs :TestFile<CR>
 nnoremap rls :TestLast<CR>
 nnoremap yfp :YankCurrentFilePath<CR>
-" Jump to tag
-nnoremap <Leader>d :call fzf#vim#tags('^' . expand('<cword>'), {'options': '--exact --select-1 --exit-0 +i'})<CR>
-nnoremap <Leader>D :call fzf#vim#tags('^' . expand('<cword>'))<CR>
 vnoremap <C-c> "+y
 
 " Use M to cut instead of D
 nnoremap m d
 xnoremap m d
-
 nnoremap mm dd
-nnoremap M D
+
+nmap s <plug>(SubversiveSubstitute)
+nmap ss <plug>(SubversiveSubstituteLine)
+nmap S <plug>(SubversiveSubstituteToEndOfLine)
+
+nmap <c-n> <plug>(YoinkPostPasteSwapBack)
+nmap <c-p> <plug>(YoinkPostPasteSwapForward)
+
+nmap p <plug>(YoinkPaste_p)
+nmap P <plug>(YoinkPaste_P)
+
+nnoremap <LEFT>   <c-w><
+nnoremap <RIGHT>  <c-w>>
+nnoremap <UP>     <c-w>+
+nnoremap <DOWN>   <c-w>-
+
 autocmd StdinReadPre * let s:std_in=1
 au InsertLeave * set nopaste
 
@@ -330,18 +306,6 @@ else
   let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
   let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 endif
-
-nmap <c-n> <plug>(YoinkPostPasteSwapBack)
-nmap <c-p> <plug>(YoinkPostPasteSwapForward)
-
-nmap p <plug>(YoinkPaste_p)
-nmap P <plug>(YoinkPaste_P)
-
-nnoremap <LEFT>   <c-w><
-nnoremap <RIGHT>  <c-w>>
-nnoremap <UP>     <c-w>+
-nnoremap <DOWN>   <c-w>-
-" call deoplete#custom#source('tabnine', 'rank', 100)
 set tags=./tags;,tags;
 hi illuminatedWord cterm=italic gui=italic
 
@@ -351,7 +315,3 @@ tnoremap <A-k> <C-\><C-N><C-w>k
 tnoremap <A-l> <C-\><C-N><C-w>l
 
 tnoremap <C-i> <C-\><C-n>
-
-nnoremap <Leader>hh :SidewaysLeft<cr>
-nnoremap <Leader>ll :SidewaysRight<cr>
-nnoremap <Leader>u :UndotreeToggle<cr>
