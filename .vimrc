@@ -1,6 +1,7 @@
 call plug#begin('~/.vim/plugged')
   " Language syntax for every language
   Plug 'sheerun/vim-polyglot'
+  Plug 'CraneStation/cranelift.vim'
 
   Plug 'Konfekt/FastFold'
   " Amazing fuzzy finder and global search

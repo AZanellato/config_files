@@ -122,4 +122,4 @@ export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
 export CDPATH=.:~/Projects
 
 source_if_possible $HOME/anaconda3/etc/profile.d/conda.sh
-eval "$(starship init $0)"
+eval "$(starship init zsh)"
