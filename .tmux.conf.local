@@ -303,6 +303,8 @@ bind -T copy-mode-vi C-\ select-pane -l
 # prefix C-l to clear the screen
 bind C-l send-keys 'C-l'
 
+bind M-n new-session
+
 # bind keys to change windows and change their order
 bind [ swap-window -t -1
 bind ] swap-window -t +1
