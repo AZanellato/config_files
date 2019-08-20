@@ -117,6 +117,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'rakr/vim-one'
 call plug#end()
 
+" colorscheme focuspoint
 colorscheme two-firewatch
 let g:two_firewatch_italics=1
 let g:airline_theme='twofirewatch'
@@ -164,7 +165,7 @@ if exists('&inccommand')
   set inccommand=split
 endif
 
-let test#strategy = "dispatch"
+let test#strategy = "neovim"
 let g:yoinkIncludeDeleteOperations=1
 let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_auto_colors = 0
@@ -222,6 +223,9 @@ nmap <F20> <Plug>MoveLineDown
 nmap <F21> <Plug>MoveLineUp
 
 map gD <C-]>
+" Move between linting errors
+nnoremap <M-n> :ALENextWrap<CR>
+nnoremap <M-p> :ALEPreviousWrap<CR>
 nnoremap <Leader>* :Rg <C-r><C-w><CR>
 nnoremap <Leader>d :call fzf#vim#tags('^' . expand('<cword>'), {'options': '--exact --select-1 --exit-0 +i'})<CR>
 nnoremap <Leader>D :call fzf#vim#tags('^' . expand('<cword>'))<CR>
@@ -274,6 +278,11 @@ nnoremap <LEFT>   <c-w><
 nnoremap <RIGHT>  <c-w>>
 nnoremap <UP>     <c-w>+
 nnoremap <DOWN>   <c-w>-
+nnoremap <M-Left> :bp<CR>
+nnoremap <M-Right> :bn<CR>
+nnoremap <M-Down> :bd<CR>
+" nnoremap <M-Up> 
+" nnoremap <M-c> :compile<CR>
 
 autocmd StdinReadPre * let s:std_in=1
 au InsertLeave * set nopaste
@@ -314,5 +323,4 @@ tnoremap <A-h> <C-\><C-N><C-w>h
 tnoremap <A-j> <C-\><C-N><C-w>j
 tnoremap <A-k> <C-\><C-N><C-w>k
 tnoremap <A-l> <C-\><C-N><C-w>l
-
 tnoremap <C-i> <C-\><C-n>
