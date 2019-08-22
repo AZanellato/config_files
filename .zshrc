@@ -71,7 +71,7 @@ reb-branch() {
 if command lsd > /dev/null; then
   alias ls="lsd"
 fi
-alias configfiles="cd ~/config_files/"
+alias conff="cd ~/config_files/"
 alias goevents="cd ~/Projects/pipefy_events"
 alias gopipe="cd ~/Projects/pipefy"
 alias n="nvim ."
