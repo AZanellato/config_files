@@ -14,6 +14,8 @@ call plug#begin('~/.vim/plugged')
 
   " Moving windows in a non-weird way
   Plug 'andymass/vim-tradewinds'
+  " Resize window automatically
+  Plug 'roman/golden-ratio'
 
   " Change one liners to multiple and vice-versa
   Plug 'AndrewRadev/splitjoin.vim'
