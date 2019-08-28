@@ -6,7 +6,7 @@ export TERM=xterm-256color
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-# ZSH_THEME="oxide"
+ZSH_THEME="oxide"
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
@@ -122,4 +122,4 @@ export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
 export CDPATH=.:~/Projects
 
 source_if_possible $HOME/anaconda3/etc/profile.d/conda.sh
-eval "$(starship init zsh)"
+# eval "$(starship init zsh)"
