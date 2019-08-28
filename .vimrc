@@ -1,133 +1,133 @@
 call plug#begin('~/.vim/plugged')
-  " Language syntax for every language
-  Plug 'sheerun/vim-polyglot'
-  Plug 'CraneStation/cranelift.vim'
-
-  Plug 'Konfekt/FastFold'
-  " Amazing fuzzy finder and global search
-  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-  Plug 'junegunn/fzf.vim'
-  Plug 'junegunn/vim-peekaboo'
-  " Search on visual mode with *
-  Plug 'bronson/vim-visual-star-search'
-  " text moving
-  Plug 'matze/vim-move'
-  Plug 'AndrewRadev/sideways.vim'
-
-  " Moving windows in a non-weird way
-  Plug 'andymass/vim-tradewinds'
-  " Resize window automatically
-  Plug 'roman/golden-ratio'
-
-  " Change one liners to multiple and vice-versa
-  Plug 'AndrewRadev/splitjoin.vim'
-  " Visualize the undotree
-  Plug 'mbbill/undotree'
-  " better f
-  Plug 'rhysd/clever-f.vim'
-  " What it says on the tin 
-  Plug 'terryma/vim-smooth-scroll'
-  " Formatting for Elixir 
-  Plug 'mhinz/vim-mix-format'
-
-  " Make delete actually delete instead of cut
-  Plug 'svermeulen/vim-cutlass'
-  " Substitute text with motions!
-  Plug 'svermeulen/vim-subversive'
-
-  " Exchange words with motions!
-  Plug 'tommcdo/vim-exchange'
-  " Registers stuff
-  Plug 'svermeulen/vim-yoink'
-
-  " Add a exchange movement
-  Plug 'tommcdo/vim-exchange'
-
-  Plug 'triglav/vim-visual-increment'
-
-  " Increment text-objects
-  Plug 'wellle/targets.vim'
-  Plug 'andymass/vim-matchup'
-  Plug 'kana/vim-textobj-user'
-  Plug 'nelstrom/vim-textobj-rubyblock'
-  Plug 'michaeljsmith/vim-indent-object'
-
-  " Repeat any command -- even plugins!
-  Plug 'tpope/vim-repeat'
-
-  " Some usefull stuff for ruby/rails
-  Plug 'tpope/vim-rails'
-  Plug 'tpope/vim-bundler'
-  Plug 'tpope/vim-rake'
-  " Shortcut to comment anything
-  Plug 'tpope/vim-commentary'
-  " Surround stuff quickly!
-  Plug 'tpope/vim-surround'
-
-  " Type end for me :)
-  Plug 'tpope/vim-endwise'
-  " Close brackets for me :)
-  Plug 'rstacruz/vim-closer'
-  " Enhanced terminal integration
-  Plug 'wincent/terminus'
-
-  " Try again after some time
-  " Plug 'justinmk/vim-dirvish'
-  Plug 'tpope/vim-vinegar'
-
-  " Git Stuff
-  Plug 'airblade/vim-gitgutter'
-  Plug 'zivyangll/git-blame.vim'
-  Plug 'tpope/vim-fugitive'
-
-  " Tmux integration. YAY :D 
-  Plug 'christoomey/vim-tmux-navigator'
-  Plug 'wellle/tmux-complete.vim'
-
-  " Dispatch tests to tmux
-  Plug 'tpope/vim-dispatch'
-  " All the tests frameworks/languages :D
-  Plug 'janko/vim-test'
-
-  "Linter :D
-  Plug 'w0rp/ale'
-
-  " Autocompletion
-  Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
-
-  " Start screen
-  Plug 'mhinz/vim-startify'
-
-  " Visual Stuff
-  Plug 'junegunn/rainbow_parentheses.vim'
-  Plug 'machakann/vim-highlightedyank'
-  Plug 'TaDaa/vimade'
-  Plug 'Yggdroot/indentLine'
-  Plug 'vim-airline/vim-airline'
-  Plug 'google/vim-searchindex'
-  Plug 'RRethy/vim-illuminate'
-  Plug 'ryanoasis/vim-devicons' 
-  " Themes!
-  Plug 'reedes/vim-thematic' " Theme manager. 
-  Plug 'Nequo/vim-allomancer'
-  Plug 'dracula/vim', { 'as': 'dracula-vim' }
-  Plug 'endel/vim-github-colorscheme'
-  Plug 'kristijanhusak/vim-hybrid-material'
-  Plug 'mhartington/oceanic-next'
-  Plug 'whatyouhide/vim-gotham'
-  Plug 'danilo-augusto/vim-afterglow'
-  Plug 'AlessandroYorba/Alduin' 
-  Plug 'tlhr/anderson.vim'
-  Plug 'zacanger/angr.vim'
-  Plug 'chase/focuspoint-vim'
-  Plug 'rakr/vim-two-firewatch'
-  Plug 'liuchengxu/space-vim-theme'
-  Plug 'NLKNguyen/papercolor-theme'
-  Plug 'ajmwagar/vim-deus'
-  Plug 'sjl/badwolf'
-  Plug 'ayu-theme/ayu-vim'
-  Plug 'drewtempelmeyer/palenight.vim'
-  Plug 'rakr/vim-one'
+  "" Language stuff
+    " Language syntax for every language
+    Plug 'sheerun/vim-polyglot'
+    " Formatting for Elixir 
+    Plug 'mhinz/vim-mix-format'
+    Plug 'CraneStation/cranelift.vim'
+    " Close brackets for me :)
+    Plug 'rstacruz/vim-closer'
+    " Type end for me :)
+    Plug 'tpope/vim-endwise'
+    " Some usefull stuff for ruby/rails
+    Plug 'tpope/vim-rails'
+    Plug 'tpope/vim-bundler'
+    Plug 'tpope/vim-rake'
+    " Shortcut to comment anything
+    Plug 'tpope/vim-commentary'
+    " Surround stuff quickly!
+    Plug 'tpope/vim-surround'
+  ""
+  "" Project explorer
+    " Amazing fuzzy finder and global search
+    Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+    Plug 'junegunn/fzf.vim'
+    Plug 'tpope/vim-vinegar'
+  ""
+  "" Window movements/resizing
+    " Moving windows in a non-weird way
+    Plug 'andymass/vim-tradewinds'
+    " Resize window automatically
+    Plug 'roman/golden-ratio'
+    " Tmux integration. YAY :D 
+    Plug 'christoomey/vim-tmux-navigator'
+  ""
+  "" Enhance vim commands
+    " Take a look at the registers
+    Plug 'junegunn/vim-peekaboo'
+    " Search on visual mode with *
+    Plug 'bronson/vim-visual-star-search'
+    " Visualize the undotree
+    Plug 'mbbill/undotree'
+    " better f
+    Plug 'rhysd/clever-f.vim'
+    " What it says on the tin 
+    Plug 'terryma/vim-smooth-scroll'
+    " Repeat any command with . -- even plugins!
+    Plug 'tpope/vim-repeat'
+  ""
+  "" Copy/Move/Paste changes
+    " Make delete actually delete instead of cut
+    Plug 'svermeulen/vim-cutlass'
+    " Substitute text with motions!
+    Plug 'svermeulen/vim-subversive'
+    " Exchange words with motions!
+    Plug 'tommcdo/vim-exchange'
+    " Registers stuff
+    Plug 'svermeulen/vim-yoink'
+  ""
+  "" Text manipulation
+    " Change arguments position
+    Plug 'AndrewRadev/sideways.vim'
+    " Change one liners to multiple and vice-versa
+    Plug 'AndrewRadev/splitjoin.vim'
+    " text moving
+    Plug 'matze/vim-move'
+    " Increment text-objects
+    Plug 'wellle/targets.vim'
+    " Continous increment on visual block using C-A
+    Plug 'triglav/vim-visual-increment'
+    " Enhanced % to recognize language specific bracket open (e.g. if-end) 
+    Plug 'andymass/vim-matchup'
+    Plug 'kana/vim-textobj-user'
+    Plug 'nelstrom/vim-textobj-rubyblock'
+    Plug 'michaeljsmith/vim-indent-object'
+  ""
+  "" Git Stuff
+    Plug 'airblade/vim-gitgutter'
+    Plug 'tpope/vim-fugitive'
+  ""
+  "" Test stuff 
+    " Dispatch tests to tmux
+    Plug 'tpope/vim-dispatch'
+    " All the tests frameworks/languages :D
+    Plug 'janko/vim-test'
+  ""
+  "" Autocompletion/linting
+    " automcompletion engine
+    Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+    " Autocompletion source
+    Plug 'wellle/tmux-complete.vim'
+    "Linter :D
+    Plug 'w0rp/ale'
+  ""
+  "" Visual Stuff
+    " Make folding faster :)
+    Plug 'Konfekt/FastFold'
+    " Enhanced terminal integration
+    Plug 'wincent/terminus'
+    " Start screen
+    Plug 'mhinz/vim-startify'
+    Plug 'junegunn/rainbow_parentheses.vim'
+    Plug 'machakann/vim-highlightedyank'
+    Plug 'TaDaa/vimade'
+    Plug 'Yggdroot/indentLine'
+    Plug 'vim-airline/vim-airline'
+    Plug 'google/vim-searchindex'
+    Plug 'RRethy/vim-illuminate'
+    Plug 'ryanoasis/vim-devicons' 
+    " Themes!
+    Plug 'reedes/vim-thematic' " Theme manager. 
+    Plug 'Nequo/vim-allomancer'
+    Plug 'dracula/vim', { 'as': 'dracula-vim' }
+    Plug 'endel/vim-github-colorscheme'
+    Plug 'kristijanhusak/vim-hybrid-material'
+    Plug 'mhartington/oceanic-next'
+    Plug 'whatyouhide/vim-gotham'
+    Plug 'danilo-augusto/vim-afterglow'
+    Plug 'AlessandroYorba/Alduin' 
+    Plug 'tlhr/anderson.vim'
+    Plug 'zacanger/angr.vim'
+    Plug 'chase/focuspoint-vim'
+    Plug 'rakr/vim-two-firewatch'
+    Plug 'liuchengxu/space-vim-theme'
+    Plug 'NLKNguyen/papercolor-theme'
+    Plug 'ajmwagar/vim-deus'
+    Plug 'sjl/badwolf'
+    Plug 'ayu-theme/ayu-vim'
+    Plug 'drewtempelmeyer/palenight.vim'
+    Plug 'rakr/vim-one'
+  ""
 call plug#end()
 
 colorscheme two-firewatch
