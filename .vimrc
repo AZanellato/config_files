@@ -86,8 +86,8 @@ call plug#begin('~/.vim/plugged')
 
   " Dispatch tests to tmux
   Plug 'tpope/vim-dispatch'
+  " All the tests frameworks/languages :D
   Plug 'janko/vim-test'
-  " Plug 'thoughtbot/vim-rspec'
 
   "Linter :D
   Plug 'w0rp/ale'
@@ -121,6 +121,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'chase/focuspoint-vim'
   Plug 'rakr/vim-two-firewatch'
   Plug 'liuchengxu/space-vim-theme'
+  Plug 'NLKNguyen/papercolor-theme'
   Plug 'ajmwagar/vim-deus'
   Plug 'sjl/badwolf'
   Plug 'ayu-theme/ayu-vim'
@@ -140,6 +141,7 @@ set <F21>=k
 set background=dark
 
 set termguicolors
+set updatetime=200 " 200 ms to update signs
 set autowrite     " Automatically :write before running commands
 set backspace=2   " Backspace deletes like most programs in insert mode
 set expandtab " Tab => spaces
