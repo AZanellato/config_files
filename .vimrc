@@ -108,6 +108,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'RRethy/vim-illuminate'
   Plug 'ryanoasis/vim-devicons' 
   " Themes!
+  Plug 'reedes/vim-thematic' " Theme manager. 
   Plug 'Nequo/vim-allomancer'
   Plug 'dracula/vim', { 'as': 'dracula-vim' }
   Plug 'endel/vim-github-colorscheme'
