@@ -8,6 +8,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
   Plug 'junegunn/fzf.vim'
   Plug 'junegunn/vim-peekaboo'
+  " Search on visual mode with *
+  Plug 'bronson/vim-visual-star-search'
   " text moving
   Plug 'matze/vim-move'
   Plug 'AndrewRadev/sideways.vim'
@@ -236,6 +238,7 @@ map gD <C-]>
 nnoremap <M-n> :ALENextWrap<CR>
 nnoremap <M-p> :ALEPreviousWrap<CR>
 nnoremap <Leader>* :Rg <C-r><C-w><CR>
+vnoremap <leader>* :<C-u>call VisualStarSearchSet('/', 'raw')<CR>:call fzf#vim#grep('rg --column --line-number --no-heading --color=always --smart-case '.shellescape(@/), 1,)<CR>
 nnoremap <Leader>d :call fzf#vim#tags('^' . expand('<cword>'), {'options': '--exact --select-1 --exit-0 +i'})<CR>
 nnoremap <Leader>D :call fzf#vim#tags('^' . expand('<cword>'))<CR>
 nnoremap <Leader>e :e#<CR>
