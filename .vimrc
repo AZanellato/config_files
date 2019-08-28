@@ -34,6 +34,9 @@ call plug#begin('~/.vim/plugged')
   Plug 'svermeulen/vim-cutlass'
   " Substitute text with motions!
   Plug 'svermeulen/vim-subversive'
+
+  " Exchange words with motions!
+  Plug 'tommcdo/vim-exchange'
   " Registers stuff
   Plug 'svermeulen/vim-yoink'
 
@@ -65,6 +68,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-endwise'
   " Close brackets for me :)
   Plug 'rstacruz/vim-closer'
+  " Enhanced terminal integration
+  Plug 'wincent/terminus'
 
   " Try again after some time
   " Plug 'justinmk/vim-dirvish'
@@ -90,9 +95,8 @@ call plug#begin('~/.vim/plugged')
   " Autocompletion
   Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 
-  " Snippets :)
-  Plug 'SirVer/ultisnips'
-  Plug 'honza/vim-snippets'
+  " Start screen
+  Plug 'mhinz/vim-startify'
 
   " Visual Stuff
   Plug 'junegunn/rainbow_parentheses.vim'
