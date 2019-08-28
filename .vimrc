@@ -96,7 +96,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'junegunn/rainbow_parentheses.vim'
   Plug 'machakann/vim-highlightedyank'
   Plug 'TaDaa/vimade'
-  Plug 'nathanaelkane/vim-indent-guides'
+  Plug 'Yggdroot/indentLine'
   Plug 'vim-airline/vim-airline'
   Plug 'google/vim-searchindex'
   Plug 'RRethy/vim-illuminate'
@@ -114,18 +114,20 @@ call plug#begin('~/.vim/plugged')
   Plug 'zacanger/angr.vim'
   Plug 'chase/focuspoint-vim'
   Plug 'rakr/vim-two-firewatch'
+  Plug 'liuchengxu/space-vim-theme'
+  Plug 'ajmwagar/vim-deus'
+  Plug 'sjl/badwolf'
   Plug 'ayu-theme/ayu-vim'
   Plug 'drewtempelmeyer/palenight.vim'
   Plug 'rakr/vim-one'
 call plug#end()
 
-" colorscheme focuspoint
 colorscheme two-firewatch
+autocmd FileType rust,toml colorscheme badwolf
 let g:two_firewatch_italics=1
 let g:airline_theme='twofirewatch'
 
 let mapleader = " "
-let g:tmuxcomplete#trigger = 'omnifunc'
 set nomodeline
 set <F20>=j
 set <F21>=k
@@ -168,11 +170,10 @@ if exists('&inccommand')
 endif
 
 let test#strategy = "neovim"
+
+let g:tmuxcomplete#trigger = 'omnifunc'
+
 let g:yoinkIncludeDeleteOperations=1
-let g:indent_guides_enable_on_vim_startup = 1
-let g:indent_guides_auto_colors = 0
-autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#2c323c
-autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#3e4452
 
 let g:fzf_action = {
       \ 'ctrl-t': 'tab split',
@@ -182,6 +183,7 @@ let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {}
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['ex'] = ''
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['exs'] = ''
 let g:SuperTabDefaultCompletionType = "<c-n>"
+
 let g:airline_mode_map = {
     \ '__' : '-',
     \ 'n'  : 'N',
@@ -199,9 +201,14 @@ let g:airline_section_b = '%{airline#util#wrap(airline#extensions#branch#get_hea
 let g:airline_section_z = ''
 let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
 let g:airline#extensions#wordcount#formatter#default#fmt = '%d w'
+
 let g:mix_format_on_save = 1
 let g:mix_format_silent_errors = 1
+
 let g:rustfmt_autosave = 1
+let g:golden_ratio_wrap_ignored = 1
+
+let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 
 if executable('rg')
   if exists(":Rg")
