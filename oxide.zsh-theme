@@ -1,7 +1,9 @@
 # Oxide theme for Zsh
 #
-# Author: Diki Ananta <diki1aap@gmail.com>
+# Original author: Diki Ananta <diki1aap@gmail.com>
+# Altered by André Lucas Zanellato <andre.zanellato@gmail.com>
 # Repository: https://github.com/dikiaap/dotfiles
+# Repository: https://github.com/Azanellato/config_files
 # License: MIT
 
 # Prompt:
@@ -28,9 +30,10 @@ autoload -Uz vcs_info
 
 # Use True color (24-bit) if available.
 if [[ "${terminfo[colors]}" -ge 256 ]]; then
-    oxide_turquoise="%F{73}"
+    oxide_turquoise="%F{75}"
     oxide_orange="%F{179}"
-    oxide_red="%F{167}"
+    oxide_rust="%F{208}"
+    oxide_red="%F{124}"
     oxide_limegreen="%F{107}"
 else
     oxide_turquoise="%F{cyan}"
@@ -65,8 +68,21 @@ zstyle ':vcs_info:git*+set-message:*' hooks git-untracked
     fi
 }
 
+local function p-print(){
+	echo "%{$FG[$1]%}$L_BRACKET$2$R_BRACKET"
+}
+
+local function getHost(){
+	p-print 010 " $HOST"
+}
+
+local function getUser(){
+	[ "$USER" = 'root' ] && p-print 001 "root" # || p-print 012 "$USER"
+}
+
 # Executed before each prompt.
 add-zsh-hook precmd vcs_info
 
 # Oxide prompt style.
-PROMPT=$'\n%{$oxide_limegreen%}%~%{$oxide_reset_color%} ${vcs_info_msg_0_}\n%(?.%{%F{white}%}.%{$oxide_red%})%(!.#.->)%{$oxide_reset_color%} '
+PROMPT=$'\n%{$oxide_rust%}%~%{$oxide_reset_color%} ${vcs_info_msg_0_}\n%(?.%{$oxide_limegreen%}.%{$oxide_red%})%(!.#.=>)%{$oxide_reset_color%} '
+# RPROMPT=$'%{$oxide_limegreen%}$USER'
