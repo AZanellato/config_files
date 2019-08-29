@@ -34,7 +34,7 @@ if [[ "${terminfo[colors]}" -ge 256 ]]; then
     oxide_orange="%F{179}"
     oxide_rust="%F{208}"
     oxide_red="%F{124}"
-    oxide_limegreen="%F{107}"
+    oxide_limegreen="%F{148}"
 else
     oxide_turquoise="%F{cyan}"
     oxide_orange="%F{yellow}"
@@ -83,6 +83,7 @@ local function getUser(){
 # Executed before each prompt.
 add-zsh-hook precmd vcs_info
 
+
 # Oxide prompt style.
-PROMPT=$'\n%{$oxide_rust%}%~%{$oxide_reset_color%} ${vcs_info_msg_0_}\n%(?.%{$oxide_limegreen%}.%{$oxide_red%})%(!.#.=>)%{$oxide_reset_color%} '
+PROMPT=$'\n%{$oxide_rust%}%~%{$oxide_reset_color%} ${vcs_info_msg_0_}\n%(?.%{$oxide_limegreen%}.%{$oxide_red%})%(!.#.➜)%{$oxide_reset_color%} '
 # RPROMPT=$'%{$oxide_limegreen%}$USER'
