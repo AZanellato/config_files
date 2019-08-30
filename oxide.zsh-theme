@@ -83,7 +83,7 @@ local function getUser(){
 # Executed before each prompt.
 add-zsh-hook precmd vcs_info
 
-
 # Oxide prompt style.
-PROMPT=$'\n%{$oxide_rust%}%~%{$oxide_reset_color%} ${vcs_info_msg_0_}\n%(?.%{$oxide_limegreen%}.%{$oxide_red%})%(!.#.➜)%{$oxide_reset_color%} '
+
+PROMPT=$'\n%{$oxide_rust%}%~%{$oxide_reset_color%} ${vcs_info_msg_0_}\n%(?.%{$oxide_limegreen%}.%{$oxide_red%})%(!.#.▶)%{$oxide_reset_color%} '
 # RPROMPT=$'%{$oxide_limegreen%}$USER'
