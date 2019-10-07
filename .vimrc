@@ -141,17 +141,10 @@ call plug#begin('~/.vim/plugged')
   ""
 call plug#end()
 
-colorscheme Iosvkem
-autocmd FileType rust,toml colorscheme badwolf
-" autocmd FileType reason,ocaml colorscheme Iosvkem
-let g:two_firewatch_italics=1
-let g:airline_theme='twofirewatch'
-
 let mapleader = " "
 set nomodeline
 set <F20>=j
 set <F21>=k
-set background=dark
 
 set termguicolors
 set updatetime=200 " 200 ms to update signs
@@ -360,3 +353,8 @@ tnoremap <A-j> <C-\><C-N><C-w>j
 tnoremap <A-k> <C-\><C-N><C-w>k
 tnoremap <A-l> <C-\><C-N><C-w>l
 tnoremap <C-i> <C-\><C-n>
+
+set background=dark
+autocmd FileType rust,toml colorscheme badwolf
+autocmd FileType reason,ocaml colorscheme Iosvkem
+colorscheme Iosvkem
