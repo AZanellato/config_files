@@ -228,6 +228,9 @@ endif
 if !exists(":YankCurrentFilePath")
   command YankCurrentFilePath let @+ = expand("%")
 endif
+if !exists(":PrettifyJson")
+  command PrettifyJson %!jq '.'
+endif
 if !exists(":Source")
   command Source source ~/config_files/.vimrc 
 endif
