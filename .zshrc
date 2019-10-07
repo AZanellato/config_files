@@ -82,15 +82,13 @@ alias nvdc="nvim \$(git diff HEAD^ --name-only --diff-filter=ACMR)"
 alias nvds="nvim \$(git diff --staged --name-only --diff-filter=ACMR)"
 alias nvimrc="nvim ~/config_files/.vimrc"
 alias nvzshrc="nvim ~/config_files/.zshrc"
-alias node='unalias nvm; unalias node; unalias npm; nvm_load; node $@'
-alias npm='unalias nvm; unalias node; unalias npm; nvm_load; npm $@'
-alias nvm='unalias nvm; unalias node; unalias npm; nvm_load; nvm $@'
 alias pipefy-docker-up="docker-compose -f ~/Projects/pipefy/docker-compose.yml up"
 alias projects="cd ~/Projects"
 alias pull_config="cd ~/config_files/ && git pull"
 alias rpipefy="cd ~ && ./start_pipefy && cd -"
 alias rstest="RAILS_ENV=test rs"
 alias stoppostgres="sudo service postgresql stop"
+alias open="xdg-open"
 
 export BAT_THEME="TwoDark"
 export PATH="$HOME/.rbenv/bin:$PATH"
@@ -101,15 +99,12 @@ eval "$(rbenv init -)"
 
 export NVM_DIR="$HOME/.nvm"
 nvm_load () {
-  . $NVM_DIR/nvm.sh
-  . $NVM_DIR/bash_completion
+  if ! type "nvm" > /dev/null; then
+    . $NVM_DIR/nvm.sh 
+  fi
 }
 
 . $HOME/.asdf/asdf.sh
-
-. $HOME/.asdf/completions/asdf.bash
-
-
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
@@ -122,4 +117,10 @@ export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
 export CDPATH=.:~/Projects
 
 source_if_possible $HOME/anaconda3/etc/profile.d/conda.sh
-# eval "$(starship init zsh)"
+
+function lazy_load_nvm() {
+    [[ -f package.json || -d node_modules ]] || return
+    nvm_load
+}
+chpwd_functions=(${chpwd_functions[@]} "lazy_load_nvm")
+lazy_load_nvm

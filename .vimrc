@@ -2,6 +2,7 @@ call plug#begin('~/.vim/plugged')
   "" Language stuff
     " Language syntax for every language
     Plug 'sheerun/vim-polyglot'
+    Plug 'jordwalke/vim-reasonml'
     " Formatting for Elixir 
     Plug 'mhinz/vim-mix-format'
     Plug 'CraneStation/cranelift.vim'
@@ -17,6 +18,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'tpope/vim-commentary'
     " Surround stuff quickly!
     Plug 'tpope/vim-surround'
+    " REPL quickly
+    Plug 'rhysd/reply.vim'
   ""
   "" Project explorer
     " Amazing fuzzy finder and global search
@@ -111,6 +114,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'Nequo/vim-allomancer'
     Plug 'dracula/vim', { 'as': 'dracula-vim' }
     Plug 'endel/vim-github-colorscheme'
+    Plug 'jordwalke/vim-taste'
     Plug 'kristijanhusak/vim-hybrid-material'
     Plug 'mhartington/oceanic-next'
     Plug 'whatyouhide/vim-gotham'
@@ -127,11 +131,19 @@ call plug#begin('~/.vim/plugged')
     Plug 'ayu-theme/ayu-vim'
     Plug 'drewtempelmeyer/palenight.vim'
     Plug 'rakr/vim-one'
+    Plug 'arzg/vim-corvine'
+    Plug 'kjssad/quantum.vim'
+    Plug 'jaredgorski/spacecamp'
+    Plug 'NewProggie/NewProggie-Color-Scheme'
+    Plug 'toupeira/vim-desertink'
+    Plug 'neutaaaaan/iosvkem'
+    Plug 'lifepillar/vim-colortemplate'
   ""
 call plug#end()
 
-colorscheme two-firewatch
+colorscheme Iosvkem
 autocmd FileType rust,toml colorscheme badwolf
+" autocmd FileType reason,ocaml colorscheme Iosvkem
 let g:two_firewatch_italics=1
 let g:airline_theme='twofirewatch'
 
@@ -289,6 +301,8 @@ nnoremap mm dd
 nmap s <plug>(SubversiveSubstitute)
 nmap ss <plug>(SubversiveSubstituteLine)
 nmap S <plug>(SubversiveSubstituteToEndOfLine)
+nmap scm <Plug>(coc-diagnostic-info)
+nmap sam <Plug>(ale_detail)
 
 nmap <c-n> <plug>(YoinkPostPasteSwapBack)
 nmap <c-p> <plug>(YoinkPostPasteSwapForward)
@@ -327,7 +341,7 @@ fun! <SID>StripTrailingWhitespaces()
 endfun
 
 augroup kill_trailing_whitespace
-  autocmd FileType c,cpp,java,php,ruby,elixir,rust,python autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
+  autocmd FileType c,cpp,java,php,ruby,elixir,rust,python,ocaml,reason autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
 augroup END
 
 if has('nvim')
