@@ -341,16 +341,7 @@ augroup kill_trailing_whitespace
   autocmd FileType c,cpp,java,php,ruby,elixir,rust,python,ocaml,reason autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
 augroup END
 
-if has('nvim')
-  tmap <C-i> <C-\><C-n>
-  hi Search guibg=none guifg=none gui=underline
-else
-  " set Vim-specific sequences for RGB colors
-  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-endif
 set tags=./tags;,tags;
-hi illuminatedWord cterm=italic gui=italic
 
 tnoremap <A-h> <C-\><C-N><C-w>h
 tnoremap <A-j> <C-\><C-N><C-w>j
@@ -362,6 +353,16 @@ set background=dark
 autocmd FileType rust,toml colorscheme badwolf
 autocmd FileType reason,ocaml colorscheme Iosvkem
 colorscheme Iosvkem
+hi illuminatedWord cterm=italic gui=italic
+if has('nvim')
+  tmap <C-i> <C-\><C-n>
+  hi Search guibg=none guifg=none gui=underline
+else
+  " set Vim-specific sequences for RGB colors
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+endif
+
 """ Experimenting with coc stuff:
 
 " Remap keys for gotos
