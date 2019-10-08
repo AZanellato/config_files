@@ -147,7 +147,7 @@ set <F20>=j
 set <F21>=k
 
 set termguicolors
-set updatetime=200 " 200 ms to update signs
+set updatetime=500 " 200 ms to update signs
 set autowrite     " Automatically :write before running commands
 set backspace=2   " Backspace deletes like most programs in insert mode
 set expandtab " Tab => spaces
@@ -167,6 +167,7 @@ set showcmd       " display incomplete commands
 set splitbelow  "Split horizontal shows up from below 
 set splitright  " Split vertical shows up to the right
 set tabstop=2   " Tab equals to 2 spaces
+set cmdheight=2 " Better display error messages
 set hidden
 set ttyfast
 
@@ -310,8 +311,6 @@ nnoremap <DOWN>   <c-w>-
 nnoremap <M-Left> :bp<CR>
 nnoremap <M-Right> :bn<CR>
 nnoremap <M-Down> :bd<CR>
-" nnoremap <M-Up> 
-" nnoremap <M-c> :compile<CR>
 
 autocmd StdinReadPre * let s:std_in=1
 au InsertLeave * set nopaste
