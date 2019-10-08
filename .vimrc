@@ -240,6 +240,9 @@ endif
 if !exists(":Source")
   command Source source ~/config_files/.vimrc 
 endif
+if !exists(":Format")
+  command! -nargs=0 Format :call CocAction('format')
+endif
 if !exists(":SourceAndInstall")
   command SourceAndInstall source ~/config_files/.vimrc <bar> :PlugInstall
 endif
@@ -274,7 +277,7 @@ nnoremap <Leader>sh :split <CR>
 nnoremap <Leader>ss :TestNearest<CR>
 nnoremap <Leader>sv :vsplit <CR> 
 nnoremap <Leader>yh :Yanks <CR>
-nnoremap <Leader>lft :call LanguageClient#textDocument_formatting()<CR>
+nnoremap <Leader>lft :Format <CR>
 nnoremap <Leader>soi :SourceAndInstall<CR>
 nnoremap <Leader>sor :Source<CR>
 
@@ -320,6 +323,8 @@ inoremap <silent><expr> <TAB>
       \ <SID>CheckBackSpace() ? "\<TAB>" :
       \ coc#refresh()
 
+inoremap <silent><expr> <C-n> coc#refresh()
+
 fun! <SID>CheckBackSpace() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
@@ -357,3 +362,21 @@ set background=dark
 autocmd FileType rust,toml colorscheme badwolf
 autocmd FileType reason,ocaml colorscheme Iosvkem
 colorscheme Iosvkem
+""" Experimenting with coc stuff:
+
+" Remap keys for gotos
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K to show documentation in preview window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
