@@ -141,6 +141,7 @@ call plug#begin('~/.vim/plugged')
   ""
 call plug#end()
 
+let g:polyglot_disabled = ['reason']
 let mapleader = " "
 set nomodeline
 set <F20>=j
@@ -351,7 +352,6 @@ tnoremap <C-i> <C-\><C-n>
 
 set background=dark
 autocmd FileType rust,toml colorscheme badwolf
-autocmd FileType reason,ocaml colorscheme Iosvkem
 colorscheme Iosvkem
 hi illuminatedWord cterm=italic gui=italic
 if has('nvim')
