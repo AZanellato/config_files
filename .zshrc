@@ -124,3 +124,4 @@ function lazy_load_nvm() {
 }
 chpwd_functions=(${chpwd_functions[@]} "lazy_load_nvm")
 lazy_load_nvm
+eval $(opam env)
