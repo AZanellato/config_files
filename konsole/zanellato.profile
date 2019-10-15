@@ -1,7 +1,6 @@
 [Appearance]
 ColorScheme=Sweet
-Font=Fira Code Retina,11,-1,5,53,0,0,0,0,0,Regular
-UseFontLineChararacters=true
+Font=FuraCode Nerd Font,12,-1,5,50,0,0,0,0,0
 
 [Cursor Options]
 CursorShape=1

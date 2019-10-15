@@ -3,6 +3,7 @@ call plug#begin('~/.vim/plugged')
     " Language syntax for every language
     Plug 'sheerun/vim-polyglot'
     Plug 'jordwalke/vim-reasonml'
+    Plug 'tarekbecker/vim-yaml-formatter'
     " Formatting for Elixir 
     Plug 'mhinz/vim-mix-format'
     Plug 'CraneStation/cranelift.vim'
@@ -111,6 +112,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'ryanoasis/vim-devicons' 
     " Themes!
     Plug 'reedes/vim-thematic' " Theme manager. 
+    Plug 'iceisspetrel/Monrovia'
     Plug 'Nequo/vim-allomancer'
     Plug 'dracula/vim', { 'as': 'dracula-vim' }
     Plug 'endel/vim-github-colorscheme'
@@ -141,7 +143,7 @@ call plug#begin('~/.vim/plugged')
   ""
 call plug#end()
 
-let g:polyglot_disabled = ['reason']
+let g:polyglot_disabled = ['reason', 'yaml']
 let mapleader = " "
 set nomodeline
 set <F20>=j
@@ -267,7 +269,7 @@ nnoremap <Leader>p  o<ESC>"+p
 nnoremap <Leader>P  O<ESC>"+p
 nnoremap <Leader>u :UndotreeToggle<cr>
 nnoremap <Leader>w :w<CR>
-nnoremap <Leader>al :TestSuite<CR>
+nnoremap <Leader>ral :TestSuite<CR>
 nnoremap <Leader>bb :Buffers <CR> 
 nnoremap <Leader>bl :GitBlame<CR>
 nnoremap <Leader>hh :SidewaysLeft<cr>
@@ -278,6 +280,9 @@ nnoremap <Leader>sh :split <CR>
 nnoremap <Leader>ss :TestNearest<CR>
 nnoremap <Leader>sv :vsplit <CR> 
 nnoremap <Leader>yh :Yanks <CR>
+nnoremap <Leader>aln :ALENextWrap <CR>
+nnoremap <Leader>alp :ALEPreviousWrap <CR>
+nnoremap <Leader>alf :ALEPreviousWrap <CR>
 nnoremap <Leader>lft :Format <CR>
 nnoremap <Leader>soi :SourceAndInstall<CR>
 nnoremap <Leader>sor :Source<CR>
@@ -381,3 +386,8 @@ function! s:show_documentation()
     call CocAction('doHover')
   endif
 endfunction
+
+au! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml foldmethod=indent
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+
+let g:ale_fixers = { 'ruby': [ 'rubocop' ] }

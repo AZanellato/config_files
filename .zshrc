@@ -81,6 +81,7 @@ alias nvd="nvim \$(git diff HEAD --name-only --diff-filter=ACMR)"
 alias nvdc="nvim \$(git diff HEAD^ --name-only --diff-filter=ACMR)"
 alias nvds="nvim \$(git diff --staged --name-only --diff-filter=ACMR)"
 alias nvimrc="nvim ~/config_files/.vimrc"
+alias nvm="unalias nvm; nvm_load && nvm"
 alias nvzshrc="nvim ~/config_files/.zshrc"
 alias pipefy-docker-up="docker-compose -f ~/Projects/pipefy/docker-compose.yml up"
 alias projects="cd ~/Projects"
@@ -124,4 +125,6 @@ function lazy_load_nvm() {
 }
 chpwd_functions=(${chpwd_functions[@]} "lazy_load_nvm")
 lazy_load_nvm
-eval $(opam env)
+if type "$opam" > /dev/null; then
+  $(opam env)
+fi
