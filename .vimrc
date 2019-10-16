@@ -355,10 +355,15 @@ tnoremap <A-k> <C-\><C-N><C-w>k
 tnoremap <A-l> <C-\><C-N><C-w>l
 tnoremap <C-i> <C-\><C-n>
 
+function s:change_color(name)
+  execute 'colorscheme '.a:name
+  execute 'hi Search guibg=none guifg=none gui=underline'
+endfunction
 set background=dark
-autocmd FileType rust,toml colorscheme badwolf
-colorscheme Iosvkem
+" autocmd FileType rust,toml call s:change_color("badwolf")
+call s:change_color("Iosvkem")
 hi illuminatedWord cterm=italic gui=italic
+
 if has('nvim')
   tmap <C-i> <C-\><C-n>
   hi Search guibg=none guifg=none gui=underline
