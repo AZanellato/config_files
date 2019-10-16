@@ -34,24 +34,47 @@ source $ZSH/oh-my-zsh.sh
 export EDITOR='nvim'
 # Functions
 #
-source_if_possible() {
+function nvm_load () {
+  if ! type "nvm" > /dev/null; then
+    . $NVM_DIR/nvm.sh 
+  fi
+}
+function lazy_load_nvm() {
+    [[ -f package.json || -d node_modules ]] || return
+    nvm_load
+}
+function weather_in() {
+  curl wttr.in/$1
+}
+
+function wttrcwb() {
+  weather_in Curitiba
+}
+function source_if_possible() {
     if [[ -r $1 ]]; then
         source $1
     fi
 }
 
-pfzf() {
+function parrot() {
+  curl parrot.live
+}
+function joke() {
+  curl https://icanhazdadjoke.com
+}
+
+function pfzf() {
   fzf --preview '[[ $(file --mime {}) =~ binary ]] && echo {} is a binary file || (bat --theme="TwoDark" --color always {}) 2> /dev/null | head -500'
 }
 
-reb-master() { 
+function reb-master() { 
   git checkout master &&
   git pull --rebase && 
   git checkout - && 
   git rebase master
 }
 
-reb-branch() {
+function reb-branch() {
   local branch="$1"
   if [ $branch == '' ]; then
     echo $(reb-master)
@@ -99,11 +122,6 @@ export PATH="$HOME/.local/bin:$PATH"
 eval "$(rbenv init -)"
 
 export NVM_DIR="$HOME/.nvm"
-nvm_load () {
-  if ! type "nvm" > /dev/null; then
-    . $NVM_DIR/nvm.sh 
-  fi
-}
 
 . $HOME/.asdf/asdf.sh
 
@@ -119,10 +137,6 @@ export CDPATH=.:~/Projects
 
 source_if_possible $HOME/anaconda3/etc/profile.d/conda.sh
 
-function lazy_load_nvm() {
-    [[ -f package.json || -d node_modules ]] || return
-    nvm_load
-}
 chpwd_functions=(${chpwd_functions[@]} "lazy_load_nvm")
 lazy_load_nvm
 if type "$opam" > /dev/null; then
