@@ -2,7 +2,7 @@ call plug#begin('~/.vim/plugged')
   "" Language stuff
     " Language syntax for every language
     Plug 'sheerun/vim-polyglot'
-    Plug 'jordwalke/vim-reasonml'
+    " Plug 'jordwalke/vim-reasonml'
     Plug 'tarekbecker/vim-yaml-formatter'
     " Formatting for Elixir 
     Plug 'mhinz/vim-mix-format'
@@ -89,7 +89,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'janko/vim-test'
   ""
   "" Autocompletion/linting
-    " automcompletion engine
+    " autocompletion engine
     Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
     " Autocompletion source
     Plug 'wellle/tmux-complete.vim'
@@ -145,6 +145,7 @@ call plug#begin('~/.vim/plugged')
 call plug#end()
 
 let g:polyglot_disabled = ['reason', 'yaml']
+let g:ale_fixers = { 'ruby': [ 'rubocop' ] }
 let mapleader = " "
 set nomodeline
 set <F20>=j
@@ -155,7 +156,7 @@ set updatetime=500 " 200 ms to update signs
 set autowrite     " Automatically :write before running commands
 set backspace=2   " Backspace deletes like most programs in insert mode
 set expandtab " Tab => spaces
-set foldmethod=indent
+set foldmethod=manual
 set history=50
 set incsearch     " do incremental searching
 set laststatus=2  " Always display the status line
@@ -175,6 +176,12 @@ set cmdheight=2 " Better display error messages
 set hidden
 set ttyfast
 
+" This works on neovim only. It shows what
+" will be replaced when doing %s//
+if exists('&inccommand')
+  set inccommand=split
+endif
+
 " Relative number when on normal mode
 " absolute numbers when on insert mode
 set number relativenumber
@@ -184,9 +191,13 @@ augroup numbertoggle
   autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
 augroup END
 
-if exists('&inccommand')
-  set inccommand=split
-endif
+" Remove trailing whitespace on save for these extensions
+augroup kill_trailing_whitespace
+  autocmd FileType c,cpp,java,php,ruby,elixir,rust,python,ocaml,reason autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
+augroup END
+
+" Here starts the configuration of plugins and a bunch
+" of shortcuts that I developed 
 
 let test#strategy = "neovim"
 
@@ -201,7 +212,6 @@ let g:fzf_action = {
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {}
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['ex'] = ''
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['exs'] = ''
-let g:SuperTabDefaultCompletionType = "<c-n>"
 
 let g:airline_mode_map = {
     \ '__' : '-',
@@ -229,12 +239,9 @@ let g:golden_ratio_wrap_ignored = 1
 
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 
-if executable('rg')
-  if exists(":Rg")
-    nnoremap \ :Rg<SPACE>
-  endif
+if exists(":Rg")
+  nnoremap \ :Rg<SPACE>
 endif
-
 if !exists(":YankCurrentFilePath")
   command YankCurrentFilePath let @+ = expand("%")
 endif
@@ -250,6 +257,14 @@ endif
 if !exists(":SourceAndInstall")
   command SourceAndInstall source ~/config_files/.vimrc <bar> :PlugInstall
 endif
+if !exists(":Fold")
+  command! -nargs=? Fold :call CocAction('fold', <f-args>)
+endif
+
+noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 10)<CR>
+noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 0, 10)<CR>
+noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 0, 10)<CR>
+noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 10)<CR>
 
 vmap <F20> <Plug>MoveBlockDown
 vmap <F21> <Plug>MoveBlockUp
@@ -288,10 +303,6 @@ nnoremap <Leader>alf :ALEPreviousWrap <CR>
 nnoremap <Leader>soi :SourceAndInstall<CR>
 nnoremap <Leader>sor :Source<CR>
 
-noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 10)<CR>
-noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 0, 10)<CR>
-noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 0, 10)<CR>
-noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 10)<CR>
 nnoremap rcs :TestFile<CR>
 nnoremap rls :TestLast<CR>
 nnoremap yfp :YankCurrentFilePath<CR>
@@ -333,21 +344,17 @@ inoremap <silent><expr> <TAB>
 inoremap <silent><expr> <C-n> coc#refresh()
 inoremap jj <esc>
 
-fun! <SID>CheckBackSpace() abort
+function! <SID>CheckBackSpace() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfun
 
-fun! <SID>StripTrailingWhitespaces()
+function! <SID>StripTrailingWhitespaces()
     let l = line(".")
     let c = col(".")
     %s/\s\+$//e
     call cursor(l, c)
 endfun
-
-augroup kill_trailing_whitespace
-  autocmd FileType c,cpp,java,php,ruby,elixir,rust,python,ocaml,reason autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
-augroup END
 
 set tags=./tags;,tags;
 
@@ -360,11 +367,10 @@ tnoremap <C-i> <C-\><C-n>
 function! s:change_color(name)
   execute 'colorscheme '.a:name
   execute 'hi Search guibg=none guifg=none gui=underline'
+  execute 'hi illuminatedWord cterm=italic gui=italic'
 endfunction
 set background=dark
-" autocmd FileType rust,toml call s:change_color("badwolf")
 call s:change_color("Iosvkem")
-hi illuminatedWord cterm=italic gui=italic
 
 if has('nvim')
   tmap <C-i> <C-\><C-n>
@@ -377,18 +383,27 @@ else
 endif
 
 """ Experimenting with coc stuff:
+  " Remap keys for gotos
+  nmap <silent> gd <Plug>(coc-definition)
+  nmap <silent> gy <Plug>(coc-type-definition)
+  nmap <silent> gi <Plug>(coc-implementation)
+  nmap <silent> gr <Plug>(coc-references)
 
-" Remap keys for gotos
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
+  inoremap <silent><expr> <c-i> pumvisible() ? coc#_select_confirm() : ""
+                                            
 
-inoremap <silent><expr> <c-i> pumvisible() ? coc#_select_confirm() : ""
-                                           
+  " Use K to show documentation in preview window
+  nnoremap <silent> K :call <SID>show_documentation()<CR>
 
-" Use K to show documentation in preview window
-nnoremap <silent> K :call <SID>show_documentation()<CR>
+  function! s:show_documentation()
+    if (index(['vim','help'], &filetype) >= 0)
+      execute 'h '.expand('<cword>')
+    else
+      call CocAction('doHover')
+    endif
+  endfunction
+
+"""
 
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
@@ -403,3 +418,6 @@ autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
 let g:ale_fixers = { 'ruby': [ 'rubocop' ] }
 let g:ale_rust_cargo_use_clippy = 1
+
+au! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml foldmethod=indent
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
