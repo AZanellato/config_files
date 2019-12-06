@@ -35,13 +35,14 @@ export EDITOR='nvim'
 # Functions
 #
 function nvm_load () {
-  if ! type "nvm" > /dev/null; then
+  if ! type "npm" > /dev/null; then
+    unalias nvm
     . $NVM_DIR/nvm.sh 
   fi
 }
 function lazy_load_nvm() {
-    [[ -f package.json || -d node_modules ]] || return
-    nvm_load
+  [[ -f package.json || -d node_modules ]] || return
+  nvm_load
 }
 function weather_in() {
   curl wttr.in/$1
@@ -113,6 +114,7 @@ alias rpipefy="cd ~ && ./start_pipefy && cd -"
 alias rstest="RAILS_ENV=test rs"
 alias stoppostgres="sudo service postgresql stop"
 alias open="xdg-open"
+alias git-calendar="git-stats"
 
 export BAT_THEME="TwoDark"
 export PATH="$HOME/.rbenv/bin:$PATH"
