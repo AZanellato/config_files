@@ -50,6 +50,7 @@ call plug#begin('~/.vim/plugged')
     " Plug 'terryma/vim-smooth-scroll'
     " Repeat any command with . -- even plugins!
     Plug 'tpope/vim-repeat'
+    Plug 'derekprior/vim-leaders'
   ""
   "" Copy/Move/Paste changes
     " Make delete actually delete instead of cut
@@ -151,6 +152,7 @@ set nomodeline
 set <F20>=j
 set <F21>=k
 
+set diffopt=vertical
 set termguicolors
 set updatetime=500 " 200 ms to update signs
 set autowrite     " Automatically :write before running commands
@@ -239,8 +241,10 @@ let g:golden_ratio_wrap_ignored = 1
 
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 
-if exists(":Rg")
-  nnoremap \ :Rg<SPACE>
+nnoremap \ :Rg<SPACE>
+
+if !exists(":Config")
+  command Config :e ~/.vimrc
 endif
 if !exists(":YankCurrentFilePath")
   command YankCurrentFilePath let @+ = expand("%")
@@ -303,6 +307,10 @@ nnoremap <Leader>alf :ALEPreviousWrap <CR>
 nnoremap <Leader>soi :SourceAndInstall<CR>
 nnoremap <Leader>sor :Source<CR>
 
+nnoremap gdl :diffget //3<CR>
+nnoremap gdh :diffget //2<CR>
+nnoremap gdd :Gdiff!<CR>
+
 nnoremap rcs :TestFile<CR>
 nnoremap rls :TestLast<CR>
 nnoremap yfp :YankCurrentFilePath<CR>
@@ -324,6 +332,8 @@ nmap <c-p> <plug>(YoinkPostPasteSwapForward)
 
 nmap p <plug>(YoinkPaste_p)
 nmap P <plug>(YoinkPaste_P)
+
+nmap <CR> o<ESC>
 
 nnoremap <LEFT>   <c-w><
 nnoremap <RIGHT>  <c-w>>
@@ -421,3 +431,9 @@ let g:ale_rust_cargo_use_clippy = 1
 
 au! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml foldmethod=indent
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+
+let g:ale_linters = {
+      \  'javascript': ['eslint', 'fecs', 'flow', 'flow-language-server', 'jscs', 'jshint', 'standard', 'xo'],
+      \}
+let g:ale_sign_error = 'xx'
+let g:ale_sign_info = '--'
