@@ -46,8 +46,7 @@ call plug#begin('~/.vim/plugged')
     " better f
     Plug 'rhysd/clever-f.vim'
     " What it says on the tin 
-    Plug 'psliwka/vim-smoothie' " Testing it :D
-    " Plug 'terryma/vim-smooth-scroll'
+    Plug 'terryma/vim-smooth-scroll'
     " Repeat any command with . -- even plugins!
     Plug 'tpope/vim-repeat'
     Plug 'derekprior/vim-leaders'
@@ -333,7 +332,7 @@ nmap <c-p> <plug>(YoinkPostPasteSwapForward)
 nmap p <plug>(YoinkPaste_p)
 nmap P <plug>(YoinkPaste_P)
 
-nmap <CR> o<ESC>
+nmap <Leader><CR> o<ESC>
 
 nnoremap <LEFT>   <c-w><
 nnoremap <RIGHT>  <c-w>>
@@ -380,7 +379,7 @@ function! s:change_color(name)
   execute 'hi illuminatedWord cterm=italic gui=italic'
 endfunction
 set background=dark
-call s:change_color("Iosvkem")
+call s:change_color("badwolf")
 
 if has('nvim')
   tmap <C-i> <C-\><C-n>
@@ -403,7 +402,9 @@ endif
                                             
 
   " Use K to show documentation in preview window
-  nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+  nmap <silent> K :call <SID>show_documentation()<CR>
+  nnoremap <expr>J coc#util#has_float() ? "<C-w>w" : "\J"
 
   function! s:show_documentation()
     if (index(['vim','help'], &filetype) >= 0)
@@ -414,14 +415,6 @@ endif
   endfunction
 
 """
-
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
 
 au! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml foldmethod=indent
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
