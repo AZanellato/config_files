@@ -153,7 +153,7 @@ set <F21>=k
 
 set diffopt=vertical
 set termguicolors
-set updatetime=500 " 200 ms to update signs
+set updatetime=500 " 500 ms to update signs
 set autowrite     " Automatically :write before running commands
 set backspace=2   " Backspace deletes like most programs in insert mode
 set expandtab " Tab => spaces
@@ -196,6 +196,13 @@ augroup END
 augroup kill_trailing_whitespace
   autocmd FileType c,cpp,java,php,ruby,elixir,rust,python,ocaml,reason autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
 augroup END
+
+function! <SID>StripTrailingWhitespaces()
+    let l = line(".")
+    let c = col(".")
+    %s/\s\+$//e
+    call cursor(l, c)
+endfun
 
 " Here starts the configuration of plugins and a bunch
 " of shortcuts that I developed 
@@ -274,35 +281,36 @@ vmap <F21> <Plug>MoveBlockUp
 nmap <F20> <Plug>MoveLineDown
 nmap <F21> <Plug>MoveLineUp
 
-map gD <C-]>
 " Move between linting errors
 nnoremap <M-n> :ALENextWrap<CR>
 nnoremap <M-p> :ALEPreviousWrap<CR>
+nnoremap <Leader><CR> o<ESC>
+nnoremap <Leader>/ :Rg 
 nnoremap <Leader>* :Rg <C-r><C-w><CR>
-vnoremap <leader>* :<C-u>call VisualStarSearchSet('/', 'raw')<CR>:call fzf#vim#grep('rg --column --line-number --no-heading --color=always --smart-case '.shellescape(@/), 1,)<CR>
+vnoremap <Leader>* :<C-u>call VisualStarSearchSet('/', 'raw')<CR>:call fzf#vim#grep('rg --column --line-number --no-heading --color=always --smart-case '.shellescape(@/), 1,)<CR>
+nnoremap <Leader>- :split <CR>
+nnoremap <Leader>_ :vsplit <CR> 
 nnoremap <Leader>d :call fzf#vim#tags('^' . expand('<cword>'), {'options': '--exact --select-1 --exit-0 +i'})<CR>
 nnoremap <Leader>D :call fzf#vim#tags('^' . expand('<cword>'))<CR>
 nnoremap <Leader>e :e#<CR>
 nnoremap <Leader>f :FZF<CR>
-nnoremap <Leader>p  o<ESC>"+p
-nnoremap <Leader>P  O<ESC>"+p
+nnoremap <Leader>p  "+p
 nnoremap <Leader>u :UndotreeToggle<cr>
 nnoremap <Leader>w :w<CR>
-nnoremap <Leader>ral :TestSuite<CR>
+nnoremap <Leader>Op  O<ESC>"+p
+nnoremap <Leader>op o<ESC>"+p
 nnoremap <Leader>bb :Buffers <CR> 
-nnoremap <Leader>bl :GitBlame<CR>
+nnoremap <Leader>bl :GBlame<CR>
 nnoremap <Leader>ft :Format <CR>
 nnoremap <Leader>hh :SidewaysLeft<cr>
 nnoremap <Leader>ll :SidewaysRight<cr>
 nnoremap <Leader>nh :noh <CR>
-nnoremap <Leader>rd :redraw!<CR>
-nnoremap <Leader>sh :split <CR> 
 nnoremap <Leader>ss :TestNearest<CR>
-nnoremap <Leader>sv :vsplit <CR> 
 nnoremap <Leader>yh :Yanks <CR>
+nnoremap <Leader>alf :ALEFix <CR>
 nnoremap <Leader>aln :ALENextWrap <CR>
 nnoremap <Leader>alp :ALEPreviousWrap <CR>
-nnoremap <Leader>alf :ALEPreviousWrap <CR>
+nnoremap <Leader>ral :TestSuite<CR>
 nnoremap <Leader>soi :SourceAndInstall<CR>
 nnoremap <Leader>sor :Source<CR>
 
@@ -320,19 +328,38 @@ nnoremap m d
 xnoremap m d
 nnoremap mm dd
 
+" SubversiveSubstitute is a motion from a plugin that makes
+" such things as sw substitute a word.
 nmap s <plug>(SubversiveSubstitute)
 nmap ss <plug>(SubversiveSubstituteLine)
 nmap S <plug>(SubversiveSubstituteToEndOfLine)
 nmap scm <Plug>(coc-diagnostic-info)
 nmap sam <Plug>(ale_detail)
 
+" Scrolling through yank history with c-n and c-p
+" It needs the p to paste with the plugin first
+nmap p <plug>(YoinkPaste_p)
+nmap P <plug>(YoinkPaste_P)
 nmap <c-n> <plug>(YoinkPostPasteSwapBack)
 nmap <c-p> <plug>(YoinkPostPasteSwapForward)
 
-nmap p <plug>(YoinkPaste_p)
-nmap P <plug>(YoinkPaste_P)
+" Coc stuff to increment vim native commands
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+inoremap <silent><expr> <c-i> pumvisible() ? coc#_select_confirm() : ""
 
-nmap <Leader><CR> o<ESC>
+" Use K to show documentation in preview window
+nmap <silent> K :call <SID>show_documentation()<CR>
+nnoremap <expr>J coc#util#has_float() ? "<C-w>w" : "\J"
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
 
 nnoremap <LEFT>   <c-w><
 nnoremap <RIGHT>  <c-w>>
@@ -344,26 +371,6 @@ nnoremap <M-Down> :bd<CR>
 
 autocmd StdinReadPre * let s:std_in=1
 au InsertLeave * set nopaste
-
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>CheckBackSpace() ? "\<TAB>" :
-      \ coc#refresh()
-
-inoremap <silent><expr> <C-n> coc#refresh()
-inoremap jj <esc>
-
-function! <SID>CheckBackSpace() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfun
-
-function! <SID>StripTrailingWhitespaces()
-    let l = line(".")
-    let c = col(".")
-    %s/\s\+$//e
-    call cursor(l, c)
-endfun
 
 set tags=./tags;,tags;
 
@@ -391,31 +398,6 @@ else
   let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 endif
 
-""" Experimenting with coc stuff:
-  " Remap keys for gotos
-  nmap <silent> gd <Plug>(coc-definition)
-  nmap <silent> gy <Plug>(coc-type-definition)
-  nmap <silent> gi <Plug>(coc-implementation)
-  nmap <silent> gr <Plug>(coc-references)
-
-  inoremap <silent><expr> <c-i> pumvisible() ? coc#_select_confirm() : ""
-                                            
-
-  " Use K to show documentation in preview window
-
-  nmap <silent> K :call <SID>show_documentation()<CR>
-  nnoremap <expr>J coc#util#has_float() ? "<C-w>w" : "\J"
-
-  function! s:show_documentation()
-    if (index(['vim','help'], &filetype) >= 0)
-      execute 'h '.expand('<cword>')
-    else
-      call CocAction('doHover')
-    endif
-  endfunction
-
-"""
-
 au! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml foldmethod=indent
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
@@ -428,5 +410,5 @@ autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 let g:ale_linters = {
       \  'javascript': ['eslint', 'fecs', 'flow', 'flow-language-server', 'jscs', 'jshint', 'standard', 'xo'],
       \}
-let g:ale_sign_error = 'xx'
+let g:ale_sign_error = '>>'
 let g:ale_sign_info = '--'
