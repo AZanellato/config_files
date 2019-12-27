@@ -301,7 +301,6 @@ nnoremap <Leader>Op  O<ESC>"+p
 nnoremap <Leader>op o<ESC>"+p
 nnoremap <Leader>bb :Buffers <CR> 
 nnoremap <Leader>bl :GBlame<CR>
-nnoremap <Leader>ft :Format <CR>
 nnoremap <Leader>hh :SidewaysLeft<cr>
 nnoremap <Leader>ll :SidewaysRight<cr>
 nnoremap <Leader>nh :noh <CR>
@@ -310,6 +309,7 @@ nnoremap <Leader>yh :Yanks <CR>
 nnoremap <Leader>alf :ALEFix <CR>
 nnoremap <Leader>aln :ALENextWrap <CR>
 nnoremap <Leader>alp :ALEPreviousWrap <CR>
+nnoremap <Leader>lft :Format <CR>
 nnoremap <Leader>ral :TestSuite<CR>
 nnoremap <Leader>soi :SourceAndInstall<CR>
 nnoremap <Leader>sor :Source<CR>
@@ -408,7 +408,12 @@ au! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml foldmethod=indent
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
 let g:ale_linters = {
-      \  'javascript': ['eslint', 'fecs', 'flow', 'flow-language-server', 'jscs', 'jshint', 'standard', 'xo'],
+      \  'javascript': ['eslint'],
       \}
 let g:ale_sign_error = '>>'
 let g:ale_sign_info = '--'
+
+augroup FiletypeGroup
+    autocmd!
+    au BufNewFile,BufRead *.jsx set filetype=javascript.jsx
+augroup END
