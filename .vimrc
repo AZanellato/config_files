@@ -310,13 +310,14 @@ nnoremap <Leader>yh :Yanks <CR>
 nnoremap <Leader>alf :ALEFix <CR>
 nnoremap <Leader>aln :ALENextWrap <CR>
 nnoremap <Leader>alp :ALEPreviousWrap <CR>
+nnoremap <Leader>gdd :Gdiff!<CR>
+nnoremap <Leader>gdh :diffget //2<CR>
+nnoremap <Leader>gdl :diffget //3<CR>
+nnoremap <Leader>lft :Format <CR>
 nnoremap <Leader>ral :TestSuite<CR>
 nnoremap <Leader>soi :SourceAndInstall<CR>
 nnoremap <Leader>sor :Source<CR>
 
-nnoremap gdl :diffget //3<CR>
-nnoremap gdh :diffget //2<CR>
-nnoremap gdd :Gdiff!<CR>
 
 nnoremap rcs :TestFile<CR>
 nnoremap rls :TestLast<CR>
@@ -348,7 +349,8 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
-inoremap <silent><expr> <c-i> pumvisible() ? coc#_select_confirm() : ""
+" Tab is the same as <C-i>. Yep, really.
+inoremap <silent><expr> <C-i> pumvisible() ? coc#_select_confirm() : "<Tab>"
 
 " Use K to show documentation in preview window
 nmap <silent> K :call <SID>show_documentation()<CR>
@@ -378,7 +380,7 @@ tnoremap <A-h> <C-\><C-N><C-w>h
 tnoremap <A-j> <C-\><C-N><C-w>j
 tnoremap <A-k> <C-\><C-N><C-w>k
 tnoremap <A-l> <C-\><C-N><C-w>l
-tnoremap <C-i> <C-\><C-n>
+tnoremap <C-t> <C-\><C-n>
 
 function! s:change_color(name)
   execute 'colorscheme '.a:name
@@ -389,8 +391,6 @@ set background=dark
 call s:change_color("badwolf")
 
 if has('nvim')
-  tmap <C-i> <C-\><C-n>
-  tmap jj <C-\><C-n>
   hi Search guibg=none guifg=none gui=underline
 else
   " set Vim-specific sequences for RGB colors
