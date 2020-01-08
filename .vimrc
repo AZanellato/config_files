@@ -318,7 +318,6 @@ nnoremap <Leader>ral :TestSuite<CR>
 nnoremap <Leader>soi :SourceAndInstall<CR>
 nnoremap <Leader>sor :Source<CR>
 
-
 nnoremap rcs :TestFile<CR>
 nnoremap rls :TestLast<CR>
 nnoremap yfp :YankCurrentFilePath<CR>
@@ -354,7 +353,7 @@ inoremap <silent><expr> <C-i> pumvisible() ? coc#_select_confirm() : "<Tab>"
 
 " Use K to show documentation in preview window
 nmap <silent> K :call <SID>show_documentation()<CR>
-nnoremap <expr>J coc#util#has_float() ? "<C-w>w" : "\J"
+nnoremap <expr>K coc#util#has_float() ? "<C-w>w" : "\K"
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
     execute 'h '.expand('<cword>')
