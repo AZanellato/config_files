@@ -144,6 +144,7 @@ call plug#begin('~/.vim/plugged')
   ""
 call plug#end()
 
+set conceallevel=2
 let g:polyglot_disabled = ['reason', 'yaml']
 let g:ale_fixers = { 'ruby': [ 'rubocop' ] }
 let mapleader = " "
@@ -415,4 +416,7 @@ let g:ale_sign_info = '--'
 augroup FiletypeGroup
     autocmd!
     au BufNewFile,BufRead *.jsx set filetype=javascript.jsx
+augroup END
+augroup FILETYPES
+  autocmd FileType markdown let b:indentLine_enabled = 0
 augroup END
