@@ -98,7 +98,7 @@ call plug#begin('~/.vim/plugged')
   ""
   "" Visual Stuff
     " Make folding faster :)
-    Plug 'Konfekt/FastFold'
+    " Plug 'Konfekt/FastFold'
     " Enhanced terminal integration
     Plug 'wincent/terminus'
     " Start screen
@@ -158,7 +158,7 @@ set updatetime=500 " 500 ms to update signs
 set autowrite     " Automatically :write before running commands
 set backspace=2   " Backspace deletes like most programs in insert mode
 set expandtab " Tab => spaces
-set foldmethod=manual
+set foldmethod=syntax 
 set history=50
 set incsearch     " do incremental searching
 set laststatus=2  " Always display the status line
@@ -268,15 +268,13 @@ endif
 if !exists(":SourceAndInstall")
   command SourceAndInstall source ~/config_files/.vimrc <bar> :PlugInstall
 endif
-if !exists(":Fold")
-  command! -nargs=? Fold :call CocAction('fold', <f-args>)
-endif
 
 noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 10)<CR>
 noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 0, 10)<CR>
 noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 0, 10)<CR>
 noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 10)<CR>
 
+imap <C-l> <C-o>dw
 vmap <F20> <Plug>MoveBlockDown
 vmap <F21> <Plug>MoveBlockUp
 nmap <F20> <Plug>MoveLineDown
@@ -398,14 +396,13 @@ else
   let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 endif
 
-au! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml foldmethod=indent
-autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
-
 let g:ale_fixers = { 'ruby': [ 'rubocop' ] }
 let g:ale_rust_cargo_use_clippy = 1
 
 au! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml foldmethod=indent
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+
+autocmd BufWritePost *.rs normal! zv
 
 let g:ale_linters = {
       \  'javascript': ['eslint'],
