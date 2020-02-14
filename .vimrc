@@ -26,6 +26,8 @@ call plug#begin('~/.vim/plugged')
     " Amazing fuzzy finder and global search
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
     Plug 'junegunn/fzf.vim'
+    " competitor to fzf
+    Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary' }
     Plug 'tpope/vim-vinegar'
   ""
   "" Window movements/resizing
@@ -33,6 +35,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'andymass/vim-tradewinds'
     " Resize window automatically
     Plug 'roman/golden-ratio'
+    " Zoom!
+    Plug 'dhruvasagar/vim-zoom'
     " Tmux integration. YAY :D 
     Plug 'christoomey/vim-tmux-navigator'
   ""
@@ -113,7 +117,6 @@ call plug#begin('~/.vim/plugged')
     Plug 'ryanoasis/vim-devicons' 
     " Themes!
     Plug 'reedes/vim-thematic' " Theme manager. 
-    Plug 'iceisspetrel/Monrovia'
     Plug 'Nequo/vim-allomancer'
     Plug 'dracula/vim', { 'as': 'dracula-vim' }
     Plug 'endel/vim-github-colorscheme'
@@ -293,9 +296,11 @@ nnoremap <Leader>d :call fzf#vim#tags('^' . expand('<cword>'), {'options': '--ex
 nnoremap <Leader>D :call fzf#vim#tags('^' . expand('<cword>'))<CR>
 nnoremap <Leader>e :e#<CR>
 nnoremap <Leader>f :FZF<CR>
+nnoremap <Leader>c :Clap<CR>
 nnoremap <Leader>p  "+p
 nnoremap <Leader>u :UndotreeToggle<cr>
 nnoremap <Leader>w :w<CR>
+nnoremap <Leader>z :call zoom#toggle() <CR>
 nnoremap <Leader>Op  O<ESC>"+p
 nnoremap <Leader>op o<ESC>"+p
 nnoremap <Leader>bb :Buffers <CR> 
@@ -416,3 +421,5 @@ augroup END
 augroup FILETYPES
   autocmd FileType markdown let b:indentLine_enabled = 0
 augroup END
+let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } } 
+let g:clap_theme = 'material_design_dark'
