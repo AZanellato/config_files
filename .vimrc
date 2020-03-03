@@ -2,7 +2,8 @@ call plug#begin('~/.vim/plugged')
   "" Language stuff
     " Language syntax for every language
     Plug 'sheerun/vim-polyglot'
-    " Plug 'jordwalke/vim-reasonml'
+    " Additional highlight for rust
+    " Plug 'arzg/vim-rust-syntax-ext'
     Plug 'tarekbecker/vim-yaml-formatter'
     " Formatting for Elixir 
     Plug 'mhinz/vim-mix-format'
@@ -29,6 +30,8 @@ call plug#begin('~/.vim/plugged')
     " competitor to fzf
     Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary' }
     Plug 'tpope/vim-vinegar'
+    " Jump to definitions
+    Plug 'pechorin/any-jump.vim'
   ""
   "" Window movements/resizing
     " Moving windows in a non-weird way
@@ -117,6 +120,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'ryanoasis/vim-devicons' 
     " Themes!
     Plug 'reedes/vim-thematic' " Theme manager. 
+    Plug 'arzg/vim-colors-xcode' 
     Plug 'Nequo/vim-allomancer'
     Plug 'dracula/vim', { 'as': 'dracula-vim' }
     Plug 'endel/vim-github-colorscheme'
@@ -323,6 +327,7 @@ nnoremap <Leader>sor :Source<CR>
 
 nnoremap rcs :TestFile<CR>
 nnoremap rls :TestLast<CR>
+nnoremap rsw :GoldenRatioResize<CR>
 nnoremap yfp :YankCurrentFilePath<CR>
 vnoremap <C-c> "+y
 
@@ -423,3 +428,4 @@ augroup FILETYPES
 augroup END
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } } 
 let g:clap_theme = 'material_design_dark'
+let g:golden_ratio_autocommand = 0
