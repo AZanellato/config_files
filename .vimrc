@@ -27,6 +27,7 @@ call plug#begin('~/.vim/plugged')
     " Amazing fuzzy finder and global search
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
     Plug 'junegunn/fzf.vim'
+    Plug 'yuki-ycino/fzf-preview.vim'
     " competitor to fzf
     Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary' }
     Plug 'tpope/vim-vinegar'
@@ -299,7 +300,9 @@ nnoremap <Leader>_ :vsplit <CR>
 nnoremap <Leader>d :call fzf#vim#tags('^' . expand('<cword>'), {'options': '--exact --select-1 --exit-0 +i'})<CR>
 nnoremap <Leader>D :call fzf#vim#tags('^' . expand('<cword>'))<CR>
 nnoremap <Leader>e :e#<CR>
-nnoremap <Leader>f :FZF<CR>
+nnoremap <Leader>ff :FZF<CR>
+nnoremap <Leader>fp :FzfPreviewGitFiles<CR>
+nnoremap <Leader>fb :FzfPreviewBuffers<CR>
 nnoremap <Leader>c :Clap<CR>
 nnoremap <Leader>p  "+p
 nnoremap <Leader>u :UndotreeToggle<cr>
