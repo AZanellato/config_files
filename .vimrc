@@ -33,12 +33,15 @@ call plug#begin('~/.vim/plugged')
     Plug 'tpope/vim-vinegar'
     " Jump to definitions
     Plug 'pechorin/any-jump.vim'
+    Plug 'renderedtext/vim-elixir-alternative-files'
   ""
   "" Window movements/resizing
     " Moving windows in a non-weird way
     Plug 'andymass/vim-tradewinds'
     " Resize window automatically
     Plug 'roman/golden-ratio'
+    " Undo the closing of a window
+    Plug 'AndrewRadev/undoquit.vim'
     " Zoom!
     Plug 'dhruvasagar/vim-zoom'
     " Tmux integration. YAY :D 
@@ -175,7 +178,7 @@ set nobackup
 set nofoldenable
 set noswapfile    " http://robots.thoughtbot.com/post/18739402579/global-gitignore#comment-458413287 
 set nowritebackup
-set regexpengine=1 " Better for ruby syntax
+set regexpengine=2 
 set shiftround
 set shiftwidth=2
 set showcmd       " display incomplete commands
