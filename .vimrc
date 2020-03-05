@@ -435,3 +435,4 @@ augroup END
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } } 
 let g:clap_theme = 'material_design_dark'
 let g:golden_ratio_autocommand = 0
+let g:any_jump_search_prefered_engine = 'ag'
