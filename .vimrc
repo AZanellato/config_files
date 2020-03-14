@@ -60,7 +60,10 @@ call plug#begin('~/.vim/plugged')
     Plug 'terryma/vim-smooth-scroll'
     " Repeat any command with . -- even plugins!
     Plug 'tpope/vim-repeat'
+    " Command to show leader commands
     Plug 'derekprior/vim-leaders'
+    " Interact with output of commands
+    Plug 'AndrewRadev/bufferize.vim'
   ""
   "" Copy/Move/Paste changes
     " Make delete actually delete instead of cut
