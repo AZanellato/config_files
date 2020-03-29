@@ -28,7 +28,7 @@ $ ln -s ~/.vim ~/nvim\
 $ ln -s ~/config_files/.zshrc ~/.zshrc
 $ ln -s ~/config_files/.vimrc ~/.vimrc
 $ ln -s ~/.vimrc ~/.config/nvim/init.vim
-$ ln -s ~/config_files/.tmux.conf.local ~/.tmux.conf.local
+$ ln -s ~/config_files/.tmux.conf ~/.tmux.conf
 $ ln -s ~/config_files/oxide.zsh-theme ~/.oh-my-zsh/themes/oxide.zsh-theme
 ```
 
