@@ -29,10 +29,12 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 ```bash
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 ```
-Install ripgrep and lsd with cargo:
+Install ripgrep, bat and lsd with cargo:
 
 ```bash
 cargo install lsd
+
+cargo install bat
 
 cargo install ripgrep
 ```
