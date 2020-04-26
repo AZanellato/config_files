@@ -114,6 +114,7 @@ call plug#begin('~/.vim/plugged')
   "" Git Stuff
     Plug 'airblade/vim-gitgutter'
     Plug 'tpope/vim-fugitive'
+    Plug 'christoomey/vim-conflicted'
   ""
   "" Test stuff 
     " Dispatch tests to tmux
@@ -181,7 +182,6 @@ call plug#end()
 
 set conceallevel=2
 let g:polyglot_disabled = ['reason', 'yaml']
-let g:ale_fixers = { 'ruby': [ 'rubocop' ] }
 let mapleader = " "
 set nomodeline
 set <F20>=j
@@ -425,7 +425,12 @@ else
   let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 endif
 
-let g:ale_fixers = { 'ruby': [ 'rubocop' ] }
+
+
+let g:ale_fixers = {
+      \ 'ruby': [ 'rubocop' ],
+      \ 'python': ['add_blank_lines_for_python_control_statements', 'autopep8', 'black', 'isort', 'reorder-python-imports', 'yapf'],
+      \ }
 let g:ale_rust_cargo_use_clippy = 1
 
 au! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml foldmethod=indent
