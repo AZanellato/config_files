@@ -36,6 +36,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'tpope/vim-surround'
     " REPL quickly
     Plug 'rhysd/reply.vim'
+    " SQL Stuff
+    Plug 'tpope/vim-dadbod'
   ""
   "" Project explorer
     " Amazing fuzzy finder and global search
@@ -48,6 +50,9 @@ call plug#begin('~/.vim/plugged')
     " Jump to definitions
     Plug 'pechorin/any-jump.vim'
     Plug 'renderedtext/vim-elixir-alternative-files'
+  ""
+  "" Use env vars in vim :)
+    Plug 'tpope/vim-dotenv' " Didn't know where else to put it haha
   ""
   "" Window movements/resizing
     " Moving windows in a non-weird way
@@ -125,6 +130,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'w0rp/ale'
   ""
   "" Visual Stuff
+    " UI for Dadbod
+    Plug 'kristijanhusak/vim-dadbod-ui'
     " Make folding faster :)
     " Plug 'Konfekt/FastFold'
     " Enhanced terminal integration
@@ -278,24 +285,13 @@ let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 
 nnoremap \ :Rg<SPACE>
 
-if !exists(":Config")
-  command Config :e ~/.vimrc
-endif
-if !exists(":YankCurrentFilePath")
-  command YankCurrentFilePath let @+ = expand("%")
-endif
-if !exists(":PrettifyJson")
-  command PrettifyJson %!jq '.'
-endif
-if !exists(":Source")
-  command Source source ~/config_files/.vimrc 
-endif
-if !exists(":Format")
-  command! -nargs=0 Format :call CocAction('format')
-endif
-if !exists(":SourceAndInstall")
-  command SourceAndInstall source ~/config_files/.vimrc <bar> :PlugInstall
-endif
+command! Config :e ~/.vimrc
+command! YankCurrentFilePath let @+ = expand("%")
+command! PrettifyJson %!jq '.'
+command! Source source ~/config_files/.vimrc 
+command! AddDatabase :call AddDatabase()
+command! -nargs=0 Format :call CocAction('format')
+command! SourceAndInstall source ~/config_files/.vimrc <bar> :PlugInstall
 
 noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 10)<CR>
 noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 0, 10)<CR>
@@ -349,6 +345,7 @@ nnoremap <Leader>soi :SourceAndInstall<CR>
 nnoremap <Leader>sor :Source<CR>
 
 nnoremap rcs :TestFile<CR>
+nnoremap rss :TestNearest<CR>
 nnoremap rls :TestLast<CR>
 nnoremap rsw :GoldenRatioResize<CR>
 nnoremap yfp :YankCurrentFilePath<CR>
@@ -453,3 +450,17 @@ let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
 let g:clap_theme = 'material_design_dark'
 let g:golden_ratio_autocommand = 0
 let g:any_jump_search_prefered_engine = 'ag'
+
+let g:postgres = 'postgres://postgres:password@localhost:5432/'
+let g:database = ''
+function! AddDatabase()
+  let db_name = input('Enter database name: ')
+  call inputrestore()
+  let g:database = g:postgres . db_name
+  redraw
+  echom 'Database URL:' . g:database
+endfun
+
+let g:dbs = {
+\  'dev': g:database
+\ }
