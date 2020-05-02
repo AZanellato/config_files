@@ -36,8 +36,11 @@ call plug#begin('~/.vim/plugged')
     Plug 'tpope/vim-surround'
     " REPL quickly
     Plug 'rhysd/reply.vim'
-    " SQL Stuff
+  ""
+  "" SQL Stuff
     Plug 'tpope/vim-dadbod'
+    " Uppercase SQL keywords
+    Plug 'alcesleo/vim-uppercase-sql'
   ""
   "" Project explorer
     " Amazing fuzzy finder and global search
