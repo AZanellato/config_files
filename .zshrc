@@ -106,9 +106,6 @@ function reb-branch() {
 if command lsd > /dev/null; then
   alias ls="lsd"
 fi
-alias conff="cd ~/config_files/"
-alias goevents="cd ~/Projects/pipefy_events"
-alias gopipe="cd ~/Projects/pipefy"
 alias n="nvim ."
 alias nv="nvim "
 alias nvmain="nvim src/main.rs"
@@ -121,10 +118,9 @@ alias nvm="unalias nvm; nvm_load && nvm"
 alias nvzshrc="nvim ~/config_files/.zshrc"
 alias pipefy-docker-up="docker-compose -f ~/Projects/pipefy/docker-compose.yml up"
 alias projects="cd ~/Projects"
-alias pull_config="cd ~/config_files/ && git pull"
-alias rpipefy="cd ~ && ./start_pipefy && cd -"
-alias rstest="RAILS_ENV=test rs"
-alias stoppostgres="sudo service postgresql stop"
+alias conff="cd ~/config_files/"
+alias conffpull="cd ~/config_files/ && git pull"
+alias gpr="git pull --rebase"
 alias open="xdg-open"
 alias git-calendar="git-stats"
 
