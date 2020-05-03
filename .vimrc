@@ -114,8 +114,9 @@ call plug#begin('~/.vim/plugged')
     Plug 'nelstrom/vim-textobj-rubyblock'
     Plug 'michaeljsmith/vim-indent-object'
   ""
-  "" Git Stuff
+  "" Git stuff
     Plug 'airblade/vim-gitgutter'
+    Plug 'rhysd/git-messenger.vim'
     Plug 'tpope/vim-fugitive'
     Plug 'christoomey/vim-conflicted'
   ""
@@ -168,15 +169,11 @@ call plug#begin('~/.vim/plugged')
     Plug 'rakr/vim-two-firewatch'
     Plug 'liuchengxu/space-vim-theme'
     Plug 'NLKNguyen/papercolor-theme'
-    Plug 'ajmwagar/vim-deus'
     Plug 'sjl/badwolf'
-    Plug 'ayu-theme/ayu-vim'
     Plug 'drewtempelmeyer/palenight.vim'
     Plug 'rakr/vim-one'
     Plug 'arzg/vim-corvine'
     Plug 'kjssad/quantum.vim'
-    Plug 'jaredgorski/spacecamp'
-    Plug 'NewProggie/NewProggie-Color-Scheme'
     Plug 'toupeira/vim-desertink'
     Plug 'neutaaaaan/iosvkem'
     Plug 'lifepillar/vim-colortemplate'
@@ -213,6 +210,7 @@ set splitbelow  "Split horizontal shows up from below
 set splitright  " Split vertical shows up to the right
 set tabstop=2   " Tab equals to 2 spaces
 set cmdheight=2 " Better display error messages
+set scrolloff=5 " Don't let the cursor get to the bottom of the scren
 set hidden
 set ttyfast
 
@@ -319,10 +317,6 @@ nnoremap <Leader>_ :vsplit <CR>
 nnoremap <Leader>d :call fzf#vim#tags('^' . expand('<cword>'), {'options': '--exact --select-1 --exit-0 +i'})<CR>
 nnoremap <Leader>D :call fzf#vim#tags('^' . expand('<cword>'))<CR>
 nnoremap <Leader>e :e#<CR>
-nnoremap <Leader>ff :FZF<CR>
-nnoremap <Leader>fp :FzfPreviewGitFiles<CR>
-nnoremap <Leader>fb :FzfPreviewBuffers<CR>
-nnoremap <Leader>c :Clap<CR>
 nnoremap <Leader>p  "+p
 nnoremap <Leader>u :UndotreeToggle<cr>
 nnoremap <Leader>w :w<CR>
@@ -331,6 +325,11 @@ nnoremap <Leader>Op  O<ESC>"+p
 nnoremap <Leader>op o<ESC>"+p
 nnoremap <Leader>bb :Buffers <CR> 
 nnoremap <Leader>bl :GBlame<CR>
+nnoremap <Leader>cc :Clap<CR>
+nnoremap <Leader>ff :FZF<CR>
+nnoremap <Leader>fp :FzfPreviewGitFiles<CR>
+nnoremap <Leader>gl :GitMessenger<CR>
+nnoremap <Leader>fb :FzfPreviewBuffers<CR>
 nnoremap <Leader>hh :SidewaysLeft<cr>
 nnoremap <Leader>ll :SidewaysRight<cr>
 nnoremap <Leader>nh :noh <CR>
@@ -418,7 +417,7 @@ function! s:change_color(name)
   execute 'hi illuminatedWord cterm=italic gui=italic'
 endfunction
 set background=dark
-call s:change_color("badwolf")
+call s:change_color("focuspoint")
 
 if has('nvim')
   hi Search guibg=none guifg=none gui=underline
