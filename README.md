@@ -32,11 +32,9 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 Install ripgrep, bat and lsd with cargo:
 
 ```bash
-cargo install lsd
-
-cargo install bat
-
-cargo install ripgrep
+cargo install lsd \
+              bat \
+              ripgrep
 ```
 
 ## ASDF and Node:
