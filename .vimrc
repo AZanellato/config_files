@@ -98,6 +98,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'svermeulen/vim-yoink'
   ""
   "" Text manipulation
+    " Extract variable
+    Plug 'da-x/name-assign.vim'
     " Change arguments position
     Plug 'AndrewRadev/sideways.vim'
     " Change one liners to multiple and vice-versa
@@ -113,6 +115,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'kana/vim-textobj-user'
     Plug 'nelstrom/vim-textobj-rubyblock'
     Plug 'michaeljsmith/vim-indent-object'
+    Plug 'junegunn/vim-easy-align'
   ""
   "" Git stuff
     Plug 'airblade/vim-gitgutter'

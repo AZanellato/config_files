@@ -1,6 +1,8 @@
+# If we don't have a tmux session, create it and call it main
 if [[ -z "$TMUX" ]];then
   tmux new-session -A -s main
 fi
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block, everything else may go below.
@@ -8,22 +10,11 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# If you come from bash you might have to change your $PATH.
-# zmodload zsh/zprof
 export ZSH=~/.oh-my-zsh
 export TERM=xterm-256color
 
-# Set name of the theme to load. Optionally, if you set this to "random"
-# it'll load a random theme each time that oh-my-zsh is loaded.
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 # ZSH_THEME="oxide"
 ZSH_THEME="powerlevel10k/powerlevel10k"
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
-
-# Uncomment the following line to use hyphen-insensitive completion. Case
-# sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
 
 # Change following line to change how often to auto-update (in days).
 export UPDATE_ZSH_DAYS=5
@@ -39,12 +30,10 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
-# User configuration
-
-
 export EDITOR='nvim'
+
 # Functions
-#
+
 function nvm_load () {
   if ! type "npm" > /dev/null; then
     unalias nvm
@@ -59,9 +48,11 @@ function weather_in() {
   curl wttr.in/$1
 }
 
+function clima() { wttrcwb }
 function wttrcwb() {
   weather_in Curitiba
 }
+
 function source_if_possible() {
     if [[ -r $1 ]]; then
         source $1
@@ -98,10 +89,7 @@ function reb-branch() {
   fi
 }
 
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
+# Personal aliases
 
 if command lsd > /dev/null; then
   alias ls="lsd"
@@ -121,8 +109,6 @@ alias projects="cd ~/Projects"
 alias conff="cd ~/config_files/"
 alias conffpull="cd ~/config_files/ && git pull"
 alias gpr="git pull --rebase"
-alias open="xdg-open"
-alias git-calendar="git-stats"
 
 export BAT_THEME="TwoDark"
 export PATH="$HOME/.rbenv/bin:$PATH"
@@ -142,10 +128,7 @@ export FZF_DEFAULT_COMMAND='rg --files'
 export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
 export CDPATH=.:~/Projects
 
-source_if_possible $HOME/anaconda3/etc/profile.d/conda.sh
-
-chpwd_functions=(${chpwd_functions[@]} "lazy_load_nvm")
-lazy_load_nvm
+nvm_load
 if type "$opam" > /dev/null; then
   $(opam env)
 fi
@@ -156,17 +139,5 @@ if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
 
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/andre/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/home/andre/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/andre/anaconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/home/andre/anaconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
