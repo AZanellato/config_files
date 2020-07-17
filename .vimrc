@@ -131,7 +131,7 @@ call plug#begin('~/.vim/plugged')
   ""
   "" Autocompletion/linting
     " autocompletion engine
-    Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}
     " Autocompletion source
     Plug 'wellle/tmux-complete.vim'
     "Linter :D
