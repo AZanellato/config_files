@@ -381,12 +381,22 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+
 " Tab is the same as <C-i>. Yep, really.
 inoremap <silent><expr> <C-i> pumvisible() ? coc#_select_confirm() : "<Tab>"
+
+" Use C-n to trigger autocompletion for coc
+inoremap <silent><expr> <c-n> coc#refresh()
+
+" Use `gdp and `gdn to navigate diagnostics
+" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
+nmap <silent> gdp <Plug>(coc-diagnostic-prev)
+nmap <silent> gdn <Plug>(coc-diagnostic-next)
 
 " Use K to show documentation in preview window
 nmap <silent> K :call <SID>show_documentation()<CR>
 nnoremap <expr>K coc#util#has_float() ? "<C-w>w" : "\K"
+
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
     execute 'h '.expand('<cword>')
