@@ -109,6 +109,7 @@ alias projects="cd ~/Projects"
 alias conff="cd ~/config_files/"
 alias conffpull="cd ~/config_files/ && git pull"
 alias gpr="git pull --rebase"
+alias rdoc="rustup docs"
 
 export BAT_THEME="TwoDark"
 export PATH="$HOME/.rbenv/bin:$PATH"

@@ -25,6 +25,12 @@ sudo dnf install zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 ```
 
+### Auto suggestions for zsh:
+
+```bash
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+```
+
 ## Rust:
 ```bash
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
@@ -48,8 +54,23 @@ git checkout "$(git describe --abbrev=0 --tags)"
 
 asdf plugin-add nodejs https://github.com/asdf-vm/asdf-nodejs.git
 
+bash -c '${ASDF_DATA_DIR:=$HOME/.asdf}/plugins/nodejs/bin/import-release-team-keyring'
+
 asdf install nodejs 13.12.0
 ```
+
+## Ruby && Rbenv:
+
+```bash
+git clone https://github.com/rbenv/rbenv.git ~/.rbenv
+
+mkdir -p "$(rbenv root)"/plugins
+
+git clone https://github.com/rbenv/ruby-build.git "$(rbenv root)"/plugins/ruby-build
+
+rbenv install 2.6.6
+```
+
 ## Neovim:
 https://github.com/neovim/neovim/releases/tag/v0.4.3
 
@@ -94,6 +115,8 @@ git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/the
 ln -s ~/config_files/.p10k.zsh ~/.p10k.zsh
 ```
 
+
+Also, for the patched Fira Code, download it [here](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/FiraCode/Retina/complete)
 
 # Troubleshooting
 
