@@ -110,6 +110,7 @@ alias conff="cd ~/config_files/"
 alias conffpull="cd ~/config_files/ && git pull"
 alias gpr="git pull --rebase"
 alias rdoc="rustup docs"
+alias clippy="find . | grep "\.rs$" | xargs touch ; cargo clippy"
 
 export BAT_THEME="TwoDark"
 export PATH="$HOME/.rbenv/bin:$PATH"
