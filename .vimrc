@@ -329,6 +329,8 @@ nnoremap <Leader>op o<ESC>"+p
 nnoremap <Leader>bb :Buffers <CR> 
 nnoremap <Leader>bl :GBlame<CR>
 nnoremap <Leader>cc :Clap<CR>
+nnoremap <Leader>cr :Dispatch cargo run<CR>
+nnoremap <Leader>cb :make build<CR>
 nnoremap <Leader>ff :FZF<CR>
 nnoremap <Leader>fp :FzfPreviewGitFiles<CR>
 nnoremap <Leader>gl :GitMessenger<CR>
@@ -430,7 +432,7 @@ function! s:change_color(name)
   execute 'hi illuminatedWord cterm=italic gui=italic'
 endfunction
 set background=dark
-call s:change_color("focuspoint")
+call s:change_color("two-firewatch")
 
 if has('nvim')
   hi Search guibg=none guifg=none gui=underline
