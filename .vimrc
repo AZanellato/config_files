@@ -30,6 +30,9 @@ call plug#begin('~/.vim/plugged')
     Plug 'tpope/vim-rails'
     Plug 'tpope/vim-bundler'
     Plug 'tpope/vim-rake'
+    " Some usetull stuff for php/laravel
+    Plug 'noahfrederick/vim-composer'
+    Plug 'noahfrederick/vim-laravel'
     " Shortcut to comment anything
     Plug 'tpope/vim-commentary'
     " Surround stuff quickly!
@@ -432,7 +435,7 @@ function! s:change_color(name)
   execute 'hi illuminatedWord cterm=italic gui=italic'
 endfunction
 set background=dark
-call s:change_color("two-firewatch")
+call s:change_color("allomancer")
 
 if has('nvim')
   hi Search guibg=none guifg=none gui=underline
