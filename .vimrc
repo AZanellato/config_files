@@ -12,6 +12,7 @@ if !filereadable(vimplug_exists)
   autocmd VimEnter * PlugInstall
 endif
 
+let g:polyglot_disabled = ['reason', 'yaml']
 call plug#begin('~/.vim/plugged')
   "" Language stuff
     " Language syntax for every language
@@ -187,7 +188,6 @@ call plug#begin('~/.vim/plugged')
 call plug#end()
 
 set conceallevel=2
-let g:polyglot_disabled = ['reason', 'yaml']
 let mapleader = " "
 set nomodeline
 set <F20>=j
@@ -435,7 +435,7 @@ function! s:change_color(name)
   execute 'hi illuminatedWord cterm=italic gui=italic'
 endfunction
 set background=dark
-call s:change_color("allomancer")
+call s:change_color("space_vim_theme")
 
 if has('nvim')
   hi Search guibg=none guifg=none gui=underline
@@ -468,6 +468,7 @@ let g:ale_sign_info = '--'
 augroup FiletypeGroup
     autocmd!
     au BufNewFile,BufRead *.jsx set filetype=javascript.jsx
+  autocmd BufRead,BufNewFile *.blade.php set filetype=blade
 augroup END
 augroup FILETYPES
   autocmd FileType markdown let b:indentLine_enabled = 0
