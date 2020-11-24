@@ -131,8 +131,8 @@ export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
 export CDPATH=.:~/Projects
 
 nvm_load
-if type "$opam" > /dev/null; then
-  $(opam env)
+if type "opam" > /dev/null; then
+  eval $(opam env)
 fi
 
 export PYENV_ROOT="$HOME/.pyenv"
