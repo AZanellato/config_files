@@ -371,6 +371,7 @@ nnoremap mm dd
 nmap s <plug>(SubversiveSubstitute)
 nmap ss <plug>(SubversiveSubstituteLine)
 nmap S <plug>(SubversiveSubstituteToEndOfLine)
+
 nmap scm <Plug>(coc-diagnostic-info)
 nmap sam <Plug>(ale_detail)
 
@@ -491,3 +492,13 @@ endfun
 let g:dbs = {
 \  'dev': g:database
 \ }
+
+let g:coc_global_extensions = ['coc-json', 'coc-syntax', 'coc-omni', 'coc-fzf-preview', 'coc-rust-analyzer']
+" The config file for CoC will be here as well:
+" {"languageserver": {
+"   "ocaml": {
+"     "command": "opam",
+"     "args": ["config", "exec", "--", "ocamllsp"],
+"     "filetypes": ["ocaml", "reason"]
+"   }
+" }}
