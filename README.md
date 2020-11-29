@@ -112,9 +112,19 @@ Run `prefix`+`I` to install the tmux plugins.
 
 ```bash
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
-ln -s ~/config_files/.p10k.zsh ~/.p10k.zsh
-```
 
+After all the above, the necessary symlinks are (assuming configuration files on the home folder):
+
+```bash
+$ ln -s ~/.vim ~/nvim\
+$ ln -s ~/config_files/.zshrc ~/.zshrc
+$ ln -s ~/config_files/.vimrc ~/.vimrc
+$ ln -s ~/.vimrc ~/.config/nvim/init.vim
+$ ln -s ~/config_files/.tmux.conf ~/.tmux.conf
+$ ln -s ~/config_files/oxide.zsh-theme ~/.oh-my-zsh/themes/oxide.zsh-theme
+$ ln -s ~/config_files/.p10k.zsh ~/.p10k.zsh
+$ ln -s ~/config_files/coc-settings.json
+```
 
 Also, for the patched Fira Code, download it [here](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/FiraCode/Retina/complete)
 
