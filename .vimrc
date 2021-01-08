@@ -50,7 +50,7 @@ call plug#begin('~/.vim/plugged')
     " Amazing fuzzy finder and global search
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
     Plug 'junegunn/fzf.vim'
-    Plug 'yuki-ycino/fzf-preview.vim'
+    " Plug 'yuki-ycino/fzf-preview.vim'
     " competitor to fzf
     Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary' }
     Plug 'tpope/vim-vinegar'
@@ -160,6 +160,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'ryanoasis/vim-devicons' 
     " Themes!
     Plug 'reedes/vim-thematic' " Theme manager. 
+    Plug 'Rigellute/rigel'
     Plug 'arzg/vim-colors-xcode' 
     Plug 'Nequo/vim-allomancer'
     Plug 'dracula/vim', { 'as': 'dracula-vim' }
@@ -436,7 +437,7 @@ function! s:change_color(name)
   execute 'hi illuminatedWord cterm=italic gui=italic'
 endfunction
 set background=dark
-call s:change_color("space_vim_theme")
+call s:change_color("rigel")
 
 if has('nvim')
   hi Search guibg=none guifg=none gui=underline

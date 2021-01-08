@@ -1,6 +1,6 @@
 [Appearance]
 ColorScheme=Sweet
-Font=Fira Code Retina,12,-1,5,53,0,0,0,0,0,Regular
+Font=FuraCode Nerd Font,13,-1,5,75,0,0,0,0,0
 
 [Cursor Options]
 CursorShape=1
@@ -17,3 +17,4 @@ ScrollBarPosition=2
 
 [Terminal Features]
 BlinkingCursorEnabled=false
+FlowControlEnabled=false
