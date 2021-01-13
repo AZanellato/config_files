@@ -50,7 +50,7 @@ call plug#begin('~/.vim/plugged')
     " Amazing fuzzy finder and global search
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
     Plug 'junegunn/fzf.vim'
-    " Plug 'yuki-ycino/fzf-preview.vim'
+    " Plug 'yuki-ycino/fzf-preview.vim', { 'branch': 'release/remote', 'do': ':UpdateRemotePlugins' }
     " competitor to fzf
     Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary' }
     Plug 'tpope/vim-vinegar'
@@ -159,32 +159,24 @@ call plug#begin('~/.vim/plugged')
     Plug 'RRethy/vim-illuminate'
     Plug 'ryanoasis/vim-devicons' 
     " Themes!
-    Plug 'reedes/vim-thematic' " Theme manager. 
-    Plug 'Rigellute/rigel'
-    Plug 'arzg/vim-colors-xcode' 
+    Plug 'AlessandroYorba/Alduin' 
     Plug 'Nequo/vim-allomancer'
+    Plug 'Rigellute/rigel'
+    Plug 'chase/focuspoint-vim'
+    Plug 'danilo-augusto/vim-afterglow'
     Plug 'dracula/vim', { 'as': 'dracula-vim' }
+    Plug 'drewtempelmeyer/palenight.vim'
     Plug 'endel/vim-github-colorscheme'
     Plug 'jordwalke/vim-taste'
-    Plug 'kristijanhusak/vim-hybrid-material'
-    Plug 'mhartington/oceanic-next'
-    Plug 'whatyouhide/vim-gotham'
-    Plug 'danilo-augusto/vim-afterglow'
-    Plug 'AlessandroYorba/Alduin' 
-    Plug 'tlhr/anderson.vim'
-    Plug 'zacanger/angr.vim'
-    Plug 'chase/focuspoint-vim'
-    Plug 'rakr/vim-two-firewatch'
-    Plug 'liuchengxu/space-vim-theme'
-    Plug 'NLKNguyen/papercolor-theme'
-    Plug 'sjl/badwolf'
-    Plug 'drewtempelmeyer/palenight.vim'
-    Plug 'rakr/vim-one'
-    Plug 'arzg/vim-corvine'
     Plug 'kjssad/quantum.vim'
-    Plug 'toupeira/vim-desertink'
-    Plug 'neutaaaaan/iosvkem'
+    Plug 'kristijanhusak/vim-hybrid-material'
     Plug 'lifepillar/vim-colortemplate'
+    Plug 'neutaaaaan/iosvkem'
+    Plug 'rakr/vim-one'
+    Plug 'rakr/vim-two-firewatch'
+    Plug 'reedes/vim-thematic' " Theme manager. 
+    Plug 'sjl/badwolf'
+    Plug 'toupeira/vim-desertink'
   ""
 call plug#end()
 
@@ -333,12 +325,11 @@ nnoremap <Leader>op o<ESC>"+p
 nnoremap <Leader>bb :Buffers <CR> 
 nnoremap <Leader>bl :GBlame<CR>
 nnoremap <Leader>cc :Clap<CR>
+nnoremap <Leader>cf :Clap files<CR>
 nnoremap <Leader>cr :Dispatch cargo run<CR>
 nnoremap <Leader>cb :make build<CR>
 nnoremap <Leader>ff :FZF<CR>
-nnoremap <Leader>fp :FzfPreviewGitFiles<CR>
 nnoremap <Leader>gl :GitMessenger<CR>
-nnoremap <Leader>fb :FzfPreviewBuffers<CR>
 nnoremap <Leader>hh :SidewaysLeft<cr>
 nnoremap <Leader>ll :SidewaysRight<cr>
 nnoremap <Leader>nh :noh <CR>
@@ -478,6 +469,7 @@ augroup FILETYPES
 augroup END
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } } 
 let g:clap_theme = 'material_design_dark'
+let g:clap_layout = { 'relative': 'editor' }
 let g:golden_ratio_autocommand = 0
 let g:any_jump_search_prefered_engine = 'ag'
 
@@ -495,7 +487,7 @@ let g:dbs = {
 \  'dev': g:database
 \ }
 
-let g:coc_global_extensions = ['coc-json', 'coc-syntax', 'coc-omni', 'coc-fzf-preview', 'coc-rust-analyzer']
+let g:coc_global_extensions = ['coc-json', 'coc-syntax', 'coc-omni', 'coc-rust-analyzer']
 " The config file for CoC will be here as well:
 " {"languageserver": {
 "   "ocaml": {
