@@ -24,6 +24,7 @@ export UPDATE_ZSH_DAYS=5
 plugins=(
   asdf
   git 
+  docker-compose
   zsh-autosuggestions
   tmux 
 )
