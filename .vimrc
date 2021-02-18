@@ -463,6 +463,7 @@ autocmd BufWritePost *.rs normal! zv
 let g:ale_linters = {
       \  'javascript': ['eslint'],
       \  'rust': ['analyzer'],
+      \  'ruby': ['brakeman', 'reek', 'rubocop', 'solargraph', 'standardrb'],
       \}
 let g:ale_sign_error = '>>'
 let g:ale_sign_info = '--'
