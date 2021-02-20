@@ -470,7 +470,7 @@ augroup END
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } } 
 let g:clap_theme = 'material_design_dark'
 let g:clap_layout = { 'relative': 'editor' }
-let g:golden_ratio_autocommand = 0
+let g:golden_ratio_autocommand = 1
 let g:any_jump_search_prefered_engine = 'ag'
 
 let g:postgres = 'postgres://postgres:password@localhost:5432/'
