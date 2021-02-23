@@ -65,7 +65,7 @@ call plug#begin('~/.vim/plugged')
     " Moving windows in a non-weird way
     Plug 'andymass/vim-tradewinds'
     " Resize window automatically
-    Plug 'roman/golden-ratio'
+    Plug 'camspiers/lens.vim'
     " Undo the closing of a window
     Plug 'AndrewRadev/undoquit.vim'
     " Zoom!
@@ -279,7 +279,6 @@ let g:mix_format_on_save = 1
 let g:mix_format_silent_errors = 1
 
 let g:rustfmt_autosave = 1
-let g:golden_ratio_wrap_ignored = 1
 
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 
@@ -470,7 +469,6 @@ augroup END
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } } 
 let g:clap_theme = 'material_design_dark'
 let g:clap_layout = { 'relative': 'editor' }
-let g:golden_ratio_autocommand = 1
 let g:any_jump_search_prefered_engine = 'ag'
 
 let g:postgres = 'postgres://postgres:password@localhost:5432/'
