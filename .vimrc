@@ -158,25 +158,25 @@ call plug#begin('~/.vim/plugged')
     Plug 'google/vim-searchindex'
     Plug 'RRethy/vim-illuminate'
     Plug 'ryanoasis/vim-devicons' 
-    " Themes!
-    Plug 'AlessandroYorba/Alduin' 
-    Plug 'Nequo/vim-allomancer'
-    Plug 'Rigellute/rigel'
-    Plug 'chase/focuspoint-vim'
-    Plug 'danilo-augusto/vim-afterglow'
-    Plug 'dracula/vim', { 'as': 'dracula-vim' }
-    Plug 'drewtempelmeyer/palenight.vim'
-    Plug 'endel/vim-github-colorscheme'
-    Plug 'jordwalke/vim-taste'
-    Plug 'kjssad/quantum.vim'
-    Plug 'kristijanhusak/vim-hybrid-material'
-    Plug 'lifepillar/vim-colortemplate'
-    Plug 'neutaaaaan/iosvkem'
-    Plug 'rakr/vim-one'
-    Plug 'rakr/vim-two-firewatch'
-    Plug 'reedes/vim-thematic' " Theme manager. 
-    Plug 'sjl/badwolf'
-    Plug 'toupeira/vim-desertink'
+    "" Themes!
+      Plug 'Nequo/vim-allomancer'
+      Plug 'Rigellute/rigel'
+      Plug 'bluz71/vim-nightfly-guicolors'
+      Plug 'chase/focuspoint-vim'
+      Plug 'danilo-augusto/vim-afterglow'
+      Plug 'dracula/vim', { 'as': 'dracula-vim' }
+      Plug 'drewtempelmeyer/palenight.vim'
+      Plug 'endel/vim-github-colorscheme'
+      Plug 'jordwalke/vim-taste'
+      Plug 'kristijanhusak/vim-hybrid-material'
+      Plug 'lifepillar/vim-colortemplate'
+      Plug 'neutaaaaan/iosvkem'
+      Plug 'rakr/vim-one'
+      Plug 'rakr/vim-two-firewatch'
+      Plug 'reedes/vim-thematic' " Theme manager. 
+      Plug 'sjl/badwolf'
+      Plug 'toupeira/vim-desertink'
+    ""
   ""
 call plug#end()
 
@@ -428,7 +428,7 @@ function! s:change_color(name)
   execute 'hi illuminatedWord cterm=italic gui=italic'
 endfunction
 set background=dark
-call s:change_color("rigel")
+call s:change_color("nightfly")
 
 if has('nvim')
   hi Search guibg=none guifg=none gui=underline
