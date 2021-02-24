@@ -150,8 +150,9 @@ complete -o nospace -C /usr/local/bin/bitcomplete bit
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/local/bin/bitcomplete bit
 
-
-echo "Syncing configuration for you so you don't forget it"
-echo "Status:"
-cd ~/config_files
-git pull --rebase
+if [ "$PWD" = "$HOME" ]; then
+  echo "Syncing configuration for you so you don't forget it"
+  echo "Status:"
+  cd ~/config_files
+  git pull --rebase
+fi
