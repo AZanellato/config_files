@@ -385,12 +385,13 @@ inoremap <silent><expr> <C-i> pumvisible() ? coc#_select_confirm() : "<Tab>"
 " Use C-n to trigger autocompletion for coc
 inoremap <silent><expr> <c-n> coc#refresh()
 
-" Use `gdp and `gdn to navigate diagnostics
+" Use gp and gn to navigate diagnostics
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
-nmap <silent> gdp <Plug>(coc-diagnostic-prev)
-nmap <silent> gdn <Plug>(coc-diagnostic-next)
+nmap <silent> gp <Plug>(coc-diagnostic-prev)
+nmap <silent> gn <Plug>(coc-diagnostic-next)
 
 " Use K to show documentation in preview window
+" This isn't working - will have to debug
 nmap <silent> K :call <SID>show_documentation()<CR>
 nnoremap <expr>K coc#util#has_float() ? "<C-w>w" : "\K"
 
