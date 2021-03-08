@@ -17,8 +17,6 @@ call plug#begin('~/.vim/plugged')
   "" Language stuff
     " Language syntax for every language
     Plug 'sheerun/vim-polyglot'
-    " Additional highlight for rust
-    " Plug 'arzg/vim-rust-syntax-ext'
     Plug 'tarekbecker/vim-yaml-formatter'
     " Formatting for Elixir 
     Plug 'mhinz/vim-mix-format'
@@ -40,6 +38,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'tpope/vim-surround'
     " REPL quickly
     Plug 'rhysd/reply.vim'
+    " Check versions of packages from crates.io
+    Plug 'mhinz/vim-crates'
   ""
   "" SQL Stuff
     Plug 'tpope/vim-dadbod'
@@ -327,6 +327,7 @@ nnoremap <Leader>cc :Clap<CR>
 nnoremap <Leader>cf :Clap files<CR>
 nnoremap <Leader>cr :Dispatch cargo run<CR>
 nnoremap <Leader>cb :make build<CR>
+nnoremap <Leader>cu :call crates#up() <CR>
 nnoremap <Leader>ff :FZF<CR>
 nnoremap <Leader>gl :GitMessenger<CR>
 nnoremap <Leader>hh :SidewaysLeft<cr>
@@ -432,6 +433,7 @@ call s:change_color("nightfly")
 
 if has('nvim')
   hi Search guibg=none guifg=none gui=underline
+  autocmd BufRead Cargo.toml call crates#toggle()
 else
   " set Vim-specific sequences for RGB colors
   let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
