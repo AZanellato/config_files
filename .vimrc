@@ -488,12 +488,4 @@ let g:dbs = {
 \  'dev': g:database
 \ }
 
-let g:coc_global_extensions = ['coc-json', 'coc-syntax', 'coc-omni', 'coc-rust-analyzer']
-" The config file for CoC will be here as well:
-" {"languageserver": {
-"   "ocaml": {
-"     "command": "opam",
-"     "args": ["config", "exec", "--", "ocamllsp"],
-"     "filetypes": ["ocaml", "reason"]
-"   }
-" }}
+let g:coc_global_extensions = ['coc-json', 'coc-syntax', 'coc-omni', 'coc-rust-analyzer', 'coc-solargraph']
