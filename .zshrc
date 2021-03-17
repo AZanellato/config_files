@@ -26,6 +26,8 @@ plugins=(
   git 
   docker-compose
   zsh-autosuggestions
+  rust
+  cargo
   tmux 
 )
 
