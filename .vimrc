@@ -14,6 +14,7 @@ endif
 
 let g:polyglot_disabled = ['reason', 'yaml']
 call plug#begin('~/.vim/plugged')
+Plug 'tweekmonster/startuptime.vim'
   "" Language stuff
     " Language syntax for every language
     Plug 'sheerun/vim-polyglot'

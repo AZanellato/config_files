@@ -28,6 +28,9 @@ plugins=(
   zsh-autosuggestions
   rust
   cargo
+  rails
+  bundler
+  ruby
   tmux 
 )
 
