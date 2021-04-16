@@ -324,6 +324,7 @@ nnoremap <Leader>Op  O<ESC>"+p
 nnoremap <Leader>op o<ESC>"+p
 nnoremap <Leader>bb :Buffers <CR> 
 nnoremap <Leader>bl :GBlame<CR>
+nnoremap <Leader>bp obinding.pry<ESC>
 nnoremap <Leader>cc :Clap<CR>
 nnoremap <Leader>cf :Clap files<CR>
 nnoremap <Leader>cr :Dispatch cargo run<CR>
