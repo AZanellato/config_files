@@ -104,6 +104,9 @@ alias projects="cd ~/Projects"
 alias conff="cd ~/config_files/"
 alias conffpull="cd ~/config_files/ && git pull"
 alias gpr="git pull --rebase"
+if command git-split-diffs --colors > /dev/null; then
+  alias gds="git diff | npx git-split-diffs --colors | less"
+fi
 alias rdoc="rustup docs"
 alias clippy="find . | grep "\.rs$" | xargs touch ; cargo clippy"
 
