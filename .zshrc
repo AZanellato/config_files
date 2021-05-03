@@ -40,16 +40,6 @@ export EDITOR='nvim'
 
 # Functions
 
-function nvm_load () {
-  if ! type "npm" > /dev/null; then
-    unalias nvm
-    . $NVM_DIR/nvm.sh 
-  fi
-}
-function lazy_load_nvm() {
-  [[ -f package.json || -d node_modules ]] || return
-  nvm_load
-}
 function weather_in() {
   curl wttr.in/$1
 }
@@ -108,7 +98,6 @@ alias nvd="nvim \$(git diff HEAD --name-only --diff-filter=ACMR)"
 alias nvdc="nvim \$(git diff HEAD^ --name-only --diff-filter=ACMR)"
 alias nvds="nvim \$(git diff --staged --name-only --diff-filter=ACMR)"
 alias nvimrc="nvim ~/config_files/.vimrc"
-alias nvm="unalias nvm; nvm_load && nvm"
 alias nvzshrc="nvim ~/config_files/.zshrc"
 alias pipefy-docker-up="docker-compose -f ~/Projects/pipefy/docker-compose.yml up"
 alias projects="cd ~/Projects"
@@ -136,7 +125,6 @@ export FZF_DEFAULT_COMMAND='rg --files'
 export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
 export CDPATH=.:~/Projects
 
-nvm_load
 if type "opam" > /dev/null; then
   eval $(opam env)
 fi
