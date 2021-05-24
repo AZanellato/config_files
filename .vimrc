@@ -490,4 +490,4 @@ let g:dbs = {
 \  'dev': g:database
 \ }
 
-let g:coc_global_extensions = ['coc-json', 'coc-syntax', 'coc-omni', 'coc-rust-analyzer', 'coc-solargraph']
+let g:coc_global_extensions = ['coc-json', 'coc-syntax', 'coc-omni', 'coc-rust-analyzer', 'coc-solargraph', 'coc-prettier']

@@ -73,6 +73,12 @@ function reb-master() {
   git rebase master
 }
 
+function reb-main() { 
+  git checkout main &&
+  git pull --rebase && 
+  git checkout - && 
+  git rebase main
+}
 function reb-branch() {
   local branch="$1"
   if [ $branch == '' ]; then
