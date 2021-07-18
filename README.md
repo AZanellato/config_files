@@ -113,6 +113,7 @@ Run `prefix`+`I` to install the tmux plugins.
 ```bash
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
 
+```
 After all the above, the necessary symlinks are (assuming configuration files on the home folder):
 
 ```bash
