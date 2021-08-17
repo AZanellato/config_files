@@ -323,7 +323,7 @@ nnoremap <Leader>z :call zoom#toggle() <CR>
 nnoremap <Leader>Op  O<ESC>"+p
 nnoremap <Leader>op o<ESC>"+p
 nnoremap <Leader>bb :Buffers <CR> 
-nnoremap <Leader>bl :GBlame<CR>
+nnoremap <Leader>bl :Gblame<CR>
 nnoremap <Leader>bp obinding.pry<ESC>
 nnoremap <Leader>cc :Clap<CR>
 nnoremap <Leader>cf :Clap files<CR>
@@ -445,9 +445,9 @@ endif
 
 
 let g:ale_fixers = {
-      \ 'ruby': [ 'rubocop' ],
       \ 'python': ['add_blank_lines_for_python_control_statements', 'autopep8', 'black', 'isort', 'reorder-python-imports', 'yapf'],
       \ }
+let g:ale_ruby_rubocop_executable  = 'bundle' " use this to call rubocop with bundle exec
 let g:ale_rust_cargo_use_clippy = 1
 
 au! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml foldmethod=indent
