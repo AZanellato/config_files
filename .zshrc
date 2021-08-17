@@ -79,9 +79,11 @@ function reb-main() {
   git checkout - && 
   git rebase main
 }
+
 function reb-branch() {
   local branch="$1"
-  if [ $branch == '' ]; then
+  echo $branch
+  if [ $branch = '' ]; then
     echo $(reb-master)
   else 
     git checkout $branch &&
@@ -90,6 +92,34 @@ function reb-branch() {
     git rebase $branch
   fi
 }
+
+function dbup(){
+  if [[ -z $DB_NAME ]] ; then
+    CLEAR_DB_NAME=yes
+    DB_NAME="$(git symbolic-ref HEAD 2>/dev/null | choose -f '/' 2)"
+    BRANCH_NAME="$(git symbolic-ref HEAD 2>/dev/null | choose -f '/' -1)"
+    echo $BRANCH_NAME
+    if [[ $BRANCH_NAME = "release" ]] ; then
+      DB_NAME="hotfix"
+    fi
+    if [[ $DB_NAME = $BRANCH_NAME ]] ; then
+      DB_NAME="main"
+    fi
+  fi
+  PG_DB=$DB_NAME
+  echo "-------------------------------------------------"
+  echo "Running on ${PG_DB}" db
+  echo "-------------------------------------------------"
+  DB_NAME=
+  docker stop $(docker ps | grep postgres | awk '{print $1}')
+  $(docker run -p 5432:5432 --restart always -e POSTGRES_PASSWORD=unlock -e POSTGRES_USER=goco -e POSTGRES_DB=goco_io_development -v $(pwd)/.data/${PG_DB}:/var/lib/postgresql/data:delegated postgres:12.7-alpine)
+}
+
+function gocodbup() {
+  cd goco-api
+  dbup
+}
+
 
 # Personal aliases
 
@@ -115,6 +145,7 @@ if command -v git-split-diffs --colors > /dev/null; then
 fi
 alias rdoc="rustup docs"
 alias clippy="find . | grep "\.rs$" | xargs touch ; cargo clippy"
+alias rtdb="RAILS_ENV=test rake db:reset"
 
 export BAT_THEME="TwoDark"
 export PATH="$HOME/.rbenv/bin:$PATH"
