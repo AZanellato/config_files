@@ -320,22 +320,25 @@ nnoremap <Leader>p  "+p
 nnoremap <Leader>u :UndotreeToggle<cr>
 nnoremap <Leader>w :w<CR>
 nnoremap <Leader>z :call zoom#toggle() <CR>
-nnoremap <Leader>Op  O<ESC>"+p
-nnoremap <Leader>op o<ESC>"+p
+nnoremap <Leader>} :call GitGutterNextHunkCycle() <CR>
+nnoremap <Leader>{ :GitGutterPrevHunk <CR>
 nnoremap <Leader>bb :Buffers <CR> 
 nnoremap <Leader>bl :Gblame<CR>
 nnoremap <Leader>bp obinding.pry<ESC>
+nnoremap <Leader>cb :make build<CR>
 nnoremap <Leader>cc :Clap<CR>
 nnoremap <Leader>cf :Clap files<CR>
 nnoremap <Leader>cr :Dispatch cargo run<CR>
-nnoremap <Leader>cb :make build<CR>
 nnoremap <Leader>cu :call crates#up() <CR>
 nnoremap <Leader>ff :FZF<CR>
 nnoremap <Leader>gl :GitMessenger<CR>
 nnoremap <Leader>hh :SidewaysLeft<cr>
 nnoremap <Leader>ll :SidewaysRight<cr>
 nnoremap <Leader>nh :noh <CR>
+nnoremap <Leader>op o<ESC>"+p
+nnoremap <Leader>Op  O<ESC>"+p
 nnoremap <Leader>ss :TestNearest<CR>
+nnoremap <Leader>uh :GitGutterUndoHunk <CR>
 nnoremap <Leader>yh :Yanks <CR>
 nnoremap <Leader>alf :ALEFix <CR>
 nnoremap <Leader>aln :ALENextWrap <CR>
@@ -397,6 +400,15 @@ nmap <silent> gn <Plug>(coc-diagnostic-next)
 " This isn't working - will have to debug
 nmap <silent> K :call <SID>show_documentation()<CR>
 nnoremap <expr>K coc#util#has_float() ? "<C-w>w" : "\K"
+
+function! GitGutterNextHunkCycle()
+  let line = line('.')
+  silent! GitGutterNextHunk
+  if line('.') == line
+    1
+    GitGutterNextHunk
+  endif
+endfunction
 
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
