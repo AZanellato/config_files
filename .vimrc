@@ -111,6 +111,8 @@ Plug 'tweekmonster/startuptime.vim'
     Plug 'AndrewRadev/splitjoin.vim'
     " text moving
     Plug 'matze/vim-move'
+    " Change case types
+    Plug 'arthurxavierx/vim-caser'
     " Increment text-objects
     Plug 'wellle/targets.vim'
     " Continous increment on visual block using C-A
