@@ -41,6 +41,8 @@ Plug 'tweekmonster/startuptime.vim'
     Plug 'rhysd/reply.vim'
     " Check versions of packages from crates.io
     Plug 'mhinz/vim-crates'
+    " Disable stuff for giant files
+    Plug 'mhinz/vim-hugefile'
   ""
   "" SQL Stuff
     Plug 'tpope/vim-dadbod'
