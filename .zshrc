@@ -140,6 +140,8 @@ alias projects="cd ~/Projects"
 alias conff="cd ~/config_files/"
 alias conffpull="cd ~/config_files/ && git pull"
 alias gpr="git pull --rebase"
+alias gdhr="git diff release..."
+alias gdhm="git diff master..."
 if command -v git-split-diffs --colors > /dev/null; then
   alias gds="git diff | npx git-split-diffs --colors | less"
 fi
