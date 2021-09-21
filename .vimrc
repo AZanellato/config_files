@@ -53,13 +53,17 @@ Plug 'tweekmonster/startuptime.vim'
     " Amazing fuzzy finder and global search
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
     Plug 'junegunn/fzf.vim'
-    " Plug 'yuki-ycino/fzf-preview.vim', { 'branch': 'release/remote', 'do': ':UpdateRemotePlugins' }
     " competitor to fzf
     Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary' }
+    " another competitor 
+    Plug 'nvim-lua/plenary.nvim'
+    Plug 'nvim-telescope/telescope.nvim'
     Plug 'tpope/vim-vinegar'
     " Jump to definitions
     Plug 'pechorin/any-jump.vim'
     Plug 'renderedtext/vim-elixir-alternative-files'
+    " Try out treesitter
+    " Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  
   ""
   "" Use env vars in vim :)
     Plug 'tpope/vim-dotenv' " Didn't know where else to put it haha
@@ -313,7 +317,8 @@ nnoremap <M-n> :ALENextWrap<CR>
 nnoremap <M-p> :ALEPreviousWrap<CR>
 nnoremap <Leader><CR> o<ESC>
 nnoremap <Leader>/ :Rg 
-nnoremap <Leader>* :Rg <C-r><C-w><CR>
+" nnoremap <Leader>* :Rg <C-r><C-w><CR>
+nnoremap <Leader>* :Telescope grep_string<CR>
 vnoremap <Leader>* :<C-u>call VisualStarSearchSet('/', 'raw')<CR>:call fzf#vim#grep('rg --column --line-number --no-heading --color=always --smart-case '.shellescape(@/), 1,)<CR>
 nnoremap <Leader>- :split <CR>
 nnoremap <Leader>_ :vsplit <CR> 
@@ -334,7 +339,7 @@ nnoremap <Leader>cc :Clap<CR>
 nnoremap <Leader>cf :Clap files<CR>
 nnoremap <Leader>cr :Dispatch cargo run<CR>
 nnoremap <Leader>cu :call crates#up() <CR>
-nnoremap <Leader>ff :FZF<CR>
+nnoremap <Leader>ff :Telescope find_files<CR>
 nnoremap <Leader>gl :GitMessenger<CR>
 nnoremap <Leader>hh :SidewaysLeft<cr>
 nnoremap <Leader>ll :SidewaysRight<cr>
