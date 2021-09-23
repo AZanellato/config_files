@@ -342,6 +342,7 @@ nnoremap <Leader>cr :Dispatch cargo run<CR>
 nnoremap <Leader>cu :call crates#up() <CR>
 " nnoremap <Leader>ff :Files<CR>
 nnoremap <Leader>ff :Telescope find_files<CR>
+nnoremap <Leader>gg :Git<CR>
 nnoremap <Leader>hh :SidewaysLeft<cr>
 nnoremap <Leader>ll :SidewaysRight<cr>
 nnoremap <Leader>nh :noh <CR>
@@ -353,9 +354,6 @@ nnoremap <Leader>yh :Yanks <CR>
 nnoremap <Leader>alf :ALEFix <CR>
 nnoremap <Leader>aln :ALENextWrap <CR>
 nnoremap <Leader>alp :ALEPreviousWrap <CR>
-nnoremap <Leader>gdd :Gdiff!<CR>
-nnoremap <Leader>gdh :diffget //2<CR>
-nnoremap <Leader>gdl :diffget //3<CR>
 nnoremap <Leader>lft :Format <CR>
 nnoremap <Leader>ral :TestSuite<CR>
 nnoremap <Leader>soi :SourceAndInstall<CR>
