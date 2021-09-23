@@ -342,7 +342,6 @@ nnoremap <Leader>cr :Dispatch cargo run<CR>
 nnoremap <Leader>cu :call crates#up() <CR>
 " nnoremap <Leader>ff :Files<CR>
 nnoremap <Leader>ff :Telescope find_files<CR>
-nnoremap <Leader>gl :GitMessenger<CR>
 nnoremap <Leader>hh :SidewaysLeft<cr>
 nnoremap <Leader>ll :SidewaysRight<cr>
 nnoremap <Leader>nh :noh <CR>
@@ -465,8 +464,7 @@ else
   let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 endif
 
-
-
+let g:git_messenger_floating_win_opts = { 'border': 'single' }
 let g:ale_fixers = {
       \ 'python': ['add_blank_lines_for_python_control_statements', 'autopep8', 'black', 'isort', 'reorder-python-imports', 'yapf'],
       \ }
