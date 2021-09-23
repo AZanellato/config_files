@@ -54,8 +54,6 @@ Plug 'tweekmonster/startuptime.vim'
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
     Plug 'junegunn/fzf.vim'
     " competitor to fzf
-    Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary' }
-    " another competitor 
     Plug 'nvim-lua/plenary.nvim'
     Plug 'nvim-telescope/telescope.nvim'
     Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
@@ -168,6 +166,7 @@ Plug 'tweekmonster/startuptime.vim'
     Plug 'google/vim-searchindex'
     Plug 'RRethy/vim-illuminate'
     Plug 'ryanoasis/vim-devicons' 
+    Plug 'kyazdani42/nvim-web-devicons'
     "" Themes!
       Plug 'Nequo/vim-allomancer'
       Plug 'Rigellute/rigel'
@@ -332,7 +331,8 @@ nnoremap <Leader>w :w<CR>
 nnoremap <Leader>z :call zoom#toggle() <CR>
 nnoremap <Leader>} :call GitGutterNextHunkCycle() <CR>
 nnoremap <Leader>{ :GitGutterPrevHunk <CR>
-nnoremap <Leader>bb :Buffers <CR> 
+" nnoremap <Leader>bb :Buffers <CR> 
+nnoremap <Leader>bb :Telescope buffers<CR>
 nnoremap <Leader>bl :Gblame<CR>
 nnoremap <Leader>bp obinding.pry<ESC>
 nnoremap <Leader>cb :make build<CR>
@@ -340,6 +340,7 @@ nnoremap <Leader>cc :Clap<CR>
 nnoremap <Leader>cf :Clap files<CR>
 nnoremap <Leader>cr :Dispatch cargo run<CR>
 nnoremap <Leader>cu :call crates#up() <CR>
+" nnoremap <Leader>ff :Files<CR>
 nnoremap <Leader>ff :Telescope find_files<CR>
 nnoremap <Leader>gl :GitMessenger<CR>
 nnoremap <Leader>hh :SidewaysLeft<cr>
@@ -494,8 +495,6 @@ augroup FILETYPES
   autocmd FileType markdown let b:indentLine_enabled = 0
 augroup END
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } } 
-let g:clap_theme = 'material_design_dark'
-let g:clap_layout = { 'relative': 'editor' }
 let g:any_jump_search_prefered_engine = 'ag'
 
 let g:postgres = 'postgres://postgres:password@localhost:5432/'
