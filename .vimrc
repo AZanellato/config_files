@@ -58,6 +58,7 @@ Plug 'tweekmonster/startuptime.vim'
     " another competitor 
     Plug 'nvim-lua/plenary.nvim'
     Plug 'nvim-telescope/telescope.nvim'
+    Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
     Plug 'tpope/vim-vinegar'
     " Jump to definitions
     Plug 'pechorin/any-jump.vim'
@@ -512,3 +513,15 @@ let g:dbs = {
 \ }
 
 let g:coc_global_extensions = ['coc-json', 'coc-syntax', 'coc-omni', 'coc-rust-analyzer', 'coc-solargraph', 'coc-prettier']
+
+" Telescope config:
+lua << EOF
+  require('telescope').setup({
+    defaults = {
+      layout_config = {
+        horizontal = { width = 0.85 }
+        },
+      },
+  })
+  require('telescope').load_extension('fzf')
+EOF
