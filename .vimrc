@@ -168,21 +168,17 @@ Plug 'tweekmonster/startuptime.vim'
     Plug 'ryanoasis/vim-devicons' 
     Plug 'kyazdani42/nvim-web-devicons'
     "" Themes!
-      Plug 'Nequo/vim-allomancer'
       Plug 'Rigellute/rigel'
       Plug 'bluz71/vim-nightfly-guicolors'
       Plug 'chase/focuspoint-vim'
       Plug 'danilo-augusto/vim-afterglow'
-      Plug 'dracula/vim', { 'as': 'dracula-vim' }
       Plug 'drewtempelmeyer/palenight.vim'
       Plug 'endel/vim-github-colorscheme'
-      Plug 'jordwalke/vim-taste'
       Plug 'kristijanhusak/vim-hybrid-material'
-      Plug 'lifepillar/vim-colortemplate'
       Plug 'neutaaaaan/iosvkem'
       Plug 'rakr/vim-one'
       Plug 'rakr/vim-two-firewatch'
-      Plug 'reedes/vim-thematic' " Theme manager. 
+      Plug 'sts10/vim-pink-moon'
       Plug 'sjl/badwolf'
       Plug 'toupeira/vim-desertink'
     ""
@@ -451,7 +447,7 @@ function! s:change_color(name)
   execute 'hi illuminatedWord cterm=italic gui=italic'
 endfunction
 set background=dark
-call s:change_color("nightfly")
+call s:change_color("two-firewatch")
 
 if has('nvim')
   hi Search guibg=none guifg=none gui=underline
