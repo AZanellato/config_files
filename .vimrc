@@ -48,6 +48,7 @@ Plug 'tweekmonster/startuptime.vim'
     Plug 'folke/twilight.nvim'
     Plug 'nvim-treesitter/playground' 
     Plug 'SmiteshP/nvim-gps' 
+    Plug 'nvim-treesitter/nvim-treesitter-textobjects'
   ""
   "" SQL Stuff
     Plug 'tpope/vim-dadbod'
@@ -280,7 +281,7 @@ let g:airline_mode_map = {
 let g:airline_powerline_fonts = 1
 let g:airline_skip_empty_sections = 1
 let g:airline_section_b = '%{airline#util#wrap(airline#extensions#branch#get_head(),0)[0:40]}'
-let g:airline_section_c = '%{NvimGps()}'
+let g:airline_section_x= '%{NvimGps()}'
 let g:airline_section_z = ''
 let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
 let g:airline#extensions#wordcount#formatter#default#fmt = '%d w'
@@ -411,7 +412,9 @@ nmap <silent> K :call <SID>show_documentation()<CR>
 nnoremap <expr>K coc#util#has_float() ? "<C-w>w" : "\K"
 
 function! NvimGps() abort
-	return luaeval("require'nvim-gps'.is_available()") ? luaeval("require'nvim-gps'.get_location()") : ''
+	if luaeval("require'nvim-gps'.is_available()") 
+    return  luaeval("require'nvim-gps'.get_location()") 
+  endif
 endfunction
 
 function! GitGutterNextHunkCycle()
