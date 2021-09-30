@@ -182,7 +182,9 @@ Plug 'tweekmonster/startuptime.vim'
       Plug 'neutaaaaan/iosvkem'
       Plug 'rakr/vim-one'
       Plug 'rakr/vim-two-firewatch'
+      Plug 'EdenEast/nightfox.nvim'
       Plug 'sts10/vim-pink-moon'
+      Plug 'folke/tokyonight.nvim'
       Plug 'sjl/badwolf'
       Plug 'toupeira/vim-desertink'
     ""
@@ -462,7 +464,7 @@ function! s:change_color(name)
   execute 'hi illuminatedWord cterm=italic gui=italic'
 endfunction
 set background=dark
-call s:change_color("two-firewatch")
+call s:change_color("nightfox")
 
 if has('nvim')
   hi Search guibg=none guifg=none gui=underline
