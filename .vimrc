@@ -166,8 +166,8 @@ Plug 'tweekmonster/startuptime.vim'
     Plug 'machakann/vim-highlightedyank'
     Plug 'sunjon/shade.nvim'
     Plug 'lukas-reineke/indent-blankline.nvim'
-    " Plug 'vim-airline/vim-airline'
-    Plug 'windwp/windline.nvim'
+    Plug 'vim-airline/vim-airline'
+    " Plug 'windwp/windline.nvim'
     Plug 'google/vim-searchindex'
     Plug 'RRethy/vim-illuminate'
     Plug 'ryanoasis/vim-devicons' 
@@ -330,7 +330,7 @@ nnoremap <Leader>e :e#<CR>
 nnoremap <Leader>p  "+p
 nnoremap <Leader>u :UndotreeToggle<cr>
 nnoremap <Leader>w :w<CR>
-nnoremap <Leader>z :call zoom#toggle() <CR>
+nnoremap <Leader>z :FocusMaximise <CR>
 nnoremap <Leader>} :call GitGutterNextHunkCycle() <CR>
 nnoremap <Leader>{ :GitGutterPrevHunk <CR>
 " nnoremap <Leader>bb :Buffers <CR> 
@@ -538,6 +538,6 @@ lua << EOF
     overlay_opacity = 50,
     opacity_step = 1,
   })
-  require('lua/customLine')
-  require('wlfloatline').setup()
+  -- require('wlsample.airline')
+  -- require('wlfloatline').setup()
 EOF
