@@ -91,7 +91,8 @@ Plug 'tweekmonster/startuptime.vim'
     " Visualize the undotree
     Plug 'mbbill/undotree'
     " better f
-    Plug 'rhysd/clever-f.vim'
+    " Plug 'rhysd/clever-f.vim'
+    Plug 'justinmk/vim-sneak'
     " What it says on the tin 
     Plug 'terryma/vim-smooth-scroll'
     " Repeat any command with . -- even plugins!
@@ -156,8 +157,6 @@ Plug 'tweekmonster/startuptime.vim'
   "" Visual Stuff
     " UI for Dadbod
     Plug 'kristijanhusak/vim-dadbod-ui'
-    " Make folding faster :)
-    " Plug 'Konfekt/FastFold'
     " Enhanced terminal integration
     Plug 'wincent/terminus'
     " Start screen
@@ -166,8 +165,8 @@ Plug 'tweekmonster/startuptime.vim'
     Plug 'machakann/vim-highlightedyank'
     Plug 'sunjon/shade.nvim'
     Plug 'lukas-reineke/indent-blankline.nvim'
-    Plug 'vim-airline/vim-airline'
-    " Plug 'windwp/windline.nvim'
+    " Plug 'vim-airline/vim-airline'
+    Plug 'windwp/windline.nvim'
     Plug 'google/vim-searchindex'
     Plug 'RRethy/vim-illuminate'
     Plug 'ryanoasis/vim-devicons' 
@@ -255,6 +254,7 @@ endfun
 
 let test#strategy = "neovim"
 
+let g:sneak#s_next = 1
 let g:tmuxcomplete#trigger = 'omnifunc'
 
 let g:yoinkIncludeDeleteOperations=1
@@ -313,6 +313,9 @@ vmap <F20> <Plug>MoveBlockDown
 vmap <F21> <Plug>MoveBlockUp
 nmap <F20> <Plug>MoveLineDown
 nmap <F21> <Plug>MoveLineUp
+
+map f <Plug>Sneak_s
+map F <Plug>Sneak_S
 
 " Move between linting errors
 nnoremap <M-n> :ALENextWrap<CR>
@@ -538,6 +541,6 @@ lua << EOF
     overlay_opacity = 50,
     opacity_step = 1,
   })
-  -- require('wlsample.airline')
-  -- require('wlfloatline').setup()
+  require('wlsample.airline')
+  require('wlfloatline').setup()
 EOF
