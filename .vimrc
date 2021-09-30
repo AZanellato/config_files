@@ -74,7 +74,7 @@ Plug 'tweekmonster/startuptime.vim'
     " Moving windows in a non-weird way
     Plug 'andymass/vim-tradewinds'
     " Resize window automatically
-    Plug 'camspiers/lens.vim'
+    Plug 'beauwilliams/focus.nvim'
     " Undo the closing of a window
     Plug 'AndrewRadev/undoquit.vim'
     " Zoom!
@@ -163,9 +163,10 @@ Plug 'tweekmonster/startuptime.vim'
     Plug 'mhinz/vim-startify'
     Plug 'junegunn/rainbow_parentheses.vim'
     Plug 'machakann/vim-highlightedyank'
-    Plug 'TaDaa/vimade'
+    Plug 'sunjon/shade.nvim'
     Plug 'lukas-reineke/indent-blankline.nvim'
-    Plug 'vim-airline/vim-airline'
+    " Plug 'vim-airline/vim-airline'
+    Plug 'windwp/windline.nvim'
     Plug 'google/vim-searchindex'
     Plug 'RRethy/vim-illuminate'
     Plug 'ryanoasis/vim-devicons' 
@@ -525,7 +526,15 @@ lua << EOF
   require('telescope').load_extension('fzf')
   require('twilight').setup({})
   require("nvim-gps").setup({})
+  require("focus").setup({})
   require("indent_blankline").setup {
     buftype_exclude = {"terminal"}
     }
+
+  require'shade'.setup({
+    overlay_opacity = 50,
+    opacity_step = 1,
+  })
+  require('wlsample.airline')
+  require('wlfloatline').setup()
 EOF
