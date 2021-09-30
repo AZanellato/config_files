@@ -538,6 +538,6 @@ lua << EOF
     overlay_opacity = 50,
     opacity_step = 1,
   })
-  require('wlsample.airline')
+  require('lua/customLine')
   require('wlfloatline').setup()
 EOF
