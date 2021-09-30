@@ -164,7 +164,7 @@ Plug 'tweekmonster/startuptime.vim'
     Plug 'junegunn/rainbow_parentheses.vim'
     Plug 'machakann/vim-highlightedyank'
     Plug 'TaDaa/vimade'
-    Plug 'Yggdroot/indentLine'
+    Plug 'lukas-reineke/indent-blankline.nvim'
     Plug 'vim-airline/vim-airline'
     Plug 'google/vim-searchindex'
     Plug 'RRethy/vim-illuminate'
@@ -525,4 +525,7 @@ lua << EOF
   require('telescope').load_extension('fzf')
   require('twilight').setup({})
   require("nvim-gps").setup({})
+  require("indent_blankline").setup {
+    buftype_exclude = {"terminal"}
+    }
 EOF
