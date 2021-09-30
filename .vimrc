@@ -543,4 +543,39 @@ lua << EOF
   })
   require('wlsample.airline')
   require('wlfloatline').setup()
+
+  require'nvim-treesitter.configs'.setup {
+    textobjects = {
+      select = {
+        enable = true,
+
+        -- Automatically jump forward to textobj, similar to targets.vim 
+        lookahead = true,
+
+        keymaps = {
+          -- You can use the capture groups defined in textobjects.scm
+          ["af"] = "@function.outer",
+          ["if"] = "@function.inner",
+          ["ac"] = "@class.outer",
+          ["ic"] = "@class.inner",
+        },
+      },
+      move = {
+        enable = true,
+        set_jumps = true, -- whether to set jumps in the jumplist
+        goto_next_start = {
+          ["]]"] = "@function.outer",
+        },
+        goto_next_end = {
+          ["]e"] = "@function.outer",
+        },
+        goto_previous_start = {
+          ["[["] = "@function.outer",
+        },
+        goto_previous_end = {
+          ["[e"] = "@function.outer",
+        },
+      },
+    },
+  }
 EOF
