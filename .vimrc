@@ -43,6 +43,11 @@ Plug 'tweekmonster/startuptime.vim'
     Plug 'mhinz/vim-crates'
     " Disable stuff for giant files
     Plug 'mhinz/vim-hugefile'
+    " Try out treesitter and some modules
+    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  
+    Plug 'folke/twilight.nvim'
+    Plug 'nvim-treesitter/playground' 
+    Plug 'SmiteshP/nvim-gps' 
   ""
   "" SQL Stuff
     Plug 'tpope/vim-dadbod'
@@ -61,8 +66,6 @@ Plug 'tweekmonster/startuptime.vim'
     " Jump to definitions
     Plug 'pechorin/any-jump.vim'
     Plug 'renderedtext/vim-elixir-alternative-files'
-    " Try out treesitter
-    " Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  
   ""
   "" Use env vars in vim :)
     Plug 'tpope/vim-dotenv' " Didn't know where else to put it haha
@@ -276,6 +279,7 @@ let g:airline_mode_map = {
 let g:airline_powerline_fonts = 1
 let g:airline_skip_empty_sections = 1
 let g:airline_section_b = '%{airline#util#wrap(airline#extensions#branch#get_head(),0)[0:40]}'
+let g:airline_section_c = '%{NvimGps()}'
 let g:airline_section_z = ''
 let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
 let g:airline#extensions#wordcount#formatter#default#fmt = '%d w'
@@ -405,6 +409,10 @@ nmap <silent> gn <Plug>(coc-diagnostic-next)
 nmap <silent> K :call <SID>show_documentation()<CR>
 nnoremap <expr>K coc#util#has_float() ? "<C-w>w" : "\K"
 
+function! NvimGps() abort
+	return luaeval("require'nvim-gps'.is_available()") ? luaeval("require'nvim-gps'.get_location()") : ''
+endfunction
+
 function! GitGutterNextHunkCycle()
   let line = line('.')
   silent! GitGutterNextHunk
@@ -515,4 +523,6 @@ lua << EOF
       },
   })
   require('telescope').load_extension('fzf')
+  require('twilight').setup({})
+  require("nvim-gps").setup({})
 EOF
