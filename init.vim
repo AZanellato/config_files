@@ -41,8 +41,6 @@ Plug 'tweekmonster/startuptime.vim'
     Plug 'rhysd/reply.vim'
     " Check versions of packages from crates.io
     Plug 'mhinz/vim-crates'
-    " Disable stuff for giant files
-    Plug 'mhinz/vim-hugefile'
     " Try out treesitter and some modules
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  
     Plug 'folke/twilight.nvim'
