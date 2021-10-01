@@ -117,14 +117,12 @@ git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/the
 After all the above, the necessary symlinks are (assuming configuration files on the home folder):
 
 ```bash
-$ ln -s ~/.vim ~/nvim\
+$ mkdir ~/.config/nvim/lua
+$ ln -s ~/config_files/nvim_config.lua ~/.config/nvim/lua/nvim_config.lua
+$ ln -s ~/config_files/init.vim ~/.config/nvim/init.vim
 $ ln -s ~/config_files/.zshrc ~/.zshrc
-$ ln -s ~/config_files/.vimrc ~/.vimrc
-$ ln -s ~/.vimrc ~/.config/nvim/init.vim
 $ ln -s ~/config_files/.tmux.conf ~/.tmux.conf
-$ ln -s ~/config_files/oxide.zsh-theme ~/.oh-my-zsh/themes/oxide.zsh-theme
 $ ln -s ~/config_files/.p10k.zsh ~/.p10k.zsh
-$ ln -s ~/config_files/coc-settings.json
 ```
 
 Also, for the patched Fira Code, download it [here](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/FiraCode/Retina/complete)
