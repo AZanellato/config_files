@@ -185,6 +185,7 @@ Plug 'tweekmonster/startuptime.vim'
       Plug 'folke/tokyonight.nvim'
       Plug 'sjl/badwolf'
       Plug 'toupeira/vim-desertink'
+      Plug 'Pocco81/Catppuccino.nvim'
     ""
   ""
 call plug#end()
@@ -298,10 +299,10 @@ nnoremap \ :Rg<SPACE>
 command! Config :e ~/.vimrc
 command! YankCurrentFilePath let @+ = expand("%")
 command! PrettifyJson %!jq '.'
-command! Source source ~/config_files/.vimrc 
+command! Source source ~/config_files/init.vim
 command! AddDatabase :call AddDatabase()
 command! -nargs=0 Format :call CocAction('format')
-command! SourceAndInstall source ~/config_files/.vimrc <bar> :PlugInstall
+command! SourceAndInstall source ~/config_files/init.vim <bar> :PlugInstall
 
 noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 10)<CR>
 noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 0, 10)<CR>
@@ -462,7 +463,7 @@ function! s:change_color(name)
   execute 'hi illuminatedWord cterm=italic gui=italic'
 endfunction
 set background=dark
-call s:change_color("nightfox")
+call s:change_color("catpucinno")
 
 if has('nvim')
   hi Search guibg=none guifg=none gui=underline
