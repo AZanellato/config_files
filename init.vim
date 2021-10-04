@@ -223,11 +223,7 @@ set scrolloff=5 " Don't let the cursor get to the bottom of the scren
 set hidden
 set ttyfast
 
-" This works on neovim only. It shows what
-" will be replaced when doing %s//
-if exists('&inccommand')
-  set inccommand=split
-endif
+set inccommand=split
 
 " Relative number when on normal mode
 " absolute numbers when on insert mode
@@ -293,6 +289,49 @@ let g:mix_format_silent_errors = 1
 let g:rustfmt_autosave = 1
 
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
+
+let g:git_messenger_floating_win_opts = { 'border': 'single' }
+let g:ale_fixers = {
+      \ 'python': ['add_blank_lines_for_python_control_statements', 'autopep8', 'black', 'isort', 'reorder-python-imports', 'yapf'],
+      \ }
+let g:ale_ruby_rubocop_executable  = 'bundle' " use this to call rubocop with bundle exec
+let g:ale_rust_cargo_use_clippy = 1
+let g:ale_linters = {
+      \  'javascript': ['eslint'],
+      \  'rust': ['analyzer'],
+      \  'ruby': ['brakeman', 'reek', 'rubocop', 'solargraph', 'standardrb'],
+      \}
+let g:ale_sign_error = '>>'
+let g:ale_sign_info = '--'
+
+augroup FiletypeGroup
+    autocmd!
+    au BufNewFile,BufRead *.jsx set filetype=javascript.jsx
+  autocmd BufRead,BufNewFile *.blade.php set filetype=blade
+augroup END
+augroup FILETYPES
+  autocmd FileType markdown let b:indentLine_enabled = 0
+augroup END
+let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } } 
+let g:any_jump_search_prefered_engine = 'ag'
+
+let g:postgres = 'postgres://postgres:password@localhost:5432/'
+let g:database = ''
+function! AddDatabase()
+  let db_name = input('Enter database name: ')
+  call inputrestore()
+  let g:database = g:postgres . db_name
+  redraw
+  echom 'Database URL:' . g:database
+endfun
+
+let g:dbs = {
+\  'dev': g:database
+\ }
+
+let g:coc_global_extensions = ['coc-json', 'coc-syntax', 'coc-omni', 'coc-rust-analyzer', 'coc-solargraph', 'coc-prettier']
+
+" Maps
 
 nnoremap \ :Rg<SPACE>
 
@@ -410,11 +449,6 @@ inoremap <silent><expr> <c-n> coc#refresh()
 nmap <silent> gp <Plug>(coc-diagnostic-prev)
 nmap <silent> gn <Plug>(coc-diagnostic-next)
 
-" Use K to show documentation in preview window
-" This isn't working - will have to debug
-nmap <silent> K :call <SID>show_documentation()<CR>
-nnoremap <expr>K coc#util#has_float() ? "<C-w>w" : "\K"
-
 function! NvimGps() abort
 	if luaeval("require'nvim-gps'.is_available()") 
     return  luaeval("require'nvim-gps'.get_location()") 
@@ -427,14 +461,6 @@ function! GitGutterNextHunkCycle()
   if line('.') == line
     1
     GitGutterNextHunk
-  endif
-endfunction
-
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
   endif
 endfunction
 
@@ -457,70 +483,16 @@ tnoremap <A-k> <C-\><C-N><C-w>k
 tnoremap <A-l> <C-\><C-N><C-w>l
 tnoremap <C-t> <C-\><C-n>
 
-function! s:change_color(name)
-  execute 'colorscheme '.a:name
-  execute 'hi Search guibg=none guifg=none gui=underline'
-  execute 'hi illuminatedWord cterm=italic gui=italic'
-endfunction
-set background=dark
-call s:change_color("catpucinno")
-
-if has('nvim')
-  hi Search guibg=none guifg=none gui=underline
-  autocmd BufRead Cargo.toml call crates#toggle()
-else
-  " set Vim-specific sequences for RGB colors
-  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-endif
-
-let g:git_messenger_floating_win_opts = { 'border': 'single' }
-let g:ale_fixers = {
-      \ 'python': ['add_blank_lines_for_python_control_statements', 'autopep8', 'black', 'isort', 'reorder-python-imports', 'yapf'],
-      \ }
-let g:ale_ruby_rubocop_executable  = 'bundle' " use this to call rubocop with bundle exec
-let g:ale_rust_cargo_use_clippy = 1
-
+autocmd BufRead Cargo.toml call crates#toggle()
 au! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml foldmethod=indent
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
-
 autocmd BufWritePost *.rs normal! zv
-
-let g:ale_linters = {
-      \  'javascript': ['eslint'],
-      \  'rust': ['analyzer'],
-      \  'ruby': ['brakeman', 'reek', 'rubocop', 'solargraph', 'standardrb'],
-      \}
-let g:ale_sign_error = '>>'
-let g:ale_sign_info = '--'
-
-augroup FiletypeGroup
-    autocmd!
-    au BufNewFile,BufRead *.jsx set filetype=javascript.jsx
-  autocmd BufRead,BufNewFile *.blade.php set filetype=blade
-augroup END
-augroup FILETYPES
-  autocmd FileType markdown let b:indentLine_enabled = 0
-augroup END
-let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } } 
-let g:any_jump_search_prefered_engine = 'ag'
-
-let g:postgres = 'postgres://postgres:password@localhost:5432/'
-let g:database = ''
-function! AddDatabase()
-  let db_name = input('Enter database name: ')
-  call inputrestore()
-  let g:database = g:postgres . db_name
-  redraw
-  echom 'Database URL:' . g:database
-endfun
-
-let g:dbs = {
-\  'dev': g:database
-\ }
-
-let g:coc_global_extensions = ['coc-json', 'coc-syntax', 'coc-omni', 'coc-rust-analyzer', 'coc-solargraph', 'coc-prettier']
 
 lua << EOF
   require('nvim_config')
 EOF
+" Set colorscheme stuff last, after loading lua plugins
+set background=dark
+colorscheme catppuccino
+execute 'hi Search guibg=none guifg=none gui=underline'
+execute 'hi illuminatedWord cterm=italic gui=italic'
