@@ -26,6 +26,7 @@ Plug 'tweekmonster/startuptime.vim'
     Plug 'rstacruz/vim-closer'
     " Type end for me :)
     Plug 'tpope/vim-endwise'
+    Plug 'jiangmiao/auto-pairs'
     " Some usefull stuff for ruby/rails
     Plug 'tpope/vim-rails'
     Plug 'tpope/vim-bundler'
