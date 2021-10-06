@@ -7,6 +7,8 @@ require('telescope').setup({
   })
 require('telescope').load_extension('fzf')
 
+require('diffview').setup({})
+
 require('twilight').setup({})
 
 require("nvim-gps").setup({})

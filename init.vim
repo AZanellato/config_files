@@ -137,6 +137,7 @@ Plug 'tweekmonster/startuptime.vim'
     Plug 'airblade/vim-gitgutter'
     Plug 'rhysd/git-messenger.vim'
     Plug 'tpope/vim-fugitive'
+    Plug 'sindrets/diffview.nvim'
     Plug 'christoomey/vim-conflicted'
   ""
   "" Test stuff 
@@ -356,6 +357,8 @@ nmap <F21> <Plug>MoveLineUp
 
 map f <Plug>Sneak_s
 map F <Plug>Sneak_S
+let g:splitjoin_split_mapping = ''
+let g:splitjoin_join_mapping = ''
 
 " Move between linting errors
 nnoremap <M-n> :ALENextWrap<CR>
@@ -370,7 +373,7 @@ nnoremap <Leader>_ :vsplit <CR>
 nnoremap <Leader>d :call fzf#vim#tags('^' . expand('<cword>'), {'options': '--exact --select-1 --exit-0 +i'})<CR>
 nnoremap <Leader>D :call fzf#vim#tags('^' . expand('<cword>'))<CR>
 nnoremap <Leader>e :e#<CR>
-nnoremap <Leader>p  "+p
+nnoremap <Leader>p  "+p==
 nnoremap <Leader>u :UndotreeToggle<cr>
 nnoremap <Leader>w :w<CR>
 nnoremap <Leader>z :FocusMaximise <CR>
@@ -381,15 +384,15 @@ nnoremap <Leader>bb :Telescope buffers<CR>
 nnoremap <Leader>bl :Gblame<CR>
 nnoremap <Leader>bp obinding.pry<ESC>
 nnoremap <Leader>cb :make build<CR>
-nnoremap <Leader>cc :Clap<CR>
-nnoremap <Leader>cf :Clap files<CR>
+nnoremap <Leader>ce :call CopyError()<CR>
 nnoremap <Leader>cr :Dispatch cargo run<CR>
 nnoremap <Leader>cu :call crates#up() <CR>
-" nnoremap <Leader>ff :Files<CR>
 nnoremap <Leader>ff :Telescope find_files<CR>
 nnoremap <Leader>gg :Git<CR>
 nnoremap <Leader>hh :SidewaysLeft<cr>
+nnoremap <Leader>lj :SplitjoinJoin<cr>
 nnoremap <Leader>ll :SidewaysRight<cr>
+nnoremap <Leader>ls :SplitjoinSplit<cr>
 nnoremap <Leader>nh :noh <CR>
 nnoremap <Leader>op o<ESC>"+p
 nnoremap <Leader>Op  O<ESC>"+p
@@ -453,6 +456,10 @@ function! NvimGps() abort
 	if luaeval("require'nvim-gps'.is_available()") 
     return  luaeval("require'nvim-gps'.get_location()") 
   endif
+endfunction
+
+function! CopyError()
+  let @+ = v:errmsg
 endfunction
 
 function! GitGutterNextHunkCycle()
