@@ -13,7 +13,9 @@ require('twilight').setup({})
 
 require("nvim-gps").setup({})
 
-require("focus").setup({})
+require("focus").setup({
+    excluded_filetypes = {"toggleterm", "vim"},
+  })
 
 require("indent_blankline").setup {
   buftype_exclude = {"terminal"}
@@ -25,7 +27,8 @@ require('shade').setup({
   })
 
 require('wlsample.airline')
-require('wlfloatline').setup()
+-- Great idea, but doesnt work great for now
+-- require('wlfloatline').setup() 
 
 require('nvim-treesitter.configs').setup({
     textobjects = {
