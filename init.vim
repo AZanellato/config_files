@@ -25,7 +25,7 @@ call plug#begin(stdpath('config') . '/plugged')
     Plug 'rstacruz/vim-closer'
     " Type end for me :)
     Plug 'tpope/vim-endwise'
-    Plug 'jiangmiao/auto-pairs'
+    " Plug 'jiangmiao/auto-pairs'
     " Some usefull stuff for ruby/rails
     Plug 'tpope/vim-rails'
     Plug 'tpope/vim-bundler'
@@ -504,3 +504,4 @@ set background=dark
 colorscheme catppuccino
 execute 'hi Search guibg=none guifg=none gui=underline'
 execute 'hi illuminatedWord cterm=italic gui=italic'
+execute 'hi DiffDelete guifg=#f43753 ctermfg=203 guibg=#79313c ctermbg=237 gui=NONE cterm=NONE'

@@ -83,3 +83,12 @@ require'nvim-treesitter.configs'.setup {
     enable = true
   }
 }
+require("catppuccino").setup( 
+    {
+		colorscheme = "dark_catppuccino",
+    integrations = {
+			treesitter = true,
+      }
+    }
+  )
+
