@@ -36,6 +36,8 @@ Plug 'tweekmonster/startuptime.vim'
     Plug 'noahfrederick/vim-laravel'
     " Shortcut to comment anything
     Plug 'tpope/vim-commentary'
+    " Set comment string with treesitter
+    Plug 'JoosepAlviste/nvim-ts-context-commentstring'
     " Surround stuff quickly!
     Plug 'tpope/vim-surround'
     " REPL quickly
