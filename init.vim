@@ -14,7 +14,6 @@ endif
 
 let g:polyglot_disabled = ['reason', 'yaml']
 call plug#begin(stdpath('config') . '/plugged')
-Plug 'tweekmonster/startuptime.vim'
   "" Language stuff
     " Language syntax for every language
     Plug 'sheerun/vim-polyglot'
@@ -141,7 +140,6 @@ Plug 'tweekmonster/startuptime.vim'
     Plug 'rhysd/git-messenger.vim'
     Plug 'tpope/vim-fugitive'
     Plug 'sindrets/diffview.nvim'
-    Plug 'christoomey/vim-conflicted'
   ""
   "" Test stuff 
     " Dispatch tests to tmux
