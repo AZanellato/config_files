@@ -92,3 +92,8 @@ require("catppuccino").setup(
     }
   )
 
+require('neoscroll').setup(
+  {
+    easing_function = "sine"
+  }
+)

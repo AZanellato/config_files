@@ -95,7 +95,7 @@ call plug#begin(stdpath('config') . '/plugged')
     " Plug 'rhysd/clever-f.vim'
     Plug 'justinmk/vim-sneak'
     " What it says on the tin 
-    Plug 'terryma/vim-smooth-scroll'
+    Plug 'karb94/neoscroll.nvim'
     " Repeat any command with . -- even plugins!
     Plug 'tpope/vim-repeat'
     " Command to show leader commands
