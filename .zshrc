@@ -147,6 +147,7 @@ fi
 alias rdoc="rustup docs"
 alias clippy="find . | grep "\.rs$" | xargs touch ; cargo clippy"
 alias rtdb="RAILS_ENV=test rake db:reset"
+alias rgsd="rake graphql:schema:dump"
 alias gbs="git branch --sort=committerdate"
 alias gbS="git branch --sort=-committerdate"
 
