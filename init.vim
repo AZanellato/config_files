@@ -93,7 +93,7 @@ call plug#begin(stdpath('config') . '/plugged')
     Plug 'mbbill/undotree'
     " better f
     " Plug 'rhysd/clever-f.vim'
-    Plug 'justinmk/vim-sneak'
+    Plug 'ggandor/lightspeed.nvim'
     " What it says on the tin 
     Plug 'karb94/neoscroll.nvim'
     " Repeat any command with . -- even plugins!
@@ -356,8 +356,6 @@ vmap <F21> <Plug>MoveBlockUp
 nmap <F20> <Plug>MoveLineDown
 nmap <F21> <Plug>MoveLineUp
 
-map f <Plug>Sneak_s
-map F <Plug>Sneak_S
 let g:splitjoin_split_mapping = ''
 let g:splitjoin_join_mapping = ''
 
@@ -408,9 +406,9 @@ nnoremap <Leader>ral :TestSuite<CR>
 nnoremap <Leader>soi :SourceAndInstall<CR>
 nnoremap <Leader>sor :Source<CR>
 
-nnoremap rcs :TestFile<CR>
-nnoremap rss :TestNearest<CR>
-nnoremap rls :TestLast<CR>
+nnoremap <Leader>rc :TestFile<CR>
+nnoremap <Leader>rs :TestNearest<CR>
+nnoremap <Leader>rl :TestLast<CR>
 nnoremap rsw :GoldenRatioResize<CR>
 nnoremap yfp :YankCurrentFilePath<CR>
 vnoremap <C-c> "+y
@@ -422,9 +420,13 @@ nnoremap mm dd
 
 " SubversiveSubstitute is a motion from a plugin that makes
 " such things as sw substitute a word.
-nmap s <plug>(SubversiveSubstitute)
-nmap ss <plug>(SubversiveSubstituteLine)
-nmap S <plug>(SubversiveSubstituteToEndOfLine)
+nmap s <Plug>(SubversiveSubstitute)
+nmap ss <Plug>(SubversiveSubstituteLine)
+nmap S <Plug>(SubversiveSubstituteToEndOfLine)
+
+map <Leader>s <Plug>Lightspeed_s
+map <Leader>S <Plug>Lightspeed_S
+
 
 nmap scm <Plug>(coc-diagnostic-info)
 nmap sam <Plug>(ale_detail)
