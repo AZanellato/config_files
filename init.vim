@@ -50,6 +50,7 @@ call plug#begin(stdpath('config') . '/plugged')
     Plug 'SmiteshP/nvim-gps' 
     Plug 'nvim-treesitter/nvim-treesitter-textobjects'
     Plug 'nvim-treesitter/nvim-treesitter-refactor'
+    Plug 'rmagatti/goto-preview'
   ""
   "" SQL Stuff
     Plug 'tpope/vim-dadbod'
@@ -155,11 +156,8 @@ call plug#begin(stdpath('config') . '/plugged')
     "Linter :D
     Plug 'w0rp/ale'
   ""
+  Plug 'antoinemadec/FixCursorHold.nvim'
   "" Visual Stuff
-    " UI for Dadbod
-    Plug 'kristijanhusak/vim-dadbod-ui'
-    " Enhanced terminal integration
-    Plug 'wincent/terminus'
     " Start screen
     Plug 'mhinz/vim-startify'
     Plug 'junegunn/rainbow_parentheses.vim'
