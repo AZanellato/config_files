@@ -155,8 +155,8 @@ call plug#begin(stdpath('config') . '/plugged')
     Plug 'wellle/tmux-complete.vim'
     "Linter :D
     Plug 'w0rp/ale'
-  ""
-  Plug 'antoinemadec/FixCursorHold.nvim'
+
+    Plug 'antoinemadec/FixCursorHold.nvim'
   "" Visual Stuff
     " Start screen
     Plug 'mhinz/vim-startify'
