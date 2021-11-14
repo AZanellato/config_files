@@ -251,7 +251,9 @@ endfun
 
 let test#strategy = "neovim"
 
+let g:matchup_matchparen_offscreen = {'method': 'popup'}
 let g:sneak#s_next = 1
+let g:surround_no_insert_mappings = 1
 let g:tmuxcomplete#trigger = 'omnifunc'
 
 let g:yoinkIncludeDeleteOperations=1
@@ -367,6 +369,10 @@ nnoremap <Leader>* :Telescope grep_string<CR>
 vnoremap <Leader>* :<C-u>call VisualStarSearchSet('/', 'raw')<CR>:call fzf#vim#grep('rg --column --line-number --no-heading --color=always --smart-case '.shellescape(@/), 1,)<CR>
 nnoremap <Leader>- :split <CR>
 nnoremap <Leader>_ :vsplit <CR> 
+nmap <C-Left> <plug>(tradewinds-h)
+nmap <C-Down> <plug>(tradewinds-j)
+nmap <C-Up> <plug>(tradewinds-k)
+nmap <C-Right> <plug>(tradewinds-l)
 nnoremap <Leader>d :call fzf#vim#tags('^' . expand('<cword>'), {'options': '--exact --select-1 --exit-0 +i'})<CR>
 nnoremap <Leader>D :call fzf#vim#tags('^' . expand('<cword>'))<CR>
 nnoremap <Leader>e :e#<CR>
@@ -376,9 +382,8 @@ nnoremap <Leader>w :w<CR>
 nnoremap <Leader>z :FocusMaximise <CR>
 nnoremap <Leader>} :call GitGutterNextHunkCycle() <CR>
 nnoremap <Leader>{ :GitGutterPrevHunk <CR>
-" nnoremap <Leader>bb :Buffers <CR> 
 nnoremap <Leader>bb :Telescope buffers<CR>
-nnoremap <Leader>bl :Gblame<CR>
+nnoremap <Leader>bl :Git blame<CR>
 nnoremap <Leader>bp obinding.pry<ESC>
 nnoremap <Leader>cb :make build<CR>
 nnoremap <Leader>ce :call CopyError()<CR>
