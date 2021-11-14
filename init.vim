@@ -25,7 +25,6 @@ call plug#begin(stdpath('config') . '/plugged')
     Plug 'rstacruz/vim-closer'
     " Type end for me :)
     Plug 'tpope/vim-endwise'
-    " Plug 'jiangmiao/auto-pairs'
     " Some usefull stuff for ruby/rails
     Plug 'tpope/vim-rails'
     Plug 'tpope/vim-bundler'
@@ -51,12 +50,12 @@ call plug#begin(stdpath('config') . '/plugged')
     Plug 'nvim-treesitter/nvim-treesitter-textobjects'
     Plug 'nvim-treesitter/nvim-treesitter-refactor'
     Plug 'rmagatti/goto-preview'
-  ""
+
   "" SQL Stuff
     Plug 'tpope/vim-dadbod'
     " Uppercase SQL keywords
     Plug 'alcesleo/vim-uppercase-sql'
-  ""
+
   "" Project explorer
     " Amazing fuzzy finder and global search
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -69,7 +68,7 @@ call plug#begin(stdpath('config') . '/plugged')
     " Jump to definitions
     Plug 'pechorin/any-jump.vim'
     Plug 'renderedtext/vim-elixir-alternative-files'
-  ""
+
   "" Use env vars in vim :)
     Plug 'tpope/vim-dotenv' " Didn't know where else to put it haha
   ""
@@ -131,23 +130,24 @@ call plug#begin(stdpath('config') . '/plugged')
     Plug 'triglav/vim-visual-increment'
     " Enhanced % to recognize language specific bracket open (e.g. if-end) 
     Plug 'andymass/vim-matchup'
+    " Text objects in general
     Plug 'kana/vim-textobj-user'
+    Plug 'kana/vim-textobj-entire'
     Plug 'nelstrom/vim-textobj-rubyblock'
     Plug 'michaeljsmith/vim-indent-object'
-    Plug 'junegunn/vim-easy-align'
   ""
   "" Git stuff
     Plug 'airblade/vim-gitgutter'
     Plug 'rhysd/git-messenger.vim'
     Plug 'tpope/vim-fugitive'
     Plug 'sindrets/diffview.nvim'
-  ""
+  
   "" Test stuff 
     " Dispatch tests to tmux
     Plug 'tpope/vim-dispatch'
     " All the tests frameworks/languages :D
     Plug 'janko/vim-test'
-  ""
+ 
   "" Autocompletion/linting
     " autocompletion engine
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
