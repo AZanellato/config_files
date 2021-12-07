@@ -252,6 +252,7 @@ endfun
 let test#strategy = "neovim"
 
 let g:matchup_matchparen_offscreen = {'method': 'popup'}
+let g:test#neovim#start_normal = 1
 let g:sneak#s_next = 1
 let g:surround_no_insert_mappings = 1
 let g:tmuxcomplete#trigger = 'omnifunc'
@@ -369,10 +370,10 @@ nnoremap <Leader>* :Telescope grep_string<CR>
 vnoremap <Leader>* :<C-u>call VisualStarSearchSet('/', 'raw')<CR>:call fzf#vim#grep('rg --column --line-number --no-heading --color=always --smart-case '.shellescape(@/), 1,)<CR>
 nnoremap <Leader>- :split <CR>
 nnoremap <Leader>_ :vsplit <CR> 
-nmap <C-Left> <plug>(tradewinds-h)
-nmap <C-Down> <plug>(tradewinds-j)
-nmap <C-Up> <plug>(tradewinds-k)
-nmap <C-Right> <plug>(tradewinds-l)
+nmap <M-Left> <plug>(tradewinds-h)
+nmap <M-Down> <plug>(tradewinds-j)
+nmap <M-Up> <plug>(tradewinds-k)
+nmap <M-Right> <plug>(tradewinds-l)
 nnoremap <Leader>d :call fzf#vim#tags('^' . expand('<cword>'), {'options': '--exact --select-1 --exit-0 +i'})<CR>
 nnoremap <Leader>D :call fzf#vim#tags('^' . expand('<cword>'))<CR>
 nnoremap <Leader>e :e#<CR>
@@ -481,9 +482,6 @@ nnoremap <LEFT>   <c-w><
 nnoremap <RIGHT>  <c-w>>
 nnoremap <UP>     <c-w>+
 nnoremap <DOWN>   <c-w>-
-nnoremap <M-Left> :bp<CR>
-nnoremap <M-Right> :bn<CR>
-nnoremap <M-Down> :bd<CR>
 
 autocmd StdinReadPre * let s:std_in=1
 au InsertLeave * set nopaste
