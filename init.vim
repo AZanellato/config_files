@@ -1,5 +1,4 @@
 let vimplug_exists=expand('~/.config/nvim/autoload/plug.vim')
-
 if !filereadable(vimplug_exists)
   if !executable("curl")
     echoerr "You have to install curl or first install vim-plug yourself!"
@@ -17,6 +16,7 @@ call plug#begin(stdpath('config') . '/plugged')
   "" Language stuff
     " Language syntax for every language
     Plug 'sheerun/vim-polyglot'
+    Plug 'Pocco81/AbbrevMan.nvim'
     Plug 'tarekbecker/vim-yaml-formatter'
     " Formatting for Elixir 
     Plug 'mhinz/vim-mix-format'
@@ -508,3 +508,4 @@ colorscheme catppuccino
 execute 'hi Search guibg=none guifg=none gui=underline'
 execute 'hi illuminatedWord cterm=italic gui=italic'
 execute 'hi DiffDelete guifg=#f43753 ctermfg=203 guibg=#79313c ctermbg=237 gui=NONE cterm=NONE'
+

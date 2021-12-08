@@ -5,6 +5,20 @@ require('telescope').setup({
       },
     },
   })
+
+require("abbrev-man").setup({
+	load_natural_dictionaries_at_startup = true,
+	load_programming_dictionaries_at_startup = true,
+	natural_dictionaries = {
+		["nt_en"] = {
+      ["copmany"] = "company",
+      ["comapny"] = "company",
+      ["trhough"] = "through",
+      ["acess"] = "access"
+    },
+    ["nt_pt"] = {}
+	},
+})
 require('telescope').load_extension('fzf')
 
 require('diffview').setup({})
