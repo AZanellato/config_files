@@ -27,7 +27,6 @@ plugins=(
   docker-compose
   zsh-autosuggestions
   rust
-  cargo
   rails
   bundler
   ruby
