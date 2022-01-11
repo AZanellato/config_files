@@ -128,3 +128,5 @@ require('goto-preview').setup {
     opacity = nil; -- 0-100 opacity level of the floating window where 100 is fully transparent.
     post_open_hook = nil -- A function taking two arguments, a buffer and a window to be ran as a hook.
   }
+
+require('Comment').setup()

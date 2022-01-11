@@ -33,7 +33,7 @@ call plug#begin(stdpath('config') . '/plugged')
     Plug 'noahfrederick/vim-composer'
     Plug 'noahfrederick/vim-laravel'
     " Shortcut to comment anything
-    Plug 'tpope/vim-commentary'
+    Plug 'numToStr/Comment.nvim'
     " Set comment string with treesitter
     Plug 'JoosepAlviste/nvim-ts-context-commentstring'
     " Surround stuff quickly!
