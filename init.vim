@@ -162,7 +162,6 @@ call plug#begin(stdpath('config') . '/plugged')
     Plug 'mhinz/vim-startify'
     Plug 'junegunn/rainbow_parentheses.vim'
     Plug 'machakann/vim-highlightedyank'
-    Plug 'sunjon/shade.nvim'
     Plug 'lukas-reineke/indent-blankline.nvim'
     " Plug 'vim-airline/vim-airline'
     Plug 'windwp/windline.nvim'
@@ -509,3 +508,5 @@ execute 'hi Search guibg=none guifg=none gui=underline'
 execute 'hi illuminatedWord cterm=italic gui=italic'
 execute 'hi DiffDelete guifg=#f43753 ctermfg=203 guibg=#79313c ctermbg=237 gui=NONE cterm=NONE'
 
+hi InactiveWindow guibg=#5f5f75 guifg=#5f5f75
+set winhighlight=Normal:ActiveWindow,NormalNC:InactiveWindow

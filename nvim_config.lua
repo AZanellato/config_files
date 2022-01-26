@@ -35,14 +35,6 @@ require("indent_blankline").setup {
   buftype_exclude = {"terminal"}
 }
 
-require('shade').setup({
-    overlay_opacity = 50,
-    opacity_step = 1,
-    keys = {
-      toggle = '<F12>',
-    }
-  })
-
 require('wlsample.airline')
 -- Great idea, but doesnt work great for now
 -- require('wlfloatline').setup() 
