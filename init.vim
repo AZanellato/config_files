@@ -163,12 +163,13 @@ call plug#begin(stdpath('config') . '/plugged')
     Plug 'junegunn/rainbow_parentheses.vim'
     Plug 'machakann/vim-highlightedyank'
     Plug 'lukas-reineke/indent-blankline.nvim'
-    " Plug 'vim-airline/vim-airline'
     Plug 'windwp/windline.nvim'
     Plug 'RRethy/vim-illuminate'
     Plug 'ryanoasis/vim-devicons' 
     Plug 'kyazdani42/nvim-web-devicons'
+    Plug 'sunjon/shade.nvim'
     "" Themes!
+      Plug 'rebelot/kanagawa.nvim'
       Plug 'Rigellute/rigel'
       Plug 'bluz71/vim-nightfly-guicolors'
       Plug 'chase/focuspoint-vim'
@@ -503,10 +504,11 @@ lua << EOF
 EOF
 " Set colorscheme stuff last, after loading lua plugins
 set background=dark
-colorscheme catppuccino
+" colorscheme catppuccino
+colorscheme kanagawa
 execute 'hi Search guibg=none guifg=none gui=underline'
 execute 'hi illuminatedWord cterm=italic gui=italic'
 execute 'hi DiffDelete guifg=#f43753 ctermfg=203 guibg=#79313c ctermbg=237 gui=NONE cterm=NONE'
 
-hi InactiveWindow guibg=#5f5f75 guifg=#5f5f75
-set winhighlight=Normal:ActiveWindow,NormalNC:InactiveWindow
+" hi InactiveWindow guibg=#5f5f75 guifg=#5f5f75
+" set winhighlight=Normal:ActiveWindow,NormalNC:InactiveWindow
