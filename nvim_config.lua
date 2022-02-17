@@ -123,15 +123,15 @@ require('goto-preview').setup {
 
 require('Comment').setup()
 
-require'shade'.setup({
-  overlay_opacity = 50,
-  opacity_step = 1,
-  keys = {
-    brightness_up    = '<C-Up>',
-    brightness_down  = '<C-Down>',
-    toggle           = '<F12>',
-  }
-})
+-- require'shade'.setup({
+--   overlay_opacity = 50,
+--   opacity_step = 1,
+--   keys = {
+--     brightness_up    = '<C-Up>',
+--     brightness_down  = '<C-Down>',
+--     toggle           = '<F12>',
+--   }
+-- })
 
 require('kanagawa').setup({
     undercurl = true,           -- enable undercurls
