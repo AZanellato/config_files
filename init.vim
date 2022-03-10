@@ -170,23 +170,18 @@ call plug#begin(stdpath('config') . '/plugged')
     Plug 'sunjon/shade.nvim'
     "" Themes!
       Plug 'rebelot/kanagawa.nvim'
-      Plug 'Rigellute/rigel'
       Plug 'bluz71/vim-nightfly-guicolors'
-      Plug 'chase/focuspoint-vim'
-      Plug 'danilo-augusto/vim-afterglow'
       Plug 'drewtempelmeyer/palenight.vim'
       Plug 'endel/vim-github-colorscheme'
-      Plug 'kristijanhusak/vim-hybrid-material'
       Plug 'neutaaaaan/iosvkem'
-      Plug 'rakr/vim-one'
       Plug 'rakr/vim-two-firewatch'
       Plug 'EdenEast/nightfox.nvim'
-      Plug 'sts10/vim-pink-moon'
-      Plug 'folke/tokyonight.nvim'
       Plug 'sjl/badwolf'
-      Plug 'toupeira/vim-desertink'
       Plug 'Pocco81/Catppuccino.nvim'
     ""
+
+    "" Wiki/Todo
+    Plug 'renerocksai/telekasten.nvim'
   ""
 call plug#end()
 
@@ -504,7 +499,6 @@ lua << EOF
 EOF
 " Set colorscheme stuff last, after loading lua plugins
 set background=dark
-" colorscheme catppuccino
 colorscheme kanagawa
 execute 'hi Search guibg=none guifg=none gui=underline'
 execute 'hi illuminatedWord cterm=italic gui=italic'
