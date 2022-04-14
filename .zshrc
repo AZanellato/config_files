@@ -78,6 +78,13 @@ function reb-main() {
   git checkout - && 
   git rebase main
 }
+function branch-from() {
+local source_name="$1"
+local branch_name="$2"
+  git checkout $source_name &&
+    git pull &&
+    git checkout -b $branch_name
+}
 
 function reb-branch() {
   local branch="$1"
