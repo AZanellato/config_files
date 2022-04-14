@@ -163,7 +163,8 @@ call plug#begin(stdpath('config') . '/plugged')
     Plug 'junegunn/rainbow_parentheses.vim'
     Plug 'machakann/vim-highlightedyank'
     Plug 'lukas-reineke/indent-blankline.nvim'
-    Plug 'windwp/windline.nvim'
+    Plug 'vim-airline/vim-airline'
+    Plug 'vim-airline/vim-airline-themes'
     Plug 'RRethy/vim-illuminate'
     Plug 'ryanoasis/vim-devicons' 
     Plug 'kyazdani42/nvim-web-devicons'
@@ -506,3 +507,4 @@ execute 'hi DiffDelete guifg=#f43753 ctermfg=203 guibg=#79313c ctermbg=237 gui=N
 
 " hi InactiveWindow guibg=#5f5f75 guifg=#5f5f75
 " set winhighlight=Normal:ActiveWindow,NormalNC:InactiveWindow
+set laststatus=3

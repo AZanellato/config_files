@@ -35,10 +35,6 @@ require("indent_blankline").setup {
   buftype_exclude = {"terminal"}
 }
 
-require('wlsample.airline')
--- Great idea, but doesnt work great for now
--- require('wlfloatline').setup() 
-
 require('nvim-treesitter.configs').setup({
     textobjects = {
       select = {
