@@ -38,6 +38,8 @@ call plug#begin(stdpath('config') . '/plugged')
     Plug 'JoosepAlviste/nvim-ts-context-commentstring'
     " Surround stuff quickly!
     Plug 'tpope/vim-surround'
+    " Expand/shrink visual selection
+    Plug 'terryma/vim-expand-region'
     " REPL quickly
     Plug 'rhysd/reply.vim'
     " Check versions of packages from crates.io
@@ -361,6 +363,7 @@ nnoremap <M-n> :ALENextWrap<CR>
 nnoremap <M-p> :ALEPreviousWrap<CR>
 nnoremap <Leader><CR> o<ESC>
 nnoremap <Leader>/ :Rg 
+nnoremap <Leader>m m 
 " nnoremap <Leader>* :Rg <C-r><C-w><CR>
 nnoremap <Leader>* :Telescope grep_string<CR>
 vnoremap <Leader>* :<C-u>call VisualStarSearchSet('/', 'raw')<CR>:call fzf#vim#grep('rg --column --line-number --no-heading --color=always --smart-case '.shellescape(@/), 1,)<CR>
@@ -386,7 +389,7 @@ nnoremap <Leader>cb :make build<CR>
 nnoremap <Leader>ce :call CopyError()<CR>
 nnoremap <Leader>cr :Dispatch cargo run<CR>
 nnoremap <Leader>cu :call crates#up() <CR>
-nnoremap <Leader>ff :Telescope find_files<CR>
+nnoremap <Leader>ff :Telescope git_files<CR>
 nnoremap <Leader>gg :Git<CR>
 nnoremap <Leader>hh :SidewaysLeft<cr>
 nnoremap <Leader>lj :SplitjoinJoin<cr>
@@ -454,6 +457,11 @@ inoremap <silent><expr> <c-n> coc#refresh()
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
 nmap <silent> gp <Plug>(coc-diagnostic-prev)
 nmap <silent> gn <Plug>(coc-diagnostic-next)
+
+nmap <Leader>V <Plug>(expand_region_expand)
+nmap <Leader>v <Plug>(expand_region_shrink)
+vmap V <Plug>(expand_region_expand)
+vmap v <Plug>(expand_region_shrink)
 
 function! NvimGps() abort
 	if luaeval("require'nvim-gps'.is_available()") 
