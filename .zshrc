@@ -118,7 +118,7 @@ function dbup(){
   echo "-------------------------------------------------"
   DB_NAME=
   docker stop $(docker ps | grep postgres | awk '{print $1}')
-  $(docker run -p 5432:5432 --restart always -e POSTGRES_PASSWORD=unlock -e POSTGRES_USER=goco -e POSTGRES_DB=goco_io_development -v $(pwd)/.data/${PG_DB}:/var/lib/postgresql/data:delegated postgres:12.9-alpine)
+  $(docker run -p 5432:5432 --restart always -e POSTGRES_PASSWORD=unlock -e POSTGRES_USER=goco -e POSTGRES_DB=goco_io_development -v $(pwd)/.data/${PG_DB}:/var/lib/postgresql/data:delegated postgres:14-alpine)
 }
 
 function gocodbup() {
