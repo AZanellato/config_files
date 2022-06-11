@@ -62,6 +62,7 @@ call plug#begin(stdpath('config') . '/plugged')
     " Amazing fuzzy finder and global search
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
     Plug 'junegunn/fzf.vim'
+    Plug 'ton/vim-bufsurf'
     " competitor to fzf
     Plug 'nvim-lua/plenary.nvim'
     Plug 'nvim-telescope/telescope.nvim'
@@ -462,6 +463,9 @@ nmap <Leader>V <Plug>(expand_region_expand)
 nmap <Leader>v <Plug>(expand_region_shrink)
 vmap V <Plug>(expand_region_expand)
 vmap v <Plug>(expand_region_shrink)
+
+nmap <C-]> <Plug>(buf-surf-forward)
+nmap <C-[> <Plug>(buf-surf-back)
 
 function! NvimGps() abort
 	if luaeval("require'nvim-gps'.is_available()") 
