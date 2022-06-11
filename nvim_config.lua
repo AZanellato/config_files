@@ -144,3 +144,8 @@ require('kanagawa').setup({
     colors = {},
     overrides = {},
 })
+require('nvim-treesitter.configs').setup {
+    endwise = {
+        enable = true,
+    },
+}

@@ -24,7 +24,7 @@ call plug#begin(stdpath('config') . '/plugged')
     " Close brackets for me :)
     Plug 'rstacruz/vim-closer'
     " Type end for me :)
-    Plug 'tpope/vim-endwise'
+    Plug 'RRethy/nvim-treesitter-endwise'
     " Some usefull stuff for ruby/rails
     Plug 'tpope/vim-rails'
     Plug 'tpope/vim-bundler'
@@ -39,7 +39,7 @@ call plug#begin(stdpath('config') . '/plugged')
     " Surround stuff quickly!
     Plug 'tpope/vim-surround'
     " Expand/shrink visual selection
-    Plug 'terryma/vim-expand-region'
+    Plug 'gcmt/wildfire.vim'
     " REPL quickly
     Plug 'rhysd/reply.vim'
     " Check versions of packages from crates.io
@@ -183,9 +183,6 @@ call plug#begin(stdpath('config') . '/plugged')
       Plug 'sjl/badwolf'
       Plug 'Pocco81/Catppuccino.nvim'
     ""
-
-    "" Wiki/Todo
-    Plug 'renerocksai/telekasten.nvim'
   ""
 call plug#end()
 
@@ -391,6 +388,7 @@ nnoremap <Leader>ce :call CopyError()<CR>
 nnoremap <Leader>cr :Dispatch cargo run<CR>
 nnoremap <Leader>cu :call crates#up() <CR>
 nnoremap <Leader>ff :Telescope git_files<CR>
+nnoremap <Leader>fl :Telescope find_files<CR>
 nnoremap <Leader>gg :Git<CR>
 nnoremap <Leader>hh :SidewaysLeft<cr>
 nnoremap <Leader>lj :SplitjoinJoin<cr>
