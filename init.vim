@@ -462,8 +462,8 @@ nmap <Leader>v <Plug>(expand_region_shrink)
 vmap V <Plug>(expand_region_expand)
 vmap v <Plug>(expand_region_shrink)
 
-nmap <C-]> <Plug>(buf-surf-forward)
-nmap <C-[> <Plug>(buf-surf-back)
+nmap <A-]> <Plug>(buf-surf-forward)
+nmap <A-[> <Plug>(buf-surf-back)
 
 function! NvimGps() abort
 	if luaeval("require'nvim-gps'.is_available()") 
