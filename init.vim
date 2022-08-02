@@ -298,7 +298,7 @@ let g:ale_rust_cargo_use_clippy = 1
 let g:ale_linters = {
       \  'javascript': ['eslint'],
       \  'rust': ['analyzer'],
-      \  'ruby': ['brakeman', 'reek', 'rubocop', 'solargraph', 'standardrb'],
+      \  'ruby': ['brakeman', 'reek', 'rubocop', 'solargraph'],
       \}
 let g:ale_sign_error = '>>'
 let g:ale_sign_info = '--'
@@ -374,6 +374,8 @@ nmap <M-Right> <plug>(tradewinds-l)
 nnoremap <Leader>d :call fzf#vim#tags('^' . expand('<cword>'), {'options': '--exact --select-1 --exit-0 +i'})<CR>
 nnoremap <Leader>D :call fzf#vim#tags('^' . expand('<cword>'))<CR>
 nnoremap <Leader>e :e#<CR>
+nnoremap <Leader>a <Plug>(buf-surf-back)
+nnoremap <Leader>d <Plug>(buf-surf-forward)
 nnoremap <Leader>p  "+p==
 nnoremap <Leader>u :UndotreeToggle<cr>
 nnoremap <Leader>w :w<CR>
