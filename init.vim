@@ -181,7 +181,7 @@ call plug#begin(stdpath('config') . '/plugged')
       Plug 'rakr/vim-two-firewatch'
       Plug 'EdenEast/nightfox.nvim'
       Plug 'sjl/badwolf'
-      Plug 'Pocco81/Catppuccino.nvim'
+      Plug 'Pocco81/true-zen.nvim'
     ""
   ""
 call plug#end()

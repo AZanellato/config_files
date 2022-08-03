@@ -92,15 +92,6 @@ require'nvim-treesitter.configs'.setup {
     enable = true
   }
 }
-require("catppuccino").setup( 
-    {
-		colorscheme = "dark_catppuccino",
-    integrations = {
-			treesitter = true,
-      }
-    }
-  )
-
 require('neoscroll').setup(
   {
     easing_function = "sine"
