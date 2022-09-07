@@ -111,6 +111,8 @@ call plug#begin(stdpath('config') . '/plugged')
     Plug 'svermeulen/vim-cutlass'
     " Substitute text with motions!
     Plug 'svermeulen/vim-subversive'
+    " Cycle through words (like true/false, if/unless, etc)
+    Plug 'zef/vim-cycle'
     " Exchange words with motions!
     Plug 'tommcdo/vim-exchange'
     " Registers stuff
@@ -182,7 +184,10 @@ call plug#begin(stdpath('config') . '/plugged')
       Plug 'EdenEast/nightfox.nvim'
       Plug 'sjl/badwolf'
       Plug 'Pocco81/true-zen.nvim'
+      Plug 'folke/zen-mode.nvim'
     ""
+    " For writing :)
+    Plug 'rhysd/vim-grammarous'
   ""
 call plug#end()
 
@@ -298,7 +303,7 @@ let g:ale_rust_cargo_use_clippy = 1
 let g:ale_linters = {
       \  'javascript': ['eslint'],
       \  'rust': ['analyzer'],
-      \  'ruby': ['brakeman', 'reek', 'rubocop', 'solargraph'],
+      \  'ruby': ['reek', 'rubocop', 'solargraph'],
       \}
 let g:ale_sign_error = '>>'
 let g:ale_sign_info = '--'
@@ -313,21 +318,6 @@ augroup FILETYPES
 augroup END
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } } 
 let g:any_jump_search_prefered_engine = 'ag'
-
-let g:postgres = 'postgres://postgres:password@localhost:5432/'
-let g:database = ''
-function! AddDatabase()
-  let db_name = input('Enter database name: ')
-  call inputrestore()
-  let g:database = g:postgres . db_name
-  redraw
-  echom 'Database URL:' . g:database
-endfun
-
-let g:dbs = {
-\  'dev': g:database
-\ }
-
 let g:coc_global_extensions = ['coc-json', 'coc-syntax', 'coc-omni', 'coc-rust-analyzer', 'coc-solargraph', 'coc-prettier']
 
 " Maps
@@ -338,7 +328,6 @@ command! Config :e ~/.vimrc
 command! YankCurrentFilePath let @+ = expand("%")
 command! PrettifyJson %!jq '.'
 command! Source source ~/config_files/init.vim
-command! AddDatabase :call AddDatabase()
 command! -nargs=0 Format :call CocAction('format')
 command! SourceAndInstall source ~/config_files/init.vim <bar> :PlugInstall
 
@@ -379,7 +368,7 @@ nnoremap <Leader>d <Plug>(buf-surf-forward)
 nnoremap <Leader>p  "+p==
 nnoremap <Leader>u :UndotreeToggle<cr>
 nnoremap <Leader>w :w<CR>
-nnoremap <Leader>z :FocusMaximise <CR>
+nnoremap <Leader>z :ZenMode <CR>
 nnoremap <Leader>} :call GitGutterNextHunkCycle() <CR>
 nnoremap <Leader>{ :GitGutterPrevHunk <CR>
 nnoremap <Leader>bb :Telescope buffers<CR>
@@ -390,6 +379,7 @@ nnoremap <Leader>ce :call CopyError()<CR>
 nnoremap <Leader>cr :Dispatch cargo run<CR>
 nnoremap <Leader>cu :call crates#up() <CR>
 nnoremap <Leader>ff :Telescope git_files<CR>
+nnoremap <Leader>fo :TZFocus
 nnoremap <Leader>fl :Telescope find_files<CR>
 nnoremap <Leader>gg :Git<CR>
 nnoremap <Leader>hh :SidewaysLeft<cr>
@@ -441,6 +431,8 @@ nmap p <plug>(YoinkPaste_p)
 nmap P <plug>(YoinkPaste_P)
 nmap <c-n> <plug>(YoinkPostPasteSwapBack)
 nmap <c-p> <plug>(YoinkPostPasteSwapForward)
+nmap [y <plug>(YoinkRotateBack)
+nmap ]y <plug>(YoinkRotateForward)
 
 " Coc stuff to increment vim native commands
 nmap <silent> gd <Plug>(coc-definition)
@@ -512,11 +504,9 @@ lua << EOF
 EOF
 " Set colorscheme stuff last, after loading lua plugins
 set background=dark
+set laststatus=3
 colorscheme kanagawa
 execute 'hi Search guibg=none guifg=none gui=underline'
 execute 'hi illuminatedWord cterm=italic gui=italic'
 execute 'hi DiffDelete guifg=#f43753 ctermfg=203 guibg=#79313c ctermbg=237 gui=NONE cterm=NONE'
 
-" hi InactiveWindow guibg=#5f5f75 guifg=#5f5f75
-" set winhighlight=Normal:ActiveWindow,NormalNC:InactiveWindow
-set laststatus=3
