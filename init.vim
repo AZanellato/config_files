@@ -440,11 +440,16 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
-" Tab is the same as <C-i>. Yep, really.
-inoremap <silent><expr> <C-i> pumvisible() ? coc#_select_confirm() : "<Tab>"
+imap <silent><expr> <C-n>
+      \ coc#pum#visible() ? coc#pum#next(1) :
+      \ coc#refresh()
+inoremap <expr><C-p> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 
-" Use C-n to trigger autocompletion for coc
-inoremap <silent><expr> <c-n> coc#refresh()
+
+function! CheckBackspace() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
 
 " Use gp and gn to navigate diagnostics
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
