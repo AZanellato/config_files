@@ -29,9 +29,6 @@ call plug#begin(stdpath('config') . '/plugged')
     Plug 'tpope/vim-rails'
     Plug 'tpope/vim-bundler'
     Plug 'tpope/vim-rake'
-    " Some usetull stuff for php/laravel
-    Plug 'noahfrederick/vim-composer'
-    Plug 'noahfrederick/vim-laravel'
     " Shortcut to comment anything
     Plug 'numToStr/Comment.nvim'
     " Set comment string with treesitter
@@ -39,22 +36,19 @@ call plug#begin(stdpath('config') . '/plugged')
     " Surround stuff quickly!
     Plug 'tpope/vim-surround'
     " Expand/shrink visual selection
-    Plug 'gcmt/wildfire.vim'
+    Plug 'terryma/vim-expand-region'
     " REPL quickly
     Plug 'rhysd/reply.vim'
     " Check versions of packages from crates.io
     Plug 'mhinz/vim-crates'
     " Try out treesitter and some modules
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  
-    Plug 'folke/twilight.nvim'
     Plug 'nvim-treesitter/playground' 
-    Plug 'SmiteshP/nvim-gps' 
     Plug 'nvim-treesitter/nvim-treesitter-textobjects'
     Plug 'nvim-treesitter/nvim-treesitter-refactor'
     Plug 'rmagatti/goto-preview'
 
   "" SQL Stuff
-    Plug 'tpope/vim-dadbod'
     " Uppercase SQL keywords
     Plug 'alcesleo/vim-uppercase-sql'
 
@@ -71,20 +65,15 @@ call plug#begin(stdpath('config') . '/plugged')
     Plug 'tpope/vim-vinegar'
     " Jump to definitions
     Plug 'pechorin/any-jump.vim'
-    Plug 'renderedtext/vim-elixir-alternative-files'
 
   "" Use env vars in vim :)
     Plug 'tpope/vim-dotenv' " Didn't know where else to put it haha
   ""
   "" Window movements/resizing
-    " Moving windows in a non-weird way
-    Plug 'andymass/vim-tradewinds'
     " Resize window automatically
     Plug 'beauwilliams/focus.nvim'
     " Undo the closing of a window
     Plug 'AndrewRadev/undoquit.vim'
-    " Zoom!
-    Plug 'dhruvasagar/vim-zoom'
     " Tmux integration. YAY :D 
     Plug 'christoomey/vim-tmux-navigator'
   ""
@@ -96,9 +85,7 @@ call plug#begin(stdpath('config') . '/plugged')
     " Visualize the undotree
     Plug 'mbbill/undotree'
     " better f
-    " Plug 'rhysd/clever-f.vim'
     Plug 'ggandor/lightspeed.nvim'
-    Plug 'jinh0/eyeliner.nvim'
     " What it says on the tin 
     Plug 'karb94/neoscroll.nvim'
     " Repeat any command with . -- even plugins!
@@ -117,12 +104,10 @@ call plug#begin(stdpath('config') . '/plugged')
     Plug 'zef/vim-cycle'
     " Exchange words with motions!
     Plug 'tommcdo/vim-exchange'
-    " Registers stuff
+    " Cycle through paste history
     Plug 'svermeulen/vim-yoink'
   ""
   "" Text manipulation
-    " Extract variable
-    Plug 'da-x/name-assign.vim'
     " Change arguments position
     Plug 'AndrewRadev/sideways.vim'
     " Change one liners to multiple and vice-versa
@@ -144,14 +129,12 @@ call plug#begin(stdpath('config') . '/plugged')
     Plug 'michaeljsmith/vim-indent-object'
   ""
   "" Git stuff
-    Plug 'airblade/vim-gitgutter'
+    Plug 'lewis6991/gitsigns.nvim'
     Plug 'rhysd/git-messenger.vim'
     Plug 'tpope/vim-fugitive'
     Plug 'sindrets/diffview.nvim'
   
   "" Test stuff 
-    " Dispatch tests to tmux
-    Plug 'tpope/vim-dispatch'
     " All the tests frameworks/languages :D
     Plug 'janko/vim-test'
  
@@ -165,8 +148,7 @@ call plug#begin(stdpath('config') . '/plugged')
 
     Plug 'antoinemadec/FixCursorHold.nvim'
   "" Visual Stuff
-    " Start screen
-    Plug 'mhinz/vim-startify'
+    Plug 'folke/twilight.nvim'
     Plug 'junegunn/rainbow_parentheses.vim'
     Plug 'machakann/vim-highlightedyank'
     Plug 'lukas-reineke/indent-blankline.nvim'
@@ -179,7 +161,7 @@ call plug#begin(stdpath('config') . '/plugged')
     "" Themes!
       Plug 'rebelot/kanagawa.nvim'
       Plug 'EdenEast/nightfox.nvim'
-      Plug 'catppuccin/nvim', {'as': 'catppuccin', 'do': 'CatppuccinCompile'}
+      Plug 'catppuccin/nvim', {'as': 'catppuccin'}
     ""
     "" Zen modes!
     Plug 'Pocco81/true-zen.nvim'
@@ -280,7 +262,6 @@ let g:airline_mode_map = {
 let g:airline_powerline_fonts = 1
 let g:airline_skip_empty_sections = 1
 let g:airline_section_b = '%{airline#util#wrap(airline#extensions#branch#get_head(),0)[0:40]}'
-let g:airline_section_x= '%{NvimGps()}'
 let g:airline_section_z = ''
 let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
 let g:airline#extensions#wordcount#formatter#default#fmt = '%d w'
@@ -358,12 +339,14 @@ nnoremap <Leader>D :call fzf#vim#tags('^' . expand('<cword>'))<CR>
 nnoremap <Leader>e :e#<CR>
 nnoremap <Leader>a <Plug>(buf-surf-back)
 nnoremap <Leader>d <Plug>(buf-surf-forward)
+nnoremap <Leader>s  <Plug>Lightspeed_s  
+nnoremap <Leader>S  <Plug>Lightspeed_s  
 nnoremap <Leader>p  "+p==
 nnoremap <Leader>u :UndotreeToggle<cr>
 nnoremap <Leader>w :w<CR>
 nnoremap <Leader>z :ZenMode <CR>
-nnoremap <Leader>} :call GitGutterNextHunkCycle() <CR>
-nnoremap <Leader>{ :GitGutterPrevHunk <CR>
+nnoremap <Leader>} :Gitsigns next_hunk <CR>
+nnoremap <Leader>{ :Gitsigns prev_hunk <CR>
 nnoremap <Leader>bb :JABSOpen<CR>
 nnoremap <Leader>bl :Git blame<CR>
 nnoremap <Leader>bp obinding.pry<ESC>
@@ -383,7 +366,6 @@ nnoremap <Leader>nh :noh <CR>
 nnoremap <Leader>op o<ESC>"+p
 nnoremap <Leader>Op  O<ESC>"+p
 nnoremap <Leader>ss :TestNearest<CR>
-nnoremap <Leader>uh :GitGutterUndoHunk <CR>
 nnoremap <Leader>yh :Yanks <CR>
 nnoremap <Leader>alf :ALEFix <CR>
 nnoremap <Leader>aln :ALENextWrap <CR>
@@ -457,23 +439,9 @@ vmap v <Plug>(expand_region_shrink)
 nmap <A-]> <Plug>(buf-surf-forward)
 nmap <A-[> <Plug>(buf-surf-back)
 
-function! NvimGps() abort
-	if luaeval("require'nvim-gps'.is_available()") 
-    return  luaeval("require'nvim-gps'.get_location()") 
-  endif
-endfunction
 
 function! CopyError()
   let @+ = v:errmsg
-endfunction
-
-function! GitGutterNextHunkCycle()
-  let line = line('.')
-  silent! GitGutterNextHunk
-  if line('.') == line
-    1
-    GitGutterNextHunk
-  endif
 endfunction
 
 nnoremap <LEFT>   <c-w><
