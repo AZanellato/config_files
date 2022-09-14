@@ -123,6 +123,43 @@ require('Comment').setup()
 require('kanagawa').setup({
     dimInactive = true,        -- dim inactive window `:h hl-NormalNC`
 })
+
+require('catppuccin').setup({
+  dim_inactive = {
+    enabled = true,
+    shade = "dark",
+    percentage = 0.0,
+  },
+  styles = {
+		comments = { "italic" },
+  },
+  integrations = {
+		coc_nvim = true,
+		gitgutter = true,
+		gitsigns = true,
+		lightspeed = true,
+		lsp_saga = false,
+		lsp_trouble = false,
+		markdown = true,
+		symbols_outline = false,
+		telescope = true,
+		treesitter = true,
+		treesitter_context = true,
+		indent_blankline = {
+			enabled = true,
+			colored_indent_levels = false,
+		},
+	},
+})
+require('nightfox').setup({
+  options = {
+    styles = {
+      comments = "italic",
+    }
+  },
+  dim_inactive = true
+})
+
 require('nvim-treesitter.configs').setup {
     endwise = {
         enable = true,
@@ -130,3 +167,12 @@ require('nvim-treesitter.configs').setup {
 }
 
 require("zen-mode").setup {}
+
+require('jabs').setup {
+  width = 80, -- default 50
+  height = 20, -- default 10
+  border = 'double', -- none, single, double, rounded, solid, shadow, (or an array or
+}
+require('eyeliner').setup{
+  highlight_on_key = true
+}

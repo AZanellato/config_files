@@ -63,6 +63,7 @@ call plug#begin(stdpath('config') . '/plugged')
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
     Plug 'junegunn/fzf.vim'
     Plug 'ton/vim-bufsurf'
+    Plug 'matbme/JABS.nvim'
     " competitor to fzf
     Plug 'nvim-lua/plenary.nvim'
     Plug 'nvim-telescope/telescope.nvim'
@@ -97,6 +98,7 @@ call plug#begin(stdpath('config') . '/plugged')
     " better f
     " Plug 'rhysd/clever-f.vim'
     Plug 'ggandor/lightspeed.nvim'
+    Plug 'jinh0/eyeliner.nvim'
     " What it says on the tin 
     Plug 'karb94/neoscroll.nvim'
     " Repeat any command with . -- even plugins!
@@ -176,16 +178,12 @@ call plug#begin(stdpath('config') . '/plugged')
     Plug 'sunjon/shade.nvim'
     "" Themes!
       Plug 'rebelot/kanagawa.nvim'
-      Plug 'bluz71/vim-nightfly-guicolors'
-      Plug 'drewtempelmeyer/palenight.vim'
-      Plug 'endel/vim-github-colorscheme'
-      Plug 'neutaaaaan/iosvkem'
-      Plug 'rakr/vim-two-firewatch'
       Plug 'EdenEast/nightfox.nvim'
-      Plug 'sjl/badwolf'
-      Plug 'Pocco81/true-zen.nvim'
-      Plug 'folke/zen-mode.nvim'
+      Plug 'catppuccin/nvim', {'as': 'catppuccin', 'do': 'CatppuccinCompile'}
     ""
+    "" Zen modes!
+    Plug 'Pocco81/true-zen.nvim'
+    Plug 'folke/zen-mode.nvim'
     " For writing :)
     Plug 'rhysd/vim-grammarous'
   ""
@@ -331,11 +329,6 @@ command! Source source ~/config_files/init.vim
 command! -nargs=0 Format :call CocAction('format')
 command! SourceAndInstall source ~/config_files/init.vim <bar> :PlugInstall
 
-noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 10)<CR>
-noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 0, 10)<CR>
-noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 0, 10)<CR>
-noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 10)<CR>
-
 imap <C-l> <C-o>dw
 vmap <F20> <Plug>MoveBlockDown
 vmap <F21> <Plug>MoveBlockUp
@@ -371,7 +364,7 @@ nnoremap <Leader>w :w<CR>
 nnoremap <Leader>z :ZenMode <CR>
 nnoremap <Leader>} :call GitGutterNextHunkCycle() <CR>
 nnoremap <Leader>{ :GitGutterPrevHunk <CR>
-nnoremap <Leader>bb :Telescope buffers<CR>
+nnoremap <Leader>bb :JABSOpen<CR>
 nnoremap <Leader>bl :Git blame<CR>
 nnoremap <Leader>bp obinding.pry<ESC>
 nnoremap <Leader>cb :make build<CR>
@@ -379,7 +372,7 @@ nnoremap <Leader>ce :call CopyError()<CR>
 nnoremap <Leader>cr :Dispatch cargo run<CR>
 nnoremap <Leader>cu :call crates#up() <CR>
 nnoremap <Leader>ff :Telescope git_files<CR>
-nnoremap <Leader>fo :TZFocus
+nnoremap <Leader>fo :TZFocus<CR>
 nnoremap <Leader>fl :Telescope find_files<CR>
 nnoremap <Leader>gg :Git<CR>
 nnoremap <Leader>hh :SidewaysLeft<cr>
