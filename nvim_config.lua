@@ -21,13 +21,16 @@ require('jabs').setup {
 }
 require('gitsigns').setup({})
 
-require('telescope').setup({
+require('telescope').setup(
+  {
     defaults = {
       layout_config = {
         horizontal = { width = 0.85 }
       },
     },
-  })
+  }
+)
+
 require('telescope').load_extension('fzf')
 
 require('diffview').setup({})
@@ -109,6 +112,9 @@ require('nightfox').setup(
 
 require('nvim-treesitter.configs').setup(
   {
+    endwise = {
+        enable = true,
+    },
     textobjects = {
       select = {
         enable = true,
@@ -155,8 +161,35 @@ require('nvim-treesitter.configs').setup(
         },
       },
     },
+    highlight = { 
+      enable = true
+    },
     context_commentstring = {
       enable = true
     }
   }
 )
+require('nvim-tundra').setup({
+  transparent_background = false,
+  syntax = {
+    booleans = { bold = true, italic = true },
+    comments = { bold = true, italic = true },
+    constants = { bold = true },
+    numbers = { bold = true },
+    operators = { bold = true },
+    types = { italic = true },
+  },
+  plugins = {
+    lsp = true,
+    treesitter = true,
+    cmp = true,
+    context = true,
+    gitsigns = true,
+    telescope = true,
+  },
+  dim_inactive_windows = {
+    enabled = true,
+    color = require('nvim-tundra.palette.arctic').gray._800,
+  }
+})
+

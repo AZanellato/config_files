@@ -86,6 +86,21 @@ local branch_name="$2"
     git checkout -b $branch_name
 }
 
+function p-branch() { 
+  local branch_name="patch/$1"
+  branch-from prerelease $branch_name
+}
+
+function hf-branch() { 
+  local branch_name="hotfix/$1"
+  branch-from release $branch_name
+}
+
+function m-branch() { 
+  local branch_name="$1"
+  branch-from master $branch_name
+}
+
 function reb-branch() {
   local branch="$1"
   echo $branch

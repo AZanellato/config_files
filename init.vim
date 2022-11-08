@@ -22,7 +22,7 @@ call plug#begin(stdpath('config') . '/plugged')
     Plug 'mhinz/vim-mix-format'
     Plug 'CraneStation/cranelift.vim'
     " Close brackets for me :)
-    Plug 'rstacruz/vim-closer'
+    Plug 'KermitPurple/vim-closer'
     " Type end for me :)
     Plug 'RRethy/nvim-treesitter-endwise'
     " Some usefull stuff for ruby/rails
@@ -160,6 +160,7 @@ call plug#begin(stdpath('config') . '/plugged')
     Plug 'sunjon/shade.nvim'
     "" Themes!
       Plug 'rebelot/kanagawa.nvim'
+      Plug 'sam4llis/nvim-tundra', {'branch': 'dev'}
       Plug 'EdenEast/nightfox.nvim'
       Plug 'catppuccin/nvim', {'as': 'catppuccin'}
     ""
@@ -301,8 +302,6 @@ let g:coc_global_extensions = ['coc-json', 'coc-syntax', 'coc-omni', 'coc-rust-a
 
 " Maps
 
-nnoremap \ :Rg<SPACE>
-
 command! Config :e ~/.vimrc
 command! YankCurrentFilePath let @+ = expand("%")
 command! PrettifyJson %!jq '.'
@@ -323,9 +322,8 @@ let g:splitjoin_join_mapping = ''
 nnoremap <M-n> :ALENextWrap<CR>
 nnoremap <M-p> :ALEPreviousWrap<CR>
 nnoremap <Leader><CR> o<ESC>
-nnoremap <Leader>/ :Rg 
+nnoremap <Leader>/ :Telescope current_buffer_fuzzy_find <CR>
 nnoremap <Leader>m m 
-" nnoremap <Leader>* :Rg <C-r><C-w><CR>
 nnoremap <Leader>* :Telescope grep_string<CR>
 vnoremap <Leader>* :<C-u>call VisualStarSearchSet('/', 'raw')<CR>:call fzf#vim#grep('rg --column --line-number --no-heading --color=always --smart-case '.shellescape(@/), 1,)<CR>
 nnoremap <Leader>- :split <CR>
@@ -334,13 +332,9 @@ nmap <M-Left> <plug>(tradewinds-h)
 nmap <M-Down> <plug>(tradewinds-j)
 nmap <M-Up> <plug>(tradewinds-k)
 nmap <M-Right> <plug>(tradewinds-l)
-nnoremap <Leader>d :call fzf#vim#tags('^' . expand('<cword>'), {'options': '--exact --select-1 --exit-0 +i'})<CR>
-nnoremap <Leader>D :call fzf#vim#tags('^' . expand('<cword>'))<CR>
 nnoremap <Leader>e :e#<CR>
 nnoremap <Leader>a <Plug>(buf-surf-back)
 nnoremap <Leader>d <Plug>(buf-surf-forward)
-nnoremap <Leader>s  <Plug>Lightspeed_s  
-nnoremap <Leader>S  <Plug>Lightspeed_s  
 nnoremap <Leader>p  "+p==
 nnoremap <Leader>u :UndotreeToggle<cr>
 nnoremap <Leader>w :w<CR>
@@ -350,12 +344,13 @@ nnoremap <Leader>{ :Gitsigns prev_hunk <CR>
 nnoremap <Leader>bb :JABSOpen<CR>
 nnoremap <Leader>bl :Git blame<CR>
 nnoremap <Leader>bp obinding.pry<ESC>
+nnoremap <Leader>bo :Telescope buffers <CR>
 nnoremap <Leader>cb :make build<CR>
 nnoremap <Leader>ce :call CopyError()<CR>
 nnoremap <Leader>cr :Dispatch cargo run<CR>
 nnoremap <Leader>cu :call crates#up() <CR>
 nnoremap <Leader>ff :Telescope git_files<CR>
-nnoremap <Leader>fo :TZFocus<CR>
+nnoremap <Leader>fo :TZFocus<CRCRCopyErrConfig>
 nnoremap <Leader>fl :Telescope find_files<CR>
 nnoremap <Leader>gg :Git<CR>
 nnoremap <Leader>hh :SidewaysLeft<cr>
@@ -363,9 +358,9 @@ nnoremap <Leader>lj :SplitjoinJoin<cr>
 nnoremap <Leader>ll :SidewaysRight<cr>
 nnoremap <Leader>ls :SplitjoinSplit<cr>
 nnoremap <Leader>nh :noh <CR>
+nnoremap <Leader>of :Telescope oldfiles<CR>
 nnoremap <Leader>op o<ESC>"+p
 nnoremap <Leader>Op  O<ESC>"+p
-nnoremap <Leader>ss :TestNearest<CR>
 nnoremap <Leader>yh :Yanks <CR>
 nnoremap <Leader>alf :ALEFix <CR>
 nnoremap <Leader>aln :ALENextWrap <CR>
@@ -378,9 +373,11 @@ nnoremap <Leader>sor :Source<CR>
 nnoremap <Leader>rc :TestFile<CR>
 nnoremap <Leader>rs :TestNearest<CR>
 nnoremap <Leader>rl :TestLast<CR>
-nnoremap rsw :GoldenRatioResize<CR>
 nnoremap yfp :YankCurrentFilePath<CR>
+nnoremap ç  <Plug>Lightspeed_s  
+nnoremap Ç  <Plug>Lightspeed_s  
 vnoremap <C-c> "+y
+
 
 " Use M to cut instead of D
 nnoremap m d
