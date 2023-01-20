@@ -12,8 +12,6 @@ require("abbrev-man").setup({
 	},
 })
 
-require("zen-mode").setup({})
-
 require('jabs').setup {
   width = 80, -- default 50
   height = 20, -- default 10
@@ -70,45 +68,6 @@ require('Comment').setup()
 require('kanagawa').setup({
     dimInactive = true,        -- dim inactive window `:h hl-NormalNC`
 })
-
-require('catppuccin').setup({
-  dim_inactive = {
-    enabled = true,
-    shade = "dark",
-    percentage = 0.0,
-  },
-  styles = {
-		comments = { "italic" },
-  },
-  integrations = {
-		coc_nvim = true,
-		gitgutter = true,
-		gitsigns = true,
-		lightspeed = true,
-		lsp_saga = false,
-		lsp_trouble = false,
-		markdown = true,
-		symbols_outline = false,
-		telescope = true,
-		treesitter = true,
-		treesitter_context = true,
-		indent_blankline = {
-			enabled = true,
-			colored_indent_levels = false,
-		},
-	},
-})
-
-require('nightfox').setup(
-  {
-    options = {
-      styles = {
-        comments = "italic",
-      }
-    },
-    dim_inactive = true
-  }
-)
 
 require('nvim-treesitter.configs').setup(
   {
@@ -169,27 +128,49 @@ require('nvim-treesitter.configs').setup(
     }
   }
 )
-require('nvim-tundra').setup({
-  transparent_background = false,
-  syntax = {
-    booleans = { bold = true, italic = true },
-    comments = { bold = true, italic = true },
-    constants = { bold = true },
-    numbers = { bold = true },
-    operators = { bold = true },
-    types = { italic = true },
-  },
-  plugins = {
-    lsp = true,
-    treesitter = true,
-    cmp = true,
-    context = true,
-    gitsigns = true,
-    telescope = true,
-  },
-  dim_inactive_windows = {
-    enabled = true,
-    color = require('nvim-tundra.palette.arctic').gray._800,
-  }
+local wilder = require('wilder')
+wilder.setup({modes = {':'}})
+wilder.set_option('use_python_remote_plugin', 0)
+
+wilder.set_option('pipeline', {
+  wilder.branch(
+    wilder.cmdline_pipeline({
+      fuzzy = 1,
+      fuzzy_filter = wilder.lua_fzy_filter(),
+    }),
+    wilder.vim_search_pipeline()
+  )
 })
 
+
+wilder.set_option('renderer', wilder.popupmenu_renderer(
+    wilder.popupmenu_palette_theme({
+        border = 'rounded',
+        max_height = '65%',      -- max height of the palette
+        min_height = 0,          -- set to the same as 'max_height' for a fixed height window
+        prompt_position = 'bottom', -- 'top' or 'bottom' to set the location of the prompt
+        reverse = 0,             -- set to 1 to reverse the order of the list, use in combination with 'prompt_position'
+        highlighter = {
+          wilder.lua_pcre2_highlighter(), -- requires `luarocks install pcre2`
+          wilder.lua_fzy_highlighter(),   -- requires fzy-lua-native vim plugin found
+        },
+        pumblend = 20,
+        highlights = {
+          accent = wilder.make_hl('WilderAccent', 'Pmenu', {{a = 1}, {a = 1}, {foreground = '#f4468f'}}),
+        },
+      })
+  ))
+
+require('git-conflict').setup()
+require('mini.move').setup()
+require('sibling-swap').setup({
+    use_default_keymaps = true,
+    keymaps = {
+      ['<space>ll'] = 'swap_with_right_with_opp',
+      ['<space>hh'] = 'swap_with_left_with_opp',
+    },
+  })
+
+require("oil").setup()
+vim.keymap.set("n", "-", require("oil").open, { desc = "Open parent directory" })
+require("mini.cursorword").setup()

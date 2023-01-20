@@ -11,13 +11,18 @@ if !filereadable(vimplug_exists)
   autocmd VimEnter * PlugInstall
 endif
 
+function! UpdateRemotePlugins(...)
+    " Needed to refresh runtime files
+    let &rtp=&rtp
+    UpdateRemotePlugins
+  endfunction
+
 let g:polyglot_disabled = ['reason', 'yaml']
 call plug#begin(stdpath('config') . '/plugged')
   "" Language stuff
     " Language syntax for every language
     Plug 'sheerun/vim-polyglot'
     Plug 'Pocco81/AbbrevMan.nvim'
-    Plug 'tarekbecker/vim-yaml-formatter'
     " Formatting for Elixir 
     Plug 'mhinz/vim-mix-format'
     Plug 'CraneStation/cranelift.vim'
@@ -33,12 +38,10 @@ call plug#begin(stdpath('config') . '/plugged')
     Plug 'numToStr/Comment.nvim'
     " Set comment string with treesitter
     Plug 'JoosepAlviste/nvim-ts-context-commentstring'
-    " Surround stuff quickly!
+    " Surround stuff quickly
     Plug 'tpope/vim-surround'
     " Expand/shrink visual selection
     Plug 'terryma/vim-expand-region'
-    " REPL quickly
-    Plug 'rhysd/reply.vim'
     " Check versions of packages from crates.io
     Plug 'mhinz/vim-crates'
     " Try out treesitter and some modules
@@ -48,6 +51,7 @@ call plug#begin(stdpath('config') . '/plugged')
     Plug 'nvim-treesitter/nvim-treesitter-refactor'
     Plug 'rmagatti/goto-preview'
 
+    Plug 'johann2357/nvim-smartbufs'
   "" SQL Stuff
     " Uppercase SQL keywords
     Plug 'alcesleo/vim-uppercase-sql'
@@ -56,18 +60,18 @@ call plug#begin(stdpath('config') . '/plugged')
     " Amazing fuzzy finder and global search
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
     Plug 'junegunn/fzf.vim'
+    Plug 'romgrk/fzy-lua-native'
     Plug 'ton/vim-bufsurf'
     Plug 'matbme/JABS.nvim'
+    Plug 'gelguy/wilder.nvim',  { 'do': function('UpdateRemotePlugins') }
     " competitor to fzf
     Plug 'nvim-lua/plenary.nvim'
     Plug 'nvim-telescope/telescope.nvim'
     Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
-    Plug 'tpope/vim-vinegar'
+    " Directory explorer
+    Plug 'stevearc/oil.nvim'
     " Jump to definitions
     Plug 'pechorin/any-jump.vim'
-
-  "" Use env vars in vim :)
-    Plug 'tpope/vim-dotenv' " Didn't know where else to put it haha
   ""
   "" Window movements/resizing
     " Resize window automatically
@@ -88,12 +92,14 @@ call plug#begin(stdpath('config') . '/plugged')
     Plug 'ggandor/lightspeed.nvim'
     " What it says on the tin 
     Plug 'karb94/neoscroll.nvim'
-    " Repeat any command with . -- even plugins!
+    " Repeat any command with . 
     Plug 'tpope/vim-repeat'
     " Command to show leader commands
     Plug 'derekprior/vim-leaders'
     " Interact with output of commands
     Plug 'AndrewRadev/bufferize.vim'
+    " Move between ident levels 
+    Plug 'jeetsukumaran/vim-indentwise'
   ""
   "" Copy/Move/Paste changes
     " Make delete actually delete instead of cut
@@ -108,12 +114,12 @@ call plug#begin(stdpath('config') . '/plugged')
     Plug 'svermeulen/vim-yoink'
   ""
   "" Text manipulation
-    " Change arguments position
-    Plug 'AndrewRadev/sideways.vim'
+    " Change sibilings position
+    Plug 'Wansmer/sibling-swap.nvim'
     " Change one liners to multiple and vice-versa
     Plug 'AndrewRadev/splitjoin.vim'
     " text moving
-    Plug 'matze/vim-move'
+    Plug 'echasnovski/mini.move'
     " Change case types
     Plug 'arthurxavierx/vim-caser'
     " Increment text-objects
@@ -127,12 +133,16 @@ call plug#begin(stdpath('config') . '/plugged')
     Plug 'kana/vim-textobj-entire'
     Plug 'nelstrom/vim-textobj-rubyblock'
     Plug 'michaeljsmith/vim-indent-object'
+    "
+    " Exactly what it says
+    Plug 'fvictorio/vim-extract-variable'
   ""
   "" Git stuff
     Plug 'lewis6991/gitsigns.nvim'
     Plug 'rhysd/git-messenger.vim'
     Plug 'tpope/vim-fugitive'
     Plug 'sindrets/diffview.nvim'
+    Plug 'akinsho/git-conflict.nvim'
   
   "" Test stuff 
     " All the tests frameworks/languages :D
@@ -143,30 +153,23 @@ call plug#begin(stdpath('config') . '/plugged')
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
     " Autocompletion source
     Plug 'wellle/tmux-complete.vim'
-    "Linter :D
+    "Linter
     Plug 'w0rp/ale'
 
-    Plug 'antoinemadec/FixCursorHold.nvim'
   "" Visual Stuff
     Plug 'folke/twilight.nvim'
     Plug 'junegunn/rainbow_parentheses.vim'
     Plug 'machakann/vim-highlightedyank'
     Plug 'lukas-reineke/indent-blankline.nvim'
     Plug 'vim-airline/vim-airline'
-    Plug 'vim-airline/vim-airline-themes'
-    Plug 'RRethy/vim-illuminate'
+    Plug 'echasnovski/mini.cursorword', { 'branch': 'stable' }
     Plug 'ryanoasis/vim-devicons' 
     Plug 'kyazdani42/nvim-web-devicons'
-    Plug 'sunjon/shade.nvim'
     "" Themes!
       Plug 'rebelot/kanagawa.nvim'
-      Plug 'sam4llis/nvim-tundra', {'branch': 'dev'}
-      Plug 'EdenEast/nightfox.nvim'
-      Plug 'catppuccin/nvim', {'as': 'catppuccin'}
     ""
     "" Zen modes!
     Plug 'Pocco81/true-zen.nvim'
-    Plug 'folke/zen-mode.nvim'
     " For writing :)
     Plug 'rhysd/vim-grammarous'
   ""
@@ -262,7 +265,7 @@ let g:airline_mode_map = {
     \ }
 let g:airline_powerline_fonts = 1
 let g:airline_skip_empty_sections = 1
-let g:airline_section_b = '%{airline#util#wrap(airline#extensions#branch#get_head(),0)[0:40]}'
+let g:airline_section_b = '%{airline#util#wrap(airline#extensions#branch#get_head(),0)[0:45]}'
 let g:airline_section_z = ''
 let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
 let g:airline#extensions#wordcount#formatter#default#fmt = '%d w'
@@ -333,12 +336,12 @@ nmap <M-Down> <plug>(tradewinds-j)
 nmap <M-Up> <plug>(tradewinds-k)
 nmap <M-Right> <plug>(tradewinds-l)
 nnoremap <Leader>e :e#<CR>
-nnoremap <Leader>a <Plug>(buf-surf-back)
-nnoremap <Leader>d <Plug>(buf-surf-forward)
+nnoremap <Leader>a :lua require("nvim-smartbufs").goto_next_buffer()<CR>
+nnoremap <Leader>d :lua require("nvim-smartbufs").goto_prev_buffer()<CR>
 nnoremap <Leader>p  "+p==
 nnoremap <Leader>u :UndotreeToggle<cr>
 nnoremap <Leader>w :w<CR>
-nnoremap <Leader>z :ZenMode <CR>
+nnoremap <Leader>z :TZFocus <CR>
 nnoremap <Leader>} :Gitsigns next_hunk <CR>
 nnoremap <Leader>{ :Gitsigns prev_hunk <CR>
 nnoremap <Leader>bb :JABSOpen<CR>
@@ -353,9 +356,10 @@ nnoremap <Leader>ff :Telescope git_files<CR>
 nnoremap <Leader>fo :TZFocus<CRCRCopyErrConfig>
 nnoremap <Leader>fl :Telescope find_files<CR>
 nnoremap <Leader>gg :Git<CR>
-nnoremap <Leader>hh :SidewaysLeft<cr>
+nnoremap <Leader>gm :GitMessenger<CR>
+" nnoremap <Leader>hh :SidewaysLeft<cr>
 nnoremap <Leader>lj :SplitjoinJoin<cr>
-nnoremap <Leader>ll :SidewaysRight<cr>
+" nnoremap <Leader>ll :SidewaysRight<cr>
 nnoremap <Leader>ls :SplitjoinSplit<cr>
 nnoremap <Leader>nh :noh <CR>
 nnoremap <Leader>of :Telescope oldfiles<CR>
@@ -369,13 +373,23 @@ nnoremap <Leader>lft :Format <CR>
 nnoremap <Leader>ral :TestSuite<CR>
 nnoremap <Leader>soi :SourceAndInstall<CR>
 nnoremap <Leader>sor :Source<CR>
+nnoremap <Leader>im :IndentWise
+
+map [p <Plug>(IndentWisePreviousLesserIndent)
+map [= <Plug>(IndentWisePreviousEqualIndent)
+map [n <Plug>(IndentWisePreviousGreaterIndent)
+map ]p <Plug>(IndentWiseNextLesserIndent)
+map ]= <Plug>(IndentWiseNextEqualIndent)
+map ]n <Plug>(IndentWiseNextGreaterIndent)
+map [_ <Plug>(IndentWisePreviousAbsoluteIndent)
+map ]_ <Plug>(IndentWiseNextAbsoluteIndent)
+map [b <Plug>(IndentWiseBlockScopeBoundaryBegin)
+map ]e <Plug>(IndentWiseBlockScopeBoundaryEnd)
 
 nnoremap <Leader>rc :TestFile<CR>
 nnoremap <Leader>rs :TestNearest<CR>
 nnoremap <Leader>rl :TestLast<CR>
 nnoremap yfp :YankCurrentFilePath<CR>
-nnoremap ç  <Plug>Lightspeed_s  
-nnoremap Ç  <Plug>Lightspeed_s  
 vnoremap <C-c> "+y
 
 
@@ -433,18 +447,11 @@ nmap <Leader>v <Plug>(expand_region_shrink)
 vmap V <Plug>(expand_region_expand)
 vmap v <Plug>(expand_region_shrink)
 
-nmap <A-]> <Plug>(buf-surf-forward)
-nmap <A-[> <Plug>(buf-surf-back)
-
 
 function! CopyError()
   let @+ = v:errmsg
 endfunction
 
-nnoremap <LEFT>   <c-w><
-nnoremap <RIGHT>  <c-w>>
-nnoremap <UP>     <c-w>+
-nnoremap <DOWN>   <c-w>-
 
 autocmd StdinReadPre * let s:std_in=1
 au InsertLeave * set nopaste
@@ -461,7 +468,6 @@ autocmd BufRead Cargo.toml call crates#toggle()
 au! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml foldmethod=indent
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 autocmd BufWritePost *.rs normal! zv
-
 lua << EOF
   require('nvim_config')
 EOF
@@ -472,4 +478,3 @@ colorscheme kanagawa
 execute 'hi Search guibg=none guifg=none gui=underline'
 execute 'hi illuminatedWord cterm=italic gui=italic'
 execute 'hi DiffDelete guifg=#f43753 ctermfg=203 guibg=#79313c ctermbg=237 gui=NONE cterm=NONE'
-
