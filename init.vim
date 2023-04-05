@@ -354,6 +354,7 @@ nnoremap <Leader>ff :Telescope git_files<CR>
 nnoremap <Leader>fo :TZFocus<CRCRCopyErrConfig>
 nnoremap <Leader>fl :Telescope find_files<CR>
 nnoremap <Leader>gg :Git<CR>
+nnoremap <Leader>gt :Telescope git_status<CR>
 nnoremap <Leader>gm :GitMessenger<CR>
 " nnoremap <Leader>hh :SidewaysLeft<cr>
 nnoremap <Leader>lj :SplitjoinJoin<cr>
