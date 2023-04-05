@@ -61,6 +61,8 @@ call plug#begin(stdpath('config') . '/plugged')
     Plug 'nvim-telescope/telescope.nvim'
     Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
     Plug 'romgrk/fzy-lua-native'
+    " Project Search & Replace
+    Plug 'nvim-pack/nvim-spectre'
     Plug 'ton/vim-bufsurf'
     Plug 'matbme/JABS.nvim'
     Plug 'gelguy/wilder.nvim',  { 'do': function('UpdateRemotePlugins') }
