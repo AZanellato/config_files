@@ -114,6 +114,13 @@ function reb-branch() {
   fi
 }
 
+function merge-master() {
+  git checkout master &&
+    git pull &&
+    git checkout - &&
+    git merge master
+}
+
 function dbup(){
   if [[ -z $DB_NAME ]] ; then
     CLEAR_DB_NAME=yes
