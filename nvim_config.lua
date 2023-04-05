@@ -171,6 +171,34 @@ require('sibling-swap').setup({
     },
   })
 
-require("oil").setup()
+require("oil").setup({
+    use_default_keymaps = false,
+    keymaps = {
+      ["g?"] = "actions.show_help",
+      ["<CR>"] = "actions.select",
+      ["<C-s>"] = "actions.select_vsplit",
+      ["<C-x>"] = "actions.select_split",
+      ["<C-t>"] = "actions.select_tab",
+      ["<C-p>"] = "actions.preview",
+      ["<C-c>"] = "actions.close",
+      ["<C-r>"] = "actions.refresh",
+      ["-"] = "actions.parent",
+      ["_"] = "actions.open_cwd",
+      ["`"] = "actions.cd",
+      ["~"] = "actions.tcd",
+      ["g."] = "actions.toggle_hidden",
+    },
+  })
 vim.keymap.set("n", "-", require("oil").open, { desc = "Open parent directory" })
 require("mini.cursorword").setup()
+
+require('spectre').setup({
+    open_cmd = 'new',
+    mapping={
+      ['toggle_line'] = {
+        map = "D",
+        cmd = "<cmd>lua require('spectre').toggle_line()<CR>",
+        desc = "toggle current item"
+      },
+    }
+  })
