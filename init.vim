@@ -58,16 +58,14 @@ call plug#begin(stdpath('config') . '/plugged')
 
   "" Project explorer
     " Amazing fuzzy finder and global search
-    Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-    Plug 'junegunn/fzf.vim'
+    Plug 'nvim-telescope/telescope.nvim'
+    Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
     Plug 'romgrk/fzy-lua-native'
     Plug 'ton/vim-bufsurf'
     Plug 'matbme/JABS.nvim'
     Plug 'gelguy/wilder.nvim',  { 'do': function('UpdateRemotePlugins') }
-    " competitor to fzf
+    " Used by other neovim Plugins
     Plug 'nvim-lua/plenary.nvim'
-    Plug 'nvim-telescope/telescope.nvim'
-    Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
     " Directory explorer
     Plug 'stevearc/oil.nvim'
     " Jump to definitions
@@ -244,10 +242,10 @@ let g:tmuxcomplete#trigger = 'omnifunc'
 
 let g:yoinkIncludeDeleteOperations=1
 
-let g:fzf_action = {
-      \ 'ctrl-t': 'tab split',
-      \ 'ctrl-s': 'split',
-      \ 'ctrl-v': 'vsplit' }
+" let g:fzf_action = {
+"       \ 'ctrl-t': 'tab split',
+"       \ 'ctrl-s': 'split',
+"       \ 'ctrl-v': 'vsplit' }
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {}
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['ex'] = ''
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['exs'] = ''
@@ -299,7 +297,7 @@ augroup END
 augroup FILETYPES
   autocmd FileType markdown let b:indentLine_enabled = 0
 augroup END
-let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } } 
+" let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } } 
 let g:any_jump_search_prefered_engine = 'ag'
 let g:coc_global_extensions = ['coc-json', 'coc-syntax', 'coc-omni', 'coc-rust-analyzer', 'coc-solargraph', 'coc-prettier']
 
