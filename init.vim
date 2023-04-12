@@ -163,7 +163,7 @@ call plug#begin(stdpath('config') . '/plugged')
     Plug 'machakann/vim-highlightedyank'
     Plug 'lukas-reineke/indent-blankline.nvim'
     Plug 'vim-airline/vim-airline'
-    Plug 'echasnovski/mini.cursorword', { 'branch': 'stable' }
+    Plug 'echasnovski/mini.cursorword', { 'branch': 'main' }
     Plug 'ryanoasis/vim-devicons' 
     Plug 'kyazdani42/nvim-web-devicons'
     "" Themes!
@@ -328,6 +328,7 @@ nnoremap <M-p> :ALEPreviousWrap<CR>
 nnoremap <Leader><CR> o<ESC>
 nnoremap <Leader>/ :Telescope current_buffer_fuzzy_find <CR>
 nnoremap <Leader>m m 
+nnoremap <Leader>? :Telescope live_grep<CR>
 nnoremap <Leader>* :Telescope grep_string<CR>
 vnoremap <Leader>* :<C-u>call VisualStarSearchSet('/', 'raw')<CR>:call fzf#vim#grep('rg --column --line-number --no-heading --color=always --smart-case '.shellescape(@/), 1,)<CR>
 nnoremap <Leader>- :split <CR>
