@@ -162,6 +162,8 @@ call plug#begin(stdpath('config') . '/plugged')
     Plug 'junegunn/rainbow_parentheses.vim'
     Plug 'machakann/vim-highlightedyank'
     Plug 'lukas-reineke/indent-blankline.nvim'
+    Plug 'ecthelionvi/NeoColumn.nvim'
+    Plug 'ecthelionvi/NeoComposer.nvim'
     Plug 'vim-airline/vim-airline'
     Plug 'echasnovski/mini.cursorword', { 'branch': 'main' }
     Plug 'ryanoasis/vim-devicons' 
@@ -346,6 +348,9 @@ nnoremap <Leader>w :w<CR>
 nnoremap <Leader>z :TZFocus <CR>
 nnoremap <Leader>} :Gitsigns next_hunk <CR>
 nnoremap <Leader>{ :Gitsigns prev_hunk <CR>
+nnoremap <Leader>af :ALEFix <CR>
+nnoremap <Leader>an :ALENextWrap <CR>
+nnoremap <Leader>ap :ALEPreviousWrap <CR>
 nnoremap <Leader>bb :JABSOpen<CR>
 nnoremap <Leader>bl :Git blame<CR>
 nnoremap <Leader>bp obinding.pry<ESC>
@@ -355,28 +360,25 @@ nnoremap <Leader>ce :call CopyError()<CR>
 nnoremap <Leader>cr :Dispatch cargo run<CR>
 nnoremap <Leader>cu :call crates#up() <CR>
 nnoremap <Leader>ff :Telescope git_files<CR>
-nnoremap <Leader>fo :TZFocus<CRCRCopyErrConfig>
+nnoremap <Leader>fo :TZFocus<CR>
 nnoremap <Leader>fl :Telescope find_files<CR>
 nnoremap <Leader>gg :Git<CR>
+nnoremap <Leader>gr :lua require('telescope.builtin').live_grep({search_dirs= {""}})
 nnoremap <Leader>gt :Telescope git_status<CR>
 nnoremap <Leader>gm :GitMessenger<CR>
-" nnoremap <Leader>hh :SidewaysLeft<cr>
 nnoremap <Leader>lj :SplitjoinJoin<cr>
-" nnoremap <Leader>ll :SidewaysRight<cr>
 nnoremap <Leader>ls :SplitjoinSplit<cr>
 nnoremap <Leader>nh :noh <CR>
 nnoremap <Leader>of :Telescope oldfiles<CR>
 nnoremap <Leader>op o<ESC>"+p
 nnoremap <Leader>Op  O<ESC>"+p
+nnoremap <Leader>rc :TestFile<CR>
+nnoremap <Leader>rs :TestNearest<CR>
+nnoremap <Leader>rl :TestLast<CR>
 nnoremap <Leader>yh :Yanks <CR>
-nnoremap <Leader>alf :ALEFix <CR>
-nnoremap <Leader>aln :ALENextWrap <CR>
-nnoremap <Leader>alp :ALEPreviousWrap <CR>
-nnoremap <Leader>lft :Format <CR>
 nnoremap <Leader>ral :TestSuite<CR>
 nnoremap <Leader>soi :SourceAndInstall<CR>
 nnoremap <Leader>sor :Source<CR>
-nnoremap <Leader>im :IndentWise
 
 map [p <Plug>(IndentWisePreviousLesserIndent)
 map [= <Plug>(IndentWisePreviousEqualIndent)
@@ -389,9 +391,6 @@ map ]_ <Plug>(IndentWiseNextAbsoluteIndent)
 map [b <Plug>(IndentWiseBlockScopeBoundaryBegin)
 map ]e <Plug>(IndentWiseBlockScopeBoundaryEnd)
 
-nnoremap <Leader>rc :TestFile<CR>
-nnoremap <Leader>rs :TestNearest<CR>
-nnoremap <Leader>rl :TestLast<CR>
 nnoremap yfp :YankCurrentFilePath<CR>
 vnoremap <C-c> "+y
 
@@ -410,9 +409,6 @@ nmap S <Plug>(SubversiveSubstituteToEndOfLine)
 map <Leader>s <Plug>Lightspeed_s
 map <Leader>S <Plug>Lightspeed_S
 
-
-nmap scm <Plug>(coc-diagnostic-info)
-nmap sam <Plug>(ale_detail)
 
 " Scrolling through yank history with c-n and c-p
 " It needs the p to paste with the plugin first
@@ -434,11 +430,6 @@ imap <silent><expr> <C-n>
       \ coc#refresh()
 inoremap <expr><C-p> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 
-
-function! CheckBackspace() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
 
 " Use gp and gn to navigate diagnostics
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.

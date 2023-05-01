@@ -236,3 +236,10 @@ require('spectre').setup({
       },
     }
   })
+
+require("NeoColumn").setup({
+  NeoColumn = "120",
+  always_on = true,
+  custom_NeoColumn = {},
+  excluded_ft = { "text", "markdown" },
+  })
