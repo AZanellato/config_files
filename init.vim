@@ -89,7 +89,7 @@ call plug#begin(stdpath('config') . '/plugged')
     " Visualize the undotree
     Plug 'mbbill/undotree'
     " better f
-    Plug 'ggandor/lightspeed.nvim'
+    Plug 'jinh0/eyeliner.nvim'
     " What it says on the tin 
     Plug 'karb94/neoscroll.nvim'
     " Repeat any command with . 

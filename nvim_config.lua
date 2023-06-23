@@ -243,3 +243,8 @@ require("NeoColumn").setup({
   custom_NeoColumn = {},
   excluded_ft = { "text", "markdown" },
   })
+
+require'eyeliner'.setup({
+  highlight_on_key = true, 
+  dim = false,
+  })
