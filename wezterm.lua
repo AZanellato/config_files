@@ -50,8 +50,7 @@ config.font_rules = {
   },
 }
 
-
-config.font_size = 13.0
+config.font_size = 16.0
 config.line_height = 1.0
 config.harfbuzz_features = {"cv02", "ss05", "ss07", "ss09"}
 -- These features alter these (in order):
@@ -65,10 +64,14 @@ config.harfbuzz_features = {"cv02", "ss05", "ss07", "ss09"}
 config.enable_tab_bar = false
 config.window_background_opacity = 0.95
 config.window_padding = {
-  left = 0,
-  right = 0,
+  left = 10,
+  right = 10,
   top = 0,
   bottom = 0,
 }
+
+-- config.window_frame = {
+--   border_left_width = '0.5cell',
+-- }
 -- config.window_decorations = "RESIZE"
 return config

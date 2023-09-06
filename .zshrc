@@ -43,6 +43,10 @@ function weather_in() {
   curl wttr.in/$1
 }
 
+function fields_of() {
+  rg "field :" $1 | choose 1 | tr -d ':,' | gsed -E 's/_([a-z])/\U\1/g'
+}
+
 function clima() { wttrcwb }
 function wttrcwb() {
   weather_in Curitiba
@@ -114,11 +118,30 @@ function reb-branch() {
   fi
 }
 
+function merge-branch() { 
+  local branch="$1"
+  echo $branch
+  if [ $branch = '' ]; then
+    echo $(merge-master)
+  else 
+    git checkout $branch &&
+    git pull && 
+    git checkout - && 
+    git merge $branch
+  fi
+}
+
 function merge-master() {
   git checkout master &&
     git pull &&
     git checkout - &&
     git merge master
+}
+
+function merge-base() { 
+  BRANCH_BASE="$(git symbolic-ref HEAD 2>/dev/null | choose -f '/' 2)"
+  if [[ $BRANCH_BASE = "hotfix" ]] ; then 
+  fi 
 }
 
 function dbup(){
@@ -175,10 +198,13 @@ fi
 alias rdoc="rustup docs"
 alias clippy="find . | grep "\.rs$" | xargs touch ; cargo clippy"
 alias rtdb="RAILS_ENV=test rake db:reset"
+alias stdb="RAILS_ENV=test rake db:seed"
 alias rgsd="rake graphql:schema:dump"
 alias gbs="git branch --sort=-committerdate | fzf | xargs git switch"
 alias gbS="git branch --sort=committerdate | fzf | xargs git switch"
-
+alias migrate="rkdm && say migration finished"
+alias viewpr="gh pr view -w"
+alias dolar="curl 'https://economia.awesomeapi.com.br/last/USD-BRL' | jq .USDBRL.bid | tr -d '\"'"
 export BAT_THEME="TwoDark"
 export PATH="$HOME/.rbenv/bin:$PATH"
 export PATH="$HOME/bin:/usr/local/bin:$PATH"

@@ -175,6 +175,8 @@ call plug#begin(stdpath('config') . '/plugged')
     Plug 'Pocco81/true-zen.nvim'
     " For writing :)
     Plug 'rhysd/vim-grammarous'
+    " For nice code screenshots
+    Plug 'segeljakt/vim-silicon'
   ""
 call plug#end()
 
@@ -425,10 +427,10 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
-imap <silent><expr> <C-n>
-      \ coc#pum#visible() ? coc#pum#next(1) :
-      \ coc#refresh()
-inoremap <expr><C-p> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+" imap <silent><expr> <C-n>
+"       \ coc#pum#visible() ? coc#pum#next(1) :
+"       \ coc#refresh()
+" inoremap <expr><C-p> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 
 
 " Use gp and gn to navigate diagnostics
