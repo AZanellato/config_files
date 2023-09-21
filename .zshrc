@@ -43,6 +43,10 @@ function weather_in() {
   curl wttr.in/$1
 }
 
+function weather_CF() {
+  curl wttr.in/\?format=j1 --connect-timeout 5 | jq '.current_condition[0] | .temp_C, .temp_F' | tr -d '"'| tr '\n' ' ' |awk '{print $1 " celsius, fahrenheit " $2 }' 
+}
+
 function fields_of() {
   rg "field :" $1 | choose 1 | tr -d ':,' | gsed -E 's/_([a-z])/\U\1/g'
 }
@@ -205,6 +209,7 @@ alias gbS="git branch --sort=committerdate | fzf | xargs git switch"
 alias migrate="rkdm && say migration finished"
 alias viewpr="gh pr view -w"
 alias dolar="curl 'https://economia.awesomeapi.com.br/last/USD-BRL' | jq .USDBRL.bid | tr -d '\"'"
+alias weatherCF="weather_CF"
 export BAT_THEME="TwoDark"
 export PATH="$HOME/.rbenv/bin:$PATH"
 export PATH="$HOME/bin:/usr/local/bin:$PATH"
