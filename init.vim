@@ -50,7 +50,6 @@ call plug#begin(stdpath('config') . '/plugged')
     Plug 'nvim-treesitter/nvim-treesitter-textobjects'
     Plug 'nvim-treesitter/nvim-treesitter-refactor'
     Plug 'rmagatti/goto-preview'
-
     Plug 'johann2357/nvim-smartbufs'
   "" SQL Stuff
     " Uppercase SQL keywords
@@ -65,7 +64,6 @@ call plug#begin(stdpath('config') . '/plugged')
     Plug 'nvim-pack/nvim-spectre'
     Plug 'ton/vim-bufsurf'
     Plug 'matbme/JABS.nvim'
-    Plug 'gelguy/wilder.nvim',  { 'do': function('UpdateRemotePlugins') }
     " Used by other neovim Plugins
     Plug 'nvim-lua/plenary.nvim'
     " Directory explorer
@@ -177,6 +175,7 @@ call plug#begin(stdpath('config') . '/plugged')
     Plug 'rhysd/vim-grammarous'
     " For nice code screenshots
     Plug 'segeljakt/vim-silicon'
+    Plug 'dstein64/vim-startuptime'
   ""
 call plug#end()
 
@@ -306,7 +305,7 @@ augroup FILETYPES
 augroup END
 " let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } } 
 let g:any_jump_search_prefered_engine = 'ag'
-let g:coc_global_extensions = ['coc-json', 'coc-syntax', 'coc-omni', 'coc-rust-analyzer', 'coc-solargraph', 'coc-prettier']
+let g:coc_global_extensions = ['coc-json', 'coc-syntax', 'coc-omni', 'coc-rust-analyzer', 'coc-prettier']
 
 " Maps
 
@@ -427,12 +426,6 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
-" imap <silent><expr> <C-n>
-"       \ coc#pum#visible() ? coc#pum#next(1) :
-"       \ coc#refresh()
-" inoremap <expr><C-p> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
-
-
 " Use gp and gn to navigate diagnostics
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
 nmap <silent> gp <Plug>(coc-diagnostic-prev)
@@ -472,5 +465,4 @@ set background=dark
 set laststatus=3
 colorscheme kanagawa
 execute 'hi Search guibg=none guifg=none gui=underline'
-execute 'hi illuminatedWord cterm=italic gui=italic'
 execute 'hi DiffDelete guifg=#f43753 ctermfg=203 guibg=#79313c ctermbg=237 gui=NONE cterm=NONE'
