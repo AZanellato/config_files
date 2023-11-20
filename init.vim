@@ -290,7 +290,7 @@ let g:ale_rust_cargo_use_clippy = 1
 let g:ale_linters = {
       \  'javascript': ['eslint'],
       \  'rust': ['analyzer'],
-      \  'ruby': ['reek', 'rubocop', 'solargraph'],
+      \  'ruby': ['reek', 'rubocop'],
       \}
 let g:ale_sign_error = '>>'
 let g:ale_sign_info = '--'

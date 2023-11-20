@@ -130,12 +130,12 @@ require('nvim-treesitter.configs').setup(
           ["]]"] = "@function.outer",
           ["gb"] = "@block.outer",
         },
-        goto_next_end = {
-          ["]e"] = "@function.outer",
-        },
         goto_previous_start = {
           ["[["] = "@function.outer",
           ["gB"] = "@block.outer",
+        },
+        goto_next_end = {
+          ["]e"] = "@function.outer",
         },
         goto_previous_end = {
           ["[e"] = "@function.outer",
@@ -143,7 +143,7 @@ require('nvim-treesitter.configs').setup(
       },
     },
     matchup = {
-      enable = true,              -- mandatory, false will disable the whole extension
+      enable = true, -- mandatory, false will disable the whole extension
       disable = {},  -- optional, list of language that will be disabled
     },
     refactor = {
