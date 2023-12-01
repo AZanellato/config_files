@@ -47,9 +47,12 @@ require("focus").setup({
   }
 )
 
-require("indent_blankline").setup(
+require("ibl").setup(
   {
-    buftype_exclude = {"terminal"}
+    indent = { char = { "▏", "¦", "┆", "┊" } },
+    whitespace = { highlight = { "Whitespace", "NonText" } },
+    scope = { exclude = { language = { "lua" } } },
+
   }
 )
 
@@ -105,8 +108,11 @@ require('kanagawa').setup({
 
 require('nvim-treesitter.configs').setup(
   {
+    -- indent = {
+    --   enable = true
+    -- },
     endwise = {
-        enable = true,
+      enable = true,
     },
     textobjects = {
       select = {
