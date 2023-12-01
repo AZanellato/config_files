@@ -331,7 +331,7 @@ nnoremap <M-p> :ALEPreviousWrap<CR>
 nnoremap <Leader><CR> o<ESC>
 nnoremap <Leader>/ :Telescope current_buffer_fuzzy_find <CR>
 nnoremap <Leader>m m 
-nnoremap <Leader>? :Telescope live_grep<CR>
+nnoremap <Leader>? :lua require("telescope.builtin").live_grep({ additional_args = { "-j1" }})<CR>
 nnoremap <Leader>* :Telescope grep_string<CR>
 vnoremap <Leader>* :<C-u>call VisualStarSearchSet('/', 'raw')<CR>:call fzf#vim#grep('rg --column --line-number --no-heading --color=always --smart-case '.shellescape(@/), 1,)<CR>
 nnoremap <Leader>- :split <CR>
