@@ -163,11 +163,9 @@ require('nvim-treesitter.configs').setup(
     highlight = { 
       enable = true
     },
-    context_commentstring = {
-      enable = true
-    }
   }
 )
+require("ts_context_commentstring").setup()
 require('git-conflict').setup()
 require('mini.move').setup()
 require('sibling-swap').setup({
@@ -221,3 +219,5 @@ require'eyeliner'.setup({
   highlight_on_key = true, 
   dim = false,
   })
+
+vim.g.skip_ts_context_commentstring_module = true
