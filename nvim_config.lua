@@ -227,4 +227,7 @@ require'eyeliner'.setup({
   dim = false,
   })
 
+require("origami").setup ({
+	keepFoldsAcrossSessions = false,
+  })
 vim.g.skip_ts_context_commentstring_module = true

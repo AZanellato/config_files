@@ -38,6 +38,8 @@ call plug#begin(stdpath('config') . '/plugged')
     Plug 'numToStr/Comment.nvim'
     " Set comment string with treesitter
     Plug 'JoosepAlviste/nvim-ts-context-commentstring'
+    " Folds
+    Plug 'chrisgrieser/nvim-origami'
     " Surround stuff quickly
     Plug 'tpope/vim-surround'
     " Expand/shrink visual selection
@@ -191,7 +193,10 @@ set updatetime=500 " 500 ms to update signs
 set autowrite     " Automatically :write before running commands
 set backspace=2   " Backspace deletes like most programs in insert mode
 set expandtab " Tab => spaces
-set foldmethod=syntax 
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
+set nofoldenable                     " Disable folding at startup.
+set foldlevel=4
 set history=50
 set incsearch     " do incremental searching
 set laststatus=2  " Always display the status line
