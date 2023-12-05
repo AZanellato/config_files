@@ -40,6 +40,8 @@ call plug#begin(stdpath('config') . '/plugged')
     Plug 'JoosepAlviste/nvim-ts-context-commentstring'
     " Folds
     Plug 'chrisgrieser/nvim-origami'
+    " Sorting movement 
+    Plug 'christoomey/vim-sort-motion'
     " Surround stuff quickly
     Plug 'tpope/vim-surround'
     " Expand/shrink visual selection
