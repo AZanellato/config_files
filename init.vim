@@ -63,6 +63,8 @@ call plug#begin(stdpath('config') . '/plugged')
     " Amazing fuzzy finder and global search
     Plug 'nvim-telescope/telescope.nvim'
     Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+    " Visualize the undotree with telescope
+    Plug 'debugloop/telescope-undo.nvim'
     Plug 'romgrk/fzy-lua-native'
     " Project Search & Replace
     Plug 'nvim-pack/nvim-spectre'
@@ -88,8 +90,6 @@ call plug#begin(stdpath('config') . '/plugged')
     Plug 'junegunn/vim-peekaboo'
     " Search on visual mode with *
     Plug 'bronson/vim-visual-star-search'
-    " Visualize the undotree
-    Plug 'mbbill/undotree'
     " better f
     Plug 'jinh0/eyeliner.nvim'
     " What it says on the tin 
@@ -351,7 +351,7 @@ nnoremap <Leader>e :e#<CR>
 nnoremap <Leader>a :lua require("nvim-smartbufs").goto_next_buffer()<CR>
 nnoremap <Leader>d :lua require("nvim-smartbufs").goto_prev_buffer()<CR>
 nnoremap <Leader>p  "+p==
-nnoremap <Leader>u :UndotreeToggle<cr>
+nnoremap <Leader>u :Telescope undo<cr>
 nnoremap <Leader>w :w<CR>
 nnoremap <Leader>z :TZFocus <CR>
 nnoremap <Leader>} :Gitsigns next_hunk <CR>
