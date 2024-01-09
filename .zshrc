@@ -56,12 +56,6 @@ function wttrcwb() {
   weather_in Curitiba
 }
 
-function source_if_possible() {
-    if [[ -r $1 ]]; then
-        source $1
-    fi
-}
-
 function parrot() {
   curl parrot.live
 }

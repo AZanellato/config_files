@@ -291,6 +291,7 @@ let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 let g:git_messenger_floating_win_opts = { 'border': 'single' }
 let g:ale_fixers = {
       \ 'python': ['add_blank_lines_for_python_control_statements', 'autopep8', 'black', 'isort', 'reorder-python-imports', 'yapf'],
+      \ 'ruby': ['rubocop'],
       \ }
 let g:ale_ruby_rubocop_executable  = 'bundle' " use this to call rubocop with bundle exec
 let g:ale_rust_cargo_use_clippy = 1
@@ -354,6 +355,7 @@ nnoremap <Leader>p  "+p==
 nnoremap <Leader>u :Telescope undo<cr>
 nnoremap <Leader>w :w<CR>
 nnoremap <Leader>z :TZFocus <CR>
+nnoremap <Leader>x :FocusAutoresize<CR>
 nnoremap <Leader>} :Gitsigns next_hunk <CR>
 nnoremap <Leader>{ :Gitsigns prev_hunk <CR>
 nnoremap <Leader>af :ALEFix <CR>
@@ -387,6 +389,7 @@ nnoremap <Leader>yh :Yanks <CR>
 nnoremap <Leader>ral :TestSuite<CR>
 nnoremap <Leader>soi :SourceAndInstall<CR>
 nnoremap <Leader>sor :Source<CR>
+
 
 map [p <Plug>(IndentWisePreviousLesserIndent)
 map [= <Plug>(IndentWisePreviousEqualIndent)
