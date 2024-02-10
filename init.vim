@@ -34,6 +34,7 @@ call plug#begin(stdpath('config') . '/plugged')
     Plug 'tpope/vim-rails'
     Plug 'tpope/vim-bundler'
     Plug 'tpope/vim-rake'
+    Plug 'christoomey/vim-rfactory'
     " Shortcut to comment anything
     Plug 'numToStr/Comment.nvim'
     " Set comment string with treesitter
@@ -323,6 +324,7 @@ command! PrettifyJson %!jq '.'
 command! Source source ~/config_files/init.vim
 command! -nargs=0 Format :call CocAction('format')
 command! SourceAndInstall source ~/config_files/init.vim <bar> :PlugInstall
+command! AC :execute "e " . eval('rails#buffer().alternate()')
 
 imap <C-l> <C-o>dw
 vmap <F20> <Plug>MoveBlockDown
