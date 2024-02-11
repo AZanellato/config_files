@@ -1,0 +1,2 @@
+\set HISTFILE ~/.psql/history- :DBNAME
+\pset null '(NULL)'
