@@ -202,6 +202,7 @@ alias gbs="git branch --sort=-committerdate | fzf | xargs git switch"
 alias gbS="git branch --sort=committerdate | fzf | xargs git switch"
 alias migrate="rkdm && say migration finished"
 alias viewpr="gh pr view -w"
+alias prlink="gh pr view --json url -q .url | pbcopy"
 alias dolar="curl 'https://economia.awesomeapi.com.br/last/USD-BRL' | jq .USDBRL.bid | tr -d '\"'"
 alias weatherCF="weather_CF"
 export BAT_THEME="TwoDark"
@@ -246,3 +247,5 @@ if [ "$PWD" = "$HOME" ]; then
   cd ~/config_files
   git pull --rebase
 fi
+export DATABASE_HOST="127.0.0.1"
+# export PATH="/usr/local/opt/postgresql@16/bin:$PATH"

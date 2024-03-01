@@ -66,6 +66,8 @@ call plug#begin(stdpath('config') . '/plugged')
     Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
     " Visualize the undotree with telescope
     Plug 'debugloop/telescope-undo.nvim'
+    " Search in folders
+    Plug 'princejoogie/dir-telescope.nvim'
     Plug 'romgrk/fzy-lua-native'
     " Project Search & Replace
     Plug 'nvim-pack/nvim-spectre'
@@ -374,8 +376,9 @@ nnoremap <Leader>cu :call crates#up() <CR>
 nnoremap <Leader>ff :Telescope git_files<CR>
 nnoremap <Leader>fo :TZFocus<CR>
 nnoremap <Leader>fl :Telescope find_files<CR>
+nnoremap <Leader>fd :Telescope dir find_files<CR>
 nnoremap <Leader>gg :Git<CR>
-nnoremap <Leader>gr :lua require('telescope.builtin').live_grep({search_dirs= {""}})
+nnoremap <Leader>gr :Telescope dir live_grep<CR>
 nnoremap <Leader>gt :Telescope git_status<CR>
 nnoremap <Leader>gm :GitMessenger<CR>
 nnoremap <Leader>lj :SplitjoinJoin<cr>
@@ -391,6 +394,7 @@ nnoremap <Leader>yh :Yanks <CR>
 nnoremap <Leader>ral :TestSuite<CR>
 nnoremap <Leader>soi :SourceAndInstall<CR>
 nnoremap <Leader>sor :Source<CR>
+nnoremap <Leader>S :Spectre<CR>
 
 
 map [p <Plug>(IndentWisePreviousLesserIndent)
@@ -478,3 +482,4 @@ set laststatus=3
 colorscheme kanagawa
 execute 'hi Search guibg=none guifg=none gui=underline'
 execute 'hi DiffDelete guifg=#f43753 ctermfg=203 guibg=#79313c ctermbg=237 gui=NONE cterm=NONE'
+

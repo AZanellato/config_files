@@ -36,8 +36,10 @@ require('telescope').setup(
   }
 )
 
-require('telescope').load_extension('fzf')
-require("telescope").load_extension("undo")
+local telescope = require('telescope')
+telescope.load_extension('fzf')
+telescope.load_extension("undo")
+telescope.load_extension("dir")
 
 require('diffview').setup({})
 
@@ -232,3 +234,4 @@ require("origami").setup ({
 	keepFoldsAcrossSessions = false,
   })
 vim.g.skip_ts_context_commentstring_module = true
+
