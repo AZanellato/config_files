@@ -103,8 +103,10 @@ call plug#begin(stdpath('config') . '/plugged')
     Plug 'derekprior/vim-leaders'
     " Interact with output of commands
     Plug 'AndrewRadev/bufferize.vim'
-    " Move between ident levels 
+    " Move between indent levels 
     Plug 'jeetsukumaran/vim-indentwise'
+    " Move through last edits 
+    Plug 'bloznelis/before.nvim'
   ""
   "" Copy/Move/Paste changes
     " Make delete actually delete instead of cut

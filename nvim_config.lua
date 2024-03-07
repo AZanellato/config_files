@@ -235,3 +235,7 @@ require("origami").setup ({
   })
 vim.g.skip_ts_context_commentstring_module = true
 
+local before = require('before')
+before.setup()
+vim.keymap.set('n', '<Left>', before.jump_to_last_edit, {})
+vim.keymap.set('n', '<Right>', before.jump_to_next_edit, {})
