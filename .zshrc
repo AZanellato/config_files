@@ -1,3 +1,4 @@
+alias python="python3" # this is useful for some git stuff and anything that uses python, really
 # If we don't have a tmux session, create it and call it main
 if [[ -z "$TMUX" ]];then
   tmux new-session -A -s main
@@ -249,3 +250,6 @@ if [ "$PWD" = "$HOME" ]; then
 fi
 export DATABASE_HOST="127.0.0.1"
 # export PATH="/usr/local/opt/postgresql@16/bin:$PATH"
+#
+export PGGSSENCMODE="disable"
+
