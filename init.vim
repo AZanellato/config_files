@@ -335,6 +335,8 @@ vmap <F20> <Plug>MoveBlockDown
 vmap <F21> <Plug>MoveBlockUp
 nmap <F20> <Plug>MoveLineDown
 nmap <F21> <Plug>MoveLineUp
+nmap <A-q> :BufSurfBack<CR>
+nmap <A-w> :BufSurfForward<CR>
 
 let g:splitjoin_split_mapping = ''
 let g:splitjoin_join_mapping = ''
