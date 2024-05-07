@@ -151,8 +151,7 @@ function dbup(){
     echo $BRANCH_NAME
     if [[ $BRANCH_NAME = "release" ]] ; then
       DB_NAME="hotfix"
-    fi
-    if [[ $DB_NAME = $BRANCH_NAME ]] ; then
+    else
       DB_NAME="main"
     fi
   fi
@@ -205,6 +204,7 @@ alias migrate="rkdm && say migration finished"
 alias viewpr="gh pr view -w"
 alias prlink="gh pr view --json url -q .url | pbcopy"
 alias dolar="curl 'https://economia.awesomeapi.com.br/last/USD-BRL' | jq .USDBRL.bid | tr -d '\"'"
+alias rubofix="rubocop -a $(gd --name-only --staged); ga $(gd --name-only --staged)"
 alias weatherCF="weather_CF"
 export BAT_THEME="TwoDark"
 export PATH="$HOME/.rbenv/bin:$PATH"
