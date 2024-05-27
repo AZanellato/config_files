@@ -74,4 +74,5 @@ config.window_padding = {
 --   border_left_width = '0.5cell',
 -- }
 -- config.window_decorations = "RESIZE"
+config.color_scheme = 'Catppuccin Latte'
 return config

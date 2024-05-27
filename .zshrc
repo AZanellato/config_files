@@ -81,6 +81,7 @@ function reb-main() {
   git checkout - && 
   git rebase main
 }
+
 function branch-from() {
 local source_name="$1"
 local branch_name="$2"
@@ -103,6 +104,21 @@ function m-branch() {
   local branch_name="$1"
   branch-from master $branch_name
 }
+
+function openpr() {
+  BRANCH_BASE="$(git symbolic-ref HEAD 2>/dev/null | choose -f '/' 2)"
+
+  if [[ $BRANCH_BASE = "hotfix" ]] ; then
+    TARGET="release"
+  elif [[ $BRANCH_BASE = "patch" ]] ; then
+    TARGET="prerelease"
+  else
+    TARGET="master"
+  fi
+
+  gh pr create -B ${TARGET}
+}
+
 
 function reb-branch() {
   local branch="$1"
@@ -206,6 +222,7 @@ alias prlink="gh pr view --json url -q .url | pbcopy"
 alias dolar="curl 'https://economia.awesomeapi.com.br/last/USD-BRL' | jq .USDBRL.bid | tr -d '\"'"
 alias rubofix="rubocop -a \$(git diff --name-only --staged); git add . \$(git add --name-only --staged)"
 alias weatherCF="weather_CF"
+alias createpr="openpr"
 export BAT_THEME="TwoDark"
 export PATH="$HOME/.rbenv/bin:$PATH"
 export PATH="$HOME/bin:/usr/local/bin:$PATH"

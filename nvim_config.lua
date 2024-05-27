@@ -109,6 +109,47 @@ require('kanagawa').setup({
   end,
   })
 
+require("catppuccin").setup({
+    flavour = "auto", -- latte, frappe, macchiato, mocha
+    background = { -- :h background
+        light = "latte",
+        dark = "mocha",
+    },
+    dim_inactive = {
+        enabled = true, -- dims the background color of inactive window
+        shade = "dark",
+    },
+})
+
+-- setup must be called before loading
+vim.cmd.colorscheme "catppuccin"
+require("neofusion").setup({
+  terminal_colors = true, -- add neovim terminal colors
+  undercurl = true,
+  underline = true,
+  bold = true,
+  italic = {
+    strings = true,
+    emphasis = true,
+    comments = true,
+    operators = false,
+    folds = true,
+  },
+  strikethrough = true,
+  invert_selection = false,
+  invert_signs = false,
+  invert_tabline = false,
+  invert_intend_guides = false,
+  inverse = true, -- invert background for search, diffs, statuslines and errors
+  palette_overrides = {},
+  overrides = {},
+  dim_inactive = true,
+  transparent_mode = false,
+})
+
+
+vim.cmd([[ colorscheme neofusion ]])
+
 require('nvim-treesitter.configs').setup(
   {
     -- indent = {
@@ -239,3 +280,4 @@ local before = require('before')
 before.setup()
 vim.keymap.set('n', '<Left>', before.jump_to_last_edit, {})
 vim.keymap.set('n', '<Right>', before.jump_to_next_edit, {})
+
