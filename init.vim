@@ -176,8 +176,9 @@ call plug#begin(stdpath('config') . '/plugged')
     Plug 'ryanoasis/vim-devicons' 
     Plug 'kyazdani42/nvim-web-devicons'
     "" Themes!
+      Plug 'savq/melange-nvim'
       Plug 'rebelot/kanagawa.nvim'
-      Plug 'diegoulloao/neofusion.nvim'
+      Plug 'NLKNguyen/papercolor-theme'
       Plug 'sainnhe/everforest'
       Plug 'rose-pine/neovim'
       Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
@@ -289,7 +290,6 @@ let g:airline_section_b = '%{airline#util#wrap(airline#extensions#branch#get_hea
 let g:airline_section_z = ''
 let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
 let g:airline#extensions#wordcount#formatter#default#fmt = '%d w'
-let g:airline_theme = 'catppuccin'
 
 let g:mix_format_on_save = 1
 let g:mix_format_silent_errors = 1
@@ -491,7 +491,7 @@ let g:everforest_background = 'medium'
 let g:everforest_better_performance = 1
 set background=light
 set laststatus=3
-colorscheme catppuccin
+let g:airline_theme = 'everforest'
+colorscheme everforest
 execute 'hi Search guibg=none guifg=none gui=underline'
 execute 'hi DiffDelete guifg=#f43753 ctermfg=203 guibg=#79313c ctermbg=237 gui=NONE cterm=NONE'
-

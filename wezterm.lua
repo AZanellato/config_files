@@ -62,7 +62,7 @@ config.harfbuzz_features = {"cv02", "ss05", "ss07", "ss09"}
 
 -- config.color_scheme = 'Kanagawa (Gogh)'
 config.enable_tab_bar = false
-config.window_background_opacity = 0.95
+config.window_background_opacity = 0.99
 config.window_padding = {
   left = 10,
   right = 10,
@@ -74,5 +74,5 @@ config.window_padding = {
 --   border_left_width = '0.5cell',
 -- }
 -- config.window_decorations = "RESIZE"
-config.color_scheme = 'Catppuccin Latte'
+config.color_scheme = 'Novel (Gogh)'
 return config
