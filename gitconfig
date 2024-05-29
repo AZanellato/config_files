@@ -1,0 +1,31 @@
+[user]
+	email = andre.zanellato@gmail.com
+	name = André Zanellato
+[core]
+    pager = delta
+
+[help]
+	autocorrect = prompt
+
+[interactive]
+    diffFilter = delta --color-only 
+
+[delta]
+    navigate = true    # use n and N to move between diff sections
+    light = true      # set to true if you're in a terminal w/ a light background color (e.g. the default macOS terminal)
+		syntax-theme = Coldark-Cold
+
+[merge]
+	conflictStyle = zdiff3
+
+; [diff]
+;         tool = difftastic
+;
+; [difftool]
+;         prompt = false
+;
+; [difftool "difftastic"]
+;         cmd = difft "$LOCAL" "$REMOTE"
+[rerere]
+	enabled = true
+	autoUpdate = true
