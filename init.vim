@@ -151,7 +151,6 @@ call plug#begin(stdpath('config') . '/plugged')
     Plug 'sindrets/diffview.nvim'
     Plug 'akinsho/git-conflict.nvim'
     Plug 'ToruIwashita/git-switcher.vim'
-    Plug 'wassimk/gh-navigator.nvim'
   
   "" Test stuff 
     " All the tests frameworks/languages :D
