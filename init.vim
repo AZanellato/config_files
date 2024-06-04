@@ -205,16 +205,15 @@ set updatetime=500 " 500 ms to update signs
 set autowrite     " Automatically :write before running commands
 set backspace=2   " Backspace deletes like most programs in insert mode
 set expandtab " Tab => spaces
-set foldmethod=expr
-set foldexpr=nvim_treesitter#foldexpr()
 set nofoldenable                     " Disable folding at startup.
 set foldlevel=4
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
 set history=50
 set incsearch     " do incremental searching
 set laststatus=2  " Always display the status line
 set mouse=a " Mouse works inside vim
 set nobackup
-set nofoldenable
 set noswapfile    " http://robots.thoughtbot.com/post/18739402579/global-gitignore#comment-458413287 
 set nowritebackup
 set regexpengine=2 
@@ -346,13 +345,22 @@ nmap <A-w> :BufSurfForward<CR>
 let g:splitjoin_split_mapping = ''
 let g:splitjoin_join_mapping = ''
 
+map [- <Plug>(IndentWisePreviousLesserIndent)
+map [= <Plug>(IndentWisePreviousEqualIndent)
+map [+ <Plug>(IndentWisePreviousGreaterIndent)
+map ]- <Plug>(IndentWiseNextLesserIndent)
+map ]= <Plug>(IndentWiseNextEqualIndent)
+map ]+ <Plug>(IndentWiseNextGreaterIndent)
+map [_ <Plug>(IndentWisePreviousAbsoluteIndent)
+map ]_ <Plug>(IndentWiseNextAbsoluteIndent)
+
 " Move between linting errors
 nnoremap <M-n> :ALENextWrap<CR>
 nnoremap <M-p> :ALEPreviousWrap<CR>
 nnoremap <Leader><CR> o<ESC>
 nnoremap <Leader>/ :Telescope current_buffer_fuzzy_find <CR>
 nnoremap <Leader>m m 
-nnoremap <Leader>? :lua require("telescope.builtin").live_grep({ additional_args = { "-j1" }})<CR>
+nnoremap <Leader>? :lua require("telescope.builtin").live_grep({})<CR>
 nnoremap <Leader>* :Telescope grep_string<CR>
 vnoremap <Leader>* :<C-u>call VisualStarSearchSet('/', 'raw')<CR>:call fzf#vim#grep('rg --column --line-number --no-heading --color=always --smart-case '.shellescape(@/), 1,)<CR>
 nnoremap <Leader>- :split <CR>
