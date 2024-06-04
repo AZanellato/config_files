@@ -191,7 +191,7 @@ function gocodbup() {
 if command -v lsd > /dev/null; then
   alias ls="lsd"
 fi
-alias n="nvim ."
+alias n="nvim \$(fzf)"
 alias nv="nvim "
 alias nvmain="nvim src/main.rs"
 alias nvgst="nvim \$(gst -s | awk '{print \$2}')"
@@ -270,3 +270,4 @@ export DATABASE_HOST="127.0.0.1"
 #
 export PGGSSENCMODE="disable"
 
+export PATH="/usr/local/sbin:$PATH"
