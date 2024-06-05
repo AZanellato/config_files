@@ -182,6 +182,7 @@ call plug#begin(stdpath('config') . '/plugged')
       Plug 'sainnhe/everforest'
       Plug 'rose-pine/neovim'
       Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
+      Plug 'f-person/auto-dark-mode.nvim'
     ""
     "" Zen modes!
     Plug 'Pocco81/true-zen.nvim'
@@ -492,13 +493,13 @@ autocmd BufWritePost *.rs normal! zv
 lua << EOF
   require('nvim_config')
 EOF
+
 " Set colorscheme stuff last, after loading lua plugins
 let g:everforest_dim_inactive_windows=1
 let g:everforest_background = 'medium'
 let g:everforest_better_performance = 1
 set background=light
 set laststatus=3
-let g:airline_theme = 'everforest'
 colorscheme everforest
 execute 'hi Search guibg=none guifg=none gui=underline'
 execute 'hi DiffDelete guifg=#f43753 ctermfg=203 guibg=#79313c ctermbg=237 gui=NONE cterm=NONE'

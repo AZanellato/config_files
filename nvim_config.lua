@@ -251,3 +251,21 @@ local before = require('before')
 before.setup()
 vim.keymap.set('n', '<Left>', before.jump_to_last_edit, {})
 vim.keymap.set('n', '<Right>', before.jump_to_next_edit, {})
+
+require("auto-dark-mode").setup({
+    update_interval = 10000,
+    set_dark_mode = function()
+      vim.cmd([[
+        colorscheme kanagawa
+        set background=dar
+        let g:airline_theme = 'catppuccin'
+        ]])
+    end,
+    set_light_mode = function()
+      vim.cmd([[
+        set background=light
+        colorscheme everforest
+        let g:airline_theme = 'everforest'
+        ]])
+    end,
+  })

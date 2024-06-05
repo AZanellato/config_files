@@ -1,6 +1,21 @@
 -- Pull in the wezterm API
 local wezterm = require 'wezterm'
 
+function scheme_for_appearance(appearance)
+  if appearance:find 'Dark' then
+    return 'Builtin Solarized Dark'
+  else
+    return 'Novel (Gogh)'
+  end
+end
+
+function get_appearance()
+  if wezterm.gui then
+    return wezterm.gui.get_appearance()
+  end
+  return 'Dark'
+end
+
 -- This table will hold the configuration.
 local config = {}
 
@@ -59,8 +74,6 @@ config.harfbuzz_features = {"cv02", "ss05", "ss07", "ss09"}
 -- !~ and =~
 -- >>= <<= ||= |=
 
-
--- config.color_scheme = 'Kanagawa (Gogh)'
 config.enable_tab_bar = false
 config.window_background_opacity = 0.99
 config.window_padding = {
@@ -70,9 +83,6 @@ config.window_padding = {
   bottom = 0,
 }
 
--- config.window_frame = {
---   border_left_width = '0.5cell',
--- }
--- config.window_decorations = "RESIZE"
-config.color_scheme = 'Novel (Gogh)'
+config.color_scheme = scheme_for_appearance(get_appearance())
+
 return config
