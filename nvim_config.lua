@@ -253,11 +253,11 @@ vim.keymap.set('n', '<Left>', before.jump_to_last_edit, {})
 vim.keymap.set('n', '<Right>', before.jump_to_next_edit, {})
 
 require("auto-dark-mode").setup({
-    update_interval = 10000,
+    update_interval = 5000,
     set_dark_mode = function()
       vim.cmd([[
         colorscheme kanagawa
-        set background=dar
+        set background=dark 
         let g:airline_theme = 'catppuccin'
         ]])
     end,
@@ -269,3 +269,4 @@ require("auto-dark-mode").setup({
         ]])
     end,
   })
+require("rabbit").setup({})
