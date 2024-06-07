@@ -191,7 +191,7 @@ function gocodbup() {
 if command -v lsd > /dev/null; then
   alias ls="lsd"
 fi
-alias n="nvim \$(fzf)"
+alias n="fzf | xargs nvim'"
 alias nv="nvim "
 alias nvmain="nvim src/main.rs"
 alias nvgst="nvim \$(gst -s | awk '{print \$2}')"
