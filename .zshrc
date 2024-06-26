@@ -191,7 +191,7 @@ function gocodbup() {
 if command -v lsd > /dev/null; then
   alias ls="lsd"
 fi
-alias n="fzf | xargs nvim'"
+alias n="fzf | xargs nvim"
 alias nv="nvim "
 alias nvmain="nvim src/main.rs"
 alias nvgst="nvim \$(gst -s | awk '{print \$2}')"
@@ -220,7 +220,7 @@ alias migrate="rkdm && say migration finished"
 alias viewpr="gh pr view -w"
 alias prlink="gh pr view --json url -q .url | pbcopy"
 alias dolar="curl 'https://economia.awesomeapi.com.br/last/USD-BRL' | jq .USDBRL.bid | tr -d '\"'"
-alias rubofix="rubocop -a \$(git diff --name-only --staged); git add . \$(git add --name-only --staged)"
+alias rubofix="rubocop -a \$(git diff --name-only --staged); git add \$(git diff --name-only --staged)"
 alias weatherCF="weather_CF"
 alias createpr="openpr"
 export BAT_THEME="Coldark-Cold"
