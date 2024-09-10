@@ -177,7 +177,7 @@ function dbup(){
   echo "-------------------------------------------------"
   DB_NAME=
   docker stop $(docker ps | grep postgres | awk '{print $1}')
-  $(docker run -p 5432:5432 --restart always -e POSTGRES_PASSWORD=unlock -e POSTGRES_USER=goco -e POSTGRES_DB=goco_io_development -v $(pwd)/.data/${PG_DB}:/var/lib/postgresql/data:delegated postgres:14-alpine)
+  $(docker run -p 5432:5432 --restart always -e POSTGRES_PASSWORD=unlock -e POSTGRES_USER=goco -e POSTGRES_DB=goco_io_development -v $(pwd)/.data/${PG_DB}:/var/lib/postgresql/data:delegated postgres:16-alpine)
 }
 
 function gocodbup() {
@@ -266,7 +266,7 @@ if [ "$PWD" = "$HOME" ]; then
   git pull --rebase
 fi
 export DATABASE_HOST="127.0.0.1"
-# export PATH="/usr/local/opt/postgresql@16/bin:$PATH"
+export PATH="/usr/local/opt/postgresql@16/bin:$PATH"
 #
 export PGGSSENCMODE="disable"
 

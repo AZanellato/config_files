@@ -171,7 +171,7 @@ require('nvim-treesitter.configs').setup(
       },
     },
     matchup = {
-      enable = true, -- mandatory, false will disable the whole extension
+      enable = false, -- mandatory, false will disable the whole extension
       disable = {},  -- optional, list of language that will be disabled
     },
     refactor = {
@@ -269,4 +269,15 @@ require("auto-dark-mode").setup({
         ]])
     end,
   })
-require("rabbit").setup({})
+require("buffer-vacuum").setup({
+    -- The maximum number of buffers to keep (excluding modified buffer)
+    max_buffers = 20,
+
+    -- Change to True if you want pinned buffers to count to the
+    -- maximum number buffers
+    count_pinned_buffers = false,
+
+    -- Enable notifications every time a buffer is pinned or deleted
+    -- Default FALSE
+    enable_messages = true,
+})

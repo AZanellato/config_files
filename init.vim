@@ -79,6 +79,7 @@ call plug#begin(stdpath('config') . '/plugged')
     Plug 'stevearc/oil.nvim'
     " Jump to definitions
     Plug 'pechorin/any-jump.vim'
+    Plug 'prichrd/refgo.nvim'
   ""
   "" Window movements/resizing
     " Resize window automatically
@@ -103,6 +104,8 @@ call plug#begin(stdpath('config') . '/plugged')
     Plug 'derekprior/vim-leaders'
     " Interact with output of commands
     Plug 'AndrewRadev/bufferize.vim'
+    " Avoid too many buffers
+    Plug 'ChuufMaster/buffer-vacuum'
     " Move between indent levels 
     Plug 'jeetsukumaran/vim-indentwise'
     " Move through last edits 
