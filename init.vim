@@ -110,6 +110,8 @@ call plug#begin(stdpath('config') . '/plugged')
     Plug 'jeetsukumaran/vim-indentwise'
     " Move through last edits 
     Plug 'bloznelis/before.nvim'
+    " Move through words in a smarter way
+    Plug 'chrisgrieser/nvim-spider'
   ""
   "" Copy/Move/Paste changes
     " Make delete actually delete instead of cut
