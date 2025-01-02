@@ -116,7 +116,7 @@ function openpr() {
     TARGET="master"
   fi
 
-  gh pr create -B ${TARGET}
+  gh pr create -B ${TARGET} -l "pods/tidepod"
 }
 
 
