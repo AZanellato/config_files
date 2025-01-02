@@ -223,17 +223,19 @@ alias dolar="curl 'https://economia.awesomeapi.com.br/last/USD-BRL' | jq .USDBRL
 alias rubofix="rubocop -a \$(git diff --name-only --staged); git add \$(git diff --name-only --staged)"
 alias weatherCF="weather_CF"
 alias createpr="openpr"
+alias prchecks="gh pr checks --watch"
 export BAT_THEME="Coldark-Cold"
-export PATH="$HOME/.rbenv/bin:$PATH"
+# export PATH="$HOME/.rbenv/bin:$PATH"
 export PATH="$HOME/bin:/usr/local/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 
-eval "$(rbenv init -)"
+# eval "$(rbenv init -)"
 
-export NVM_DIR="$HOME/.nvm"
+# export NVM_DIR="$HOME/.nvm"
 
-. $HOME/.asdf/asdf.sh
+# . $HOME/.asdf/asdf.sh
 
+eval "$(~/.local/bin/mise activate zsh)"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Setting rg as the default source for fzf
