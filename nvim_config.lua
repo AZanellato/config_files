@@ -12,14 +12,14 @@ require("abbrev-man").setup({
 	},
 })
 
-require('jabs').setup {
+require("jabs").setup {
   width = 80, -- default 50
   height = 20, -- default 10
   border = 'double', -- none, single, double, rounded, solid, shadow, (or an array or
 }
-require('gitsigns').setup({})
+require("gitsigns").setup({})
 
-require('telescope').setup(
+require("telescope").setup(
   {
     defaults = {
       layout_config = {
@@ -36,14 +36,14 @@ require('telescope').setup(
   }
 )
 
-local telescope = require('telescope')
-telescope.load_extension('fzf')
+local telescope = require("telescope")
+telescope.load_extension("fzf")
 telescope.load_extension("undo")
 telescope.load_extension("dir")
 
-require('diffview').setup({})
+require("diffview").setup({})
 
-require('twilight').setup({})
+require("twilight").setup({})
 
 require("focus").setup({
     excluded_filetypes = {"toggleterm"},
@@ -60,13 +60,13 @@ require("ibl").setup(
 )
 
 
-require('neoscroll').setup(
+require("neoscroll").setup(
   {
     easing_function = "sine"
   }
 )
 
-require('goto-preview').setup {
+require("goto-preview").setup {
     width = 120; -- Width of the floating window
     height = 15; -- Height of the floating window
     border = {"?", "?" ,"?", "?", "?", "?", "?", "?"}; -- Border characters of the floating window
@@ -76,9 +76,9 @@ require('goto-preview').setup {
     post_open_hook = nil -- A function taking two arguments, a buffer and a window to be ran as a hook.
   }
 
-require('Comment').setup()
+require("Comment").setup()
 
-require('kanagawa').setup({
+require("kanagawa").setup({
     dimInactive = true,        -- dim inactive window `:h hl-NormalNC`
     colors = {
       theme = {
@@ -123,9 +123,6 @@ require("catppuccin").setup({
 
 require('nvim-treesitter.configs').setup(
   {
-    -- indent = {
-    --   enable = true
-    -- },
     endwise = {
       enable = true,
     },
@@ -188,9 +185,9 @@ require('nvim-treesitter.configs').setup(
   }
 )
 require("ts_context_commentstring").setup()
-require('git-conflict').setup()
-require('mini.move').setup()
-require('sibling-swap').setup({
+require("git-conflict").setup()
+require("mini.move").setup()
+require("sibling-swap").setup({
     use_default_keymaps = true,
     keymaps = {
       ['<space>ll'] = 'swap_with_right_with_opp',
@@ -219,7 +216,7 @@ require("oil").setup({
 vim.keymap.set("n", "-", require("oil").open, { desc = "Open parent directory" })
 require("mini.cursorword").setup()
 
-require('spectre').setup({
+require("spectre").setup({
     open_cmd = 'new',
     mapping={
       ['toggle_line'] = {
@@ -237,7 +234,7 @@ require("NeoColumn").setup({
   excluded_ft = { "text", "markdown" },
   })
 
-require'eyeliner'.setup({
+require("eyeliner").setup({
   highlight_on_key = true, 
   dim = false,
   })
@@ -264,11 +261,12 @@ require("auto-dark-mode").setup({
     set_light_mode = function()
       vim.cmd([[
         set background=light
-        colorscheme everforest
         let g:airline_theme = 'everforest'
+        colorscheme everforest
         ]])
     end,
   })
+
 require("buffer-vacuum").setup({
     -- The maximum number of buffers to keep (excluding modified buffer)
     max_buffers = 20,
@@ -306,3 +304,36 @@ vim.keymap.set(
 	"<cmd>lua require('spider').motion('b')<CR>",
 	{ desc = "Spider-b" }
 )
+
+require('silicon').setup({
+  -- font = 'FantasqueSansMono Nerd Font=16',
+  -- theme = 'Monokai Extended',
+})
+require("other-nvim").setup({
+	mappings = {
+		"livewire",
+		"angular",
+		"laravel",
+		"rails",
+		"golang",
+		"python",
+        "react",
+		"rust",
+	},
+})
+
+vim.api.nvim_set_keymap("n", "<leader>ltn", "<cmd>:OtherTabNew<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>lp", "<cmd>:OtherSplit<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>lv", "<cmd>:OtherVSplit<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>lc", "<cmd>:OtherClear<CR>", { noremap = true, silent = true })
+
+-- Context specific bindings
+vim.api.nvim_set_keymap("n", "<leader>tv", "<cmd>:OtherVSplit test<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>fv", "<cmd>:OtherVSplit factories<CR>", { noremap = true, silent = true })
+
+require('faster').setup()
+require("flexoki").setup({
+    dim_inactive_windows = true
+  })
+
+require("dooing").setup({})

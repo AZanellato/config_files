@@ -64,6 +64,7 @@ call plug#begin(stdpath('config') . '/plugged')
     " Amazing fuzzy finder and global search
     Plug 'nvim-telescope/telescope.nvim'
     Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+    Plug 'rgroli/other.nvim'
     " Visualize the undotree with telescope
     Plug 'debugloop/telescope-undo.nvim'
     " Search in folders
@@ -162,8 +163,6 @@ call plug#begin(stdpath('config') . '/plugged')
     Plug 'janko/vim-test'
  
   "" Autocompletion/linting
-    " autocompletion engine
-    Plug 'neoclide/coc.nvim', {'branch': 'release'}
     " Autocompletion source
     Plug 'wellle/tmux-complete.vim'
     "Linter
@@ -188,14 +187,17 @@ call plug#begin(stdpath('config') . '/plugged')
       Plug 'rose-pine/neovim'
       Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
       Plug 'f-person/auto-dark-mode.nvim'
+      Plug 'nuvic/flexoki-nvim'
     ""
     "" Zen modes!
     Plug 'Pocco81/true-zen.nvim'
     " For writing :)
     Plug 'rhysd/vim-grammarous'
     " For nice code screenshots
-    Plug 'segeljakt/vim-silicon'
+    Plug 'krivahtoo/silicon.nvim', { 'do': './install.sh build' }
     Plug 'dstein64/vim-startuptime'
+    Plug 'pteroctopus/faster.nvim'
+    Plug 'atiladefreitas/dooing'
   ""
 call plug#end()
 
@@ -328,7 +330,6 @@ augroup FILETYPES
 augroup END
 " let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } } 
 let g:any_jump_search_prefered_engine = 'ag'
-let g:coc_global_extensions = ['coc-json', 'coc-syntax', 'coc-omni', 'coc-rust-analyzer', 'coc-prettier']
 
 " Maps
 
@@ -457,17 +458,6 @@ nmap <c-n> <plug>(YoinkPostPasteSwapBack)
 nmap <c-p> <plug>(YoinkPostPasteSwapForward)
 nmap [y <plug>(YoinkRotateBack)
 nmap ]y <plug>(YoinkRotateForward)
-
-" Coc stuff to increment vim native commands
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-
-" Use gp and gn to navigate diagnostics
-" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
-nmap <silent> gp <Plug>(coc-diagnostic-prev)
-nmap <silent> gn <Plug>(coc-diagnostic-next)
 
 nmap <Leader>V <Plug>(expand_region_expand)
 nmap <Leader>v <Plug>(expand_region_shrink)
