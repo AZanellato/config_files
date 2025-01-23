@@ -161,23 +161,21 @@ function merge-base() {
 
 function dbup(){
   if [[ -z $DB_NAME ]] ; then
-    CLEAR_DB_NAME=yes
-    DB_NAME="$(git symbolic-ref HEAD 2>/dev/null | choose -f '/' 2)"
-    BRANCH_NAME="$(git symbolic-ref HEAD 2>/dev/null | choose -f '/' -1)"
-    echo $BRANCH_NAME
-    if [[ $BRANCH_NAME = "release" ]] ; then
+    BRANCH_BASE_NAME="$(git symbolic-ref HEAD 2>/dev/null | choose -f '/' 2)"
+    echo $BRANCH_BASE_NAME
+    if [[ $BRANCH_BASE_NAME = "hotfix" ]] ; then
       DB_NAME="hotfix"
+    elif [[ $BRANCH_BASE_NAME = "patch" ]] ; then
+      DB_NAME="patch"
     else
       DB_NAME="main"
     fi
   fi
-  PG_DB=$DB_NAME
   echo "-------------------------------------------------"
-  echo "Running on ${PG_DB}" db
+  echo "Running on ${DB_NAME}" db
   echo "-------------------------------------------------"
-  DB_NAME=
   docker stop $(docker ps | grep postgres | awk '{print $1}')
-  $(docker run -p 5432:5432 --restart always -e POSTGRES_PASSWORD=unlock -e POSTGRES_USER=goco -e POSTGRES_DB=goco_io_development -v $(pwd)/.data/${PG_DB}:/var/lib/postgresql/data:delegated postgres:16-alpine)
+  $(docker run -p 5432:5432 --restart always -e POSTGRES_PASSWORD=unlock -e POSTGRES_USER=goco -e POSTGRES_DB=goco_io_development -v $(pwd)/.data/${DB_NAME}:/var/lib/postgresql/data:delegated postgres:16-alpine)
 }
 
 function gocodbup() {
