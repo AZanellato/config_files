@@ -25,6 +25,7 @@ require("telescope").setup(
       layout_config = {
         horizontal = { width = 0.85 }
       },
+      path_display= { "smart" } 
     },
   pickers = {
         live_grep = {
@@ -337,3 +338,4 @@ require("flexoki").setup({
   })
 
 require("dooing").setup({})
+require('white-chocolate').setup()

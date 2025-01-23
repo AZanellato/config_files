@@ -180,6 +180,7 @@ call plug#begin(stdpath('config') . '/plugged')
     Plug 'ryanoasis/vim-devicons' 
     Plug 'kyazdani42/nvim-web-devicons'
     "" Themes!
+      Plug 'EtiamNullam/white-chocolate.nvim'
       Plug 'savq/melange-nvim'
       Plug 'rebelot/kanagawa.nvim'
       Plug 'NLKNguyen/papercolor-theme'
