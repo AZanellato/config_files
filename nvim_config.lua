@@ -339,3 +339,34 @@ require("flexoki").setup({
 
 require("dooing").setup({})
 require('white-chocolate').setup()
+
+
+
+cmp = require('cmp')
+cmp.setup({
+    sources = cmp.config.sources({
+        { name = 'nvim_lsp' },
+        { name = 'buffer' },
+      }),
+    mapping = cmp.mapping.preset.insert({
+      ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+      ['<C-f>'] = cmp.mapping.scroll_docs(4),
+      ['<C-Space>'] = cmp.mapping.complete(),
+      ['<C-e>'] = cmp.mapping.abort(),
+      ['<CR>'] = cmp.mapping.confirm({ select = false }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+    }),
+  })
+
+-- Set up lspconfig.
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
+-- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
+require('lspconfig').ruby_lsp.setup { capabilities = capabilities }
+require('lint').linters_by_ft = {
+  ruby = {'rubocop'},
+}
+vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+  callback = function()
+    -- try_lint without arguments runs the linters defined in `linters_by_ft` for the current filetype
+    require("lint").try_lint()
+  end,
+})

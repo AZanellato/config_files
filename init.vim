@@ -164,9 +164,16 @@ call plug#begin(stdpath('config') . '/plugged')
  
   "" Autocompletion/linting
     " Autocompletion source
-    Plug 'wellle/tmux-complete.vim'
+    " Plug 'wellle/tmux-complete.vim'
+    Plug 'neovim/nvim-lspconfig'
+    Plug 'hrsh7th/cmp-nvim-lsp'
+    Plug 'hrsh7th/cmp-buffer'
+    Plug 'hrsh7th/cmp-path'
+    Plug 'hrsh7th/cmp-cmdline'
+    Plug 'hrsh7th/nvim-cmp'
     "Linter
-    Plug 'w0rp/ale'
+    Plug 'mfussenegger/nvim-lint'
+    " Plug 'w0rp/ale'
 
   "" Visual Stuff
     Plug 'folke/twilight.nvim'
