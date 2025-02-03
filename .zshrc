@@ -271,3 +271,5 @@ export PATH="/usr/local/opt/postgresql@16/bin:$PATH"
 export PGGSSENCMODE="disable"
 
 export PATH="/usr/local/sbin:$PATH"
+export PATH="/usr/local/opt/icu4c@74/bin:$PATH"
+export PATH="/usr/local/opt/icu4c@74/sbin:$PATH"
