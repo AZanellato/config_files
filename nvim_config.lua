@@ -25,7 +25,7 @@ require("telescope").setup(
       layout_config = {
         horizontal = { width = 0.85 }
       },
-      path_display= { "smart" } 
+      path_display= { "filename_first" } 
     },
   pickers = {
         live_grep = {
