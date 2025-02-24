@@ -1,17 +1,17 @@
-require("abbrev-man").setup({
-	load_natural_dictionaries_at_startup = true,
-	load_programming_dictionaries_at_startup = true,
-	natural_dictionaries = {
-		["nt_en"] = {
-      ["copmany"] = "company",
-      ["comapny"] = "company",
-      ["trhough"] = "through",
-      ["acess"] = "access"
-    },
-    ["nt_pt"] = {}
-	},
-})
-
+-- require("abbrev-man").setup({
+-- 	load_natural_dictionaries_at_startup = true,
+-- 	load_programming_dictionaries_at_startup = true,
+-- 	natural_dictionaries = {
+-- 		["nt_en"] = {
+--       ["copmany"] = "company",
+--       ["comapny"] = "company",
+--       ["trhough"] = "through",
+--       ["acess"] = "access"
+--     },
+--     ["nt_pt"] = {}
+-- 	},
+-- })
+--
 require("jabs").setup {
   width = 80, -- default 50
   height = 20, -- default 10
