@@ -3,6 +3,7 @@ require("jabs").setup {
   height = 20, -- default 10
   border = 'double', -- none, single, double, rounded, solid, shadow, (or an array or
 }
+require('Navigator').setup()
 require("gitsigns").setup({})
 
 require("telescope").setup(
@@ -356,3 +357,9 @@ vim.api.nvim_create_autocmd({ "BufWritePost" }, {
     require("lint").try_lint()
   end,
 })
+
+vim.keymap.set({'n', 't'}, '<C-h>', '<CMD>NavigatorLeft<CR>')
+vim.keymap.set({'n', 't'}, '<C-l>', '<CMD>NavigatorRight<CR>')
+vim.keymap.set({'n', 't'}, '<C-k>', '<CMD>NavigatorUp<CR>')
+vim.keymap.set({'n', 't'}, '<C-j>', '<CMD>NavigatorDown<CR>')
+vim.keymap.set({'n', 't'}, '<C-p>', '<CMD>NavigatorPrevious<CR>')

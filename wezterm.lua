@@ -2,10 +2,40 @@
 local wezterm = require('wezterm')
 local workspace_switcher = wezterm.plugin.require("https://github.com/MLFlexer/smart_workspace_switcher.wezterm")
 local tabline = wezterm.plugin.require("https://github.com/michaelbrusegard/tabline.wez")
+local act = wezterm.action
 
 local function get_date()
 	return fonts.fa_clock_o .. "  " .. wezterm.strftime("%A, %-d %B  %I:%M %p  ")
 end
+
+local function isViProcess(pane) 
+  return pane:get_foreground_process_name():find('n?vim') ~= nil or pane:get_title():find("n?vim") ~= nil
+end
+
+local function conditionalActivatePane(window, pane, pane_direction, vim_direction)
+  if isViProcess(pane) then
+    window:perform_action(
+      -- This should match the keybinds you set in Neovim.
+      act.SendKey({ key = vim_direction, mods = 'CTRL' }),
+      pane
+      )
+  else
+    window:perform_action(act.ActivatePaneDirection(pane_direction), pane)
+  end
+end
+
+wezterm.on('ActivatePaneDirection-right', function(window, pane)
+    conditionalActivatePane(window, pane, 'Right', 'l')
+end)
+wezterm.on('ActivatePaneDirection-left', function(window, pane)
+    conditionalActivatePane(window, pane, 'Left', 'h')
+end)
+wezterm.on('ActivatePaneDirection-up', function(window, pane)
+    conditionalActivatePane(window, pane, 'Up', 'k')
+end)
+wezterm.on('ActivatePaneDirection-down', function(window, pane)
+    conditionalActivatePane(window, pane, 'Down', 'j')
+end)
 
 local function scheme_for_appearance(appearance)
   if appearance:find 'Dark' then
@@ -151,7 +181,6 @@ tabline.setup({
 tabline.apply_to_config(config)
 
 config.color_scheme = scheme_for_appearance(color)
-local act = wezterm.action
 config.leader = { key = 'a', mods = 'OPT', timeout_milliseconds = 1000 }
 config.keys = {
   {
@@ -162,7 +191,7 @@ config.keys = {
   {
     key = "-",
     mods = "LEADER",
-    action = act.SplitHorizontal { domain = 'CurrentPaneDomain' },
+    action = act.SplitVertical { domain = 'CurrentPaneDomain' },
   },
   {
     key = "z",
@@ -172,22 +201,22 @@ config.keys = {
   {
     key = "h",
     mods = "CTRL",
-    action = act.ActivatePaneDirection "Left",
+    action = act.EmitEvent('ActivatePaneDirection-left'),
   },
   {
     key = "j",
     mods = "CTRL",
-    action = act.ActivatePaneDirection "Down",
+    action = act.EmitEvent('ActivatePaneDirection-down'),
   },
   {
     key = "k",
     mods = "CTRL",
-    action = act.ActivatePaneDirection "Up",
+    action = act.EmitEvent('ActivatePaneDirection-up'),
   },
   {
     key = "l",
     mods = "CTRL",
-    action = act.ActivatePaneDirection "Right",
+    action = act.EmitEvent('ActivatePaneDirection-right'),
   },
   {
     key = 'H',

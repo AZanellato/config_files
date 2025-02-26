@@ -22,7 +22,6 @@ call plug#begin(stdpath('config') . '/plugged')
   "" Language stuff
     " Language syntax for every language
     Plug 'sheerun/vim-polyglot'
-    Plug 'Pocco81/AbbrevMan.nvim'
     " Formatting for Elixir 
     Plug 'mhinz/vim-mix-format'
     Plug 'CraneStation/cranelift.vim'
@@ -34,7 +33,6 @@ call plug#begin(stdpath('config') . '/plugged')
     Plug 'tpope/vim-rails'
     Plug 'tpope/vim-bundler'
     Plug 'tpope/vim-rake'
-    Plug 'christoomey/vim-rfactory'
     " Shortcut to comment anything
     Plug 'numToStr/Comment.nvim'
     " Set comment string with treesitter
@@ -87,8 +85,8 @@ call plug#begin(stdpath('config') . '/plugged')
     Plug 'beauwilliams/focus.nvim'
     " Undo the closing of a window
     Plug 'AndrewRadev/undoquit.vim'
-    " Tmux integration. YAY :D 
-    Plug 'christoomey/vim-tmux-navigator'
+    " Wezterm integration. YAY :D 
+    Plug 'numToStr/Navigator.nvim'
   ""
   "" Enhance vim commands
     " Take a look at the registers
@@ -506,8 +504,3 @@ set laststatus=3
 colorscheme everforest
 execute 'hi Search guibg=none guifg=none gui=underline'
 execute 'hi DiffDelete guifg=#f43753 ctermfg=203 guibg=#79313c ctermbg=237 gui=NONE cterm=NONE'
-
-nnoremap <silent> <M-h> :<C-U>TmuxNavigateLeft<cr>
-nnoremap <silent> <M-j> :<C-U>TmuxNavigateDown<cr>
-nnoremap <silent> <M-k> :<C-U>TmuxNavigateUp<cr>
-nnoremap <silent> <M-l> :<C-U>TmuxNavigateRight<cr>
