@@ -1,8 +1,4 @@
 alias python="python3" # this is useful for some git stuff and anything that uses python, really
-# If we don't have a tmux session, create it and call it main
-if [[ -z "$TMUX" ]];then
-  tmux new-session -A -s main
-fi
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
@@ -31,7 +27,6 @@ plugins=(
   rails
   bundler
   ruby
-  tmux 
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -270,7 +265,4 @@ export PATH="/usr/local/opt/postgresql@16/bin:$PATH"
 #
 export PGGSSENCMODE="disable"
 
-# export PATH="/usr/local/sbin:$PATH"
 export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
-# export PATH="/usr/local/opt/icu4c@74/bin:$PATH"
-# export PATH="/usr/local/opt/icu4c@74/sbin:$PATH"
