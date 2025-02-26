@@ -184,7 +184,7 @@ config.color_scheme = scheme_for_appearance(color)
 config.leader = { key = 'a', mods = 'OPT', timeout_milliseconds = 1000 }
 config.keys = {
   {
-    key = "=",
+    key = "_",
     mods = "LEADER",
     action = act.SplitHorizontal { domain = 'CurrentPaneDomain' },
   },
@@ -320,5 +320,6 @@ config.keys = {
     },
   },
 }
+config.skip_close_confirmation_for_processes_named = { }
 
 return config

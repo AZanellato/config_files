@@ -193,6 +193,7 @@ alias nvdc="nvim \$(git diff HEAD^ --name-only --diff-filter=ACMR)"
 alias nvds="nvim \$(git diff --staged --name-only --diff-filter=ACMR)"
 alias nvimrc="nvim -O ~/config_files/init.vim ~/config_files/nvim_config.lua"
 alias nvzshrc="nvim ~/config_files/zsh_config"
+alias nvwterm="nvim ~/config_files/wezterm.lua"
 alias projects="cd ~/Projects"
 alias conff="cd ~/config_files/"
 alias conffpull="cd ~/config_files/ && git pull"
@@ -229,7 +230,7 @@ export PATH="$HOME/.local/bin:$PATH"
 # . $HOME/.asdf/asdf.sh
 
 eval "$(~/.local/bin/mise activate zsh)"
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+source <(fzf --zsh)
 
 # Setting rg as the default source for fzf
 export FZF_DEFAULT_COMMAND='rg --files'
