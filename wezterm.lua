@@ -121,25 +121,25 @@ config.enable_tab_bar = true
 config.tab_bar_at_bottom = true
 config.window_background_opacity = 0.99
 config.use_fancy_tab_bar = false
-config.window_padding = {
-  left = 10,
-  right = 10,
-  top = 0,
-  bottom = 0,
-}
 
 local color = get_appearance()
+
 tabline.setup({
   options = {
     fmt = string.lower,
     icons_enabled = true,
     theme = tabline_theme(color),
+    theme_overrides = {
+      tab = {
+        active = { fg = '#33374c', bg = '#bfc3c7' },
+      }
+    },
     tabs_enabled = true,
     section_separators = '',
     component_separators = '',
     tab_separators = {
-      left = wezterm.nerdfonts.pl_left_soft_divider,
-      right = wezterm.nerdfonts.pl_right_soft_divider,
+      right = " ",
+      left = wezterm.nerdfonts.ple_right_half_circle_thick,
     },
   },
   sections = {
@@ -157,23 +157,23 @@ tabline.setup({
             return "S " .. wezterm.nerdfonts.oct_search
           end
 
-			return mode
+          return mode
         end,
       }
     },
     tabline_b = { "workspace" },
-    tabline_c = { ' ' },
+    tabline_c = { 'tabs' },
+    tabline_x = { 'ram', 'cpu' },
+    tabline_y = { 'datetime' },
+    tabline_z = { 'battery', wezterm.nerdfonts.cod_coffee, "hostname" },
     tab_active = {
       'index',
-      { 'parent', padding = 0 },
-      '/',
+      { 'process', padding = { left = 0, right = 1 } },
+      '- ',
       { 'cwd', padding = { left = 0, right = 1 } },
-      { 'zoomed', padding = 0 },
+      { 'zoomed', padding = { left = 0, right = 1 } },
     },
-    tab_inactive = { 'index', { 'process', padding = { left = 0, right = 1 } } },
-    tabline_x = { 'ram', 'cpu' },
-    tabline_y = { 'datetime', 'battery' },
-    tabline_z = { 'domain' },
+    tab_inactive = { 'index', { 'tab', padding = { left = 0, right = 1 } } },
   },
   extensions = { 'smart_workspace_switcher' },
 })
@@ -219,23 +219,23 @@ config.keys = {
     action = act.EmitEvent('ActivatePaneDirection-right'),
   },
   {
-    key = 'H',
-    mods = 'LEADER',
+    key = 'h',
+    mods = 'SUPER',
     action = act.AdjustPaneSize { 'Left', 5 },
   },
   {
-    key = 'J',
-    mods = 'LEADER',
+    key = 'j',
+    mods = 'SUPER',
     action = act.AdjustPaneSize { 'Down', 5 },
   },
   {
-    key = 'K',
-    mods = 'LEADER',
+    key = 'k',
+    mods = 'SUPER',
     action = act.AdjustPaneSize { 'Up', 5 },
   },
   {
-    key = 'L',
-    mods = 'LEADER',
+    key = 'l',
+    mods = 'SUPER',
     action = act.AdjustPaneSize { 'Right', 5 },
   },
   {
@@ -320,6 +320,7 @@ config.keys = {
     },
   },
 }
-config.skip_close_confirmation_for_processes_named = { }
+-- override defaults to never skip confirmation
+config.skip_close_confirmation_for_processes_named = {}
 
 return config
