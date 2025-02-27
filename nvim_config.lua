@@ -111,6 +111,7 @@ require("catppuccin").setup({
 
 require('nvim-treesitter.configs').setup(
   {
+    auto_install = true,
     endwise = {
       enable = true,
     },
@@ -351,6 +352,7 @@ require('lspconfig').ruby_lsp.setup { capabilities = capabilities }
 require('lint').linters_by_ft = {
   ruby = {'rubocop'},
 }
+vim.diagnostic.config({ virtual_text = true })
 vim.api.nvim_create_autocmd({ "BufWritePost" }, {
   callback = function()
     -- try_lint without arguments runs the linters defined in `linters_by_ft` for the current filetype

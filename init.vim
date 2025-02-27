@@ -25,10 +25,6 @@ call plug#begin(stdpath('config') . '/plugged')
     " Formatting for Elixir 
     Plug 'mhinz/vim-mix-format'
     Plug 'CraneStation/cranelift.vim'
-    " Close brackets for me :)
-    Plug 'KermitPurple/vim-closer'
-    " Type end for me :)
-    Plug 'RRethy/nvim-treesitter-endwise'
     " Some usefull stuff for ruby/rails
     Plug 'tpope/vim-rails'
     Plug 'tpope/vim-bundler'
