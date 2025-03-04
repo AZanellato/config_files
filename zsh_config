@@ -173,6 +173,11 @@ function dbup(){
   $(docker run -p 5432:5432 --restart always -e POSTGRES_PASSWORD=unlock -e POSTGRES_USER=goco -e POSTGRES_DB=goco_io_development -v $(pwd)/.data/${DB_NAME}:/var/lib/postgresql/data:delegated postgres:16-alpine)
 }
 
+function riderdb() {
+  docker stop $(docker ps | grep postgres | awk '{print $1}')
+  $(docker run -p 5432:5432 --restart always -e POSTGRES_PASSWORD=postgres -e POSTGRES_USER=postgres -v $(pwd)/.data/ridedb:/var/lib/postgresql/data:delegated postgres:16-alpine)
+}
+
 function gocodbup() {
   cd goco-api
   dbup
@@ -218,16 +223,8 @@ alias rubofix="rubocop -a \$(git diff --name-only --staged); git add \$(git diff
 alias weatherCF="weather_CF"
 alias createpr="openpr"
 alias prchecks="gh pr checks --watch"
-export BAT_THEME="Coldark-Cold"
-# export PATH="$HOME/.rbenv/bin:$PATH"
 export PATH="$HOME/bin:/usr/local/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
-
-# eval "$(rbenv init -)"
-
-# export NVM_DIR="$HOME/.nvm"
-
-# . $HOME/.asdf/asdf.sh
 
 eval "$(~/.local/bin/mise activate zsh)"
 source <(fzf --zsh)
