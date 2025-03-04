@@ -147,12 +147,12 @@ require('nvim-treesitter.configs').setup(
         goto_next_end = {
           ["]f"] = "@function.outer",
           ["]}"] = "@block.outer",
-          ["]C"] = "@class.outer",
+          ["]c"] = "@class.outer",
         },
         goto_previous_end = {
           ["[f"] = "@function.outer",
           ["[}"] = "@block.outer",
-          ["[C"] = "@class.outer",
+          ["[c"] = "@class.outer",
         },
       },
     },
@@ -202,7 +202,6 @@ require("oil").setup({
       ["g."] = "actions.toggle_hidden",
     },
   })
-vim.keymap.set("n", "-", require("oil").open, { desc = "Open parent directory" })
 require("mini.cursorword").setup()
 
 require("spectre").setup({
@@ -242,7 +241,7 @@ require("auto-dark-mode").setup({
     update_interval = 5000,
     set_dark_mode = function()
       vim.cmd([[
-        colorscheme kanagawa
+        colorscheme kanagawa-wave
         set background=dark 
         let g:airline_theme = 'catppuccin'
         ]])
@@ -275,24 +274,6 @@ require("spider").setup({
     customPatterns = {}, -- check "Custom Movement Patterns" in the README for details
   })
 
-vim.keymap.set(
-	{ "n", "o", "x" },
-	"w",
-	"<cmd>lua require('spider').motion('w')<CR>",
-	{ desc = "Spider-w" }
-)
-vim.keymap.set(
-	{ "n", "o", "x" },
-	"e",
-	"<cmd>lua require('spider').motion('e')<CR>",
-	{ desc = "Spider-e" }
-)
-vim.keymap.set(
-	{ "n", "o", "x" },
-	"b",
-	"<cmd>lua require('spider').motion('b')<CR>",
-	{ desc = "Spider-b" }
-)
 
 require('silicon').setup({
   -- font = 'FantasqueSansMono Nerd Font=16',
@@ -311,15 +292,6 @@ require("other-nvim").setup({
 	},
 })
 
-vim.api.nvim_set_keymap("n", "<leader>ltn", "<cmd>:OtherTabNew<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<leader>lp", "<cmd>:OtherSplit<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<leader>lv", "<cmd>:OtherVSplit<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<leader>lc", "<cmd>:OtherClear<CR>", { noremap = true, silent = true })
-
--- Context specific bindings
-vim.api.nvim_set_keymap("n", "<leader>tv", "<cmd>:OtherVSplit test<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<leader>fv", "<cmd>:OtherVSplit factories<CR>", { noremap = true, silent = true })
-
 require('faster').setup()
 require("flexoki").setup({
     dim_inactive_windows = true
@@ -327,7 +299,6 @@ require("flexoki").setup({
 
 require("dooing").setup({})
 require('white-chocolate').setup()
-
 
 
 cmp = require('cmp')
@@ -347,11 +318,29 @@ cmp.setup({
 
 -- Set up lspconfig.
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
--- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
 require('lspconfig').ruby_lsp.setup { capabilities = capabilities }
 require('lint').linters_by_ft = {
   ruby = {'rubocop'},
 }
+
+-- folds!
+vim.o.foldcolumn = '0' -- '0' is not bad
+vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
+vim.o.foldlevelstart = 99
+vim.o.foldenable = true
+local ufo = require('ufo')
+ufo.setup({
+    provider_selector = function(bufnr, filetype, buftype)
+        return {'treesitter', 'indent'}
+    end,
+    enable_get_fold_virt_text = true
+})
+vim.keymap.set('n', 'zR', ufo.openAllFolds)
+vim.keymap.set('n', 'zM', ufo.closeAllFolds)
+vim.keymap.set('n', 'zr', ufo.openFoldsExceptKinds)
+vim.keymap.set('n', 'zm', ufo.closeFoldsWith)
+vim.keymap.set('n', 'zp', ufo.peekFoldedLinesUnderCursor)
+
 vim.diagnostic.config({ virtual_text = true })
 vim.api.nvim_create_autocmd({ "BufWritePost" }, {
   callback = function()
@@ -365,3 +354,32 @@ vim.keymap.set({'n', 't'}, '<C-l>', '<CMD>NavigatorRight<CR>')
 vim.keymap.set({'n', 't'}, '<C-k>', '<CMD>NavigatorUp<CR>')
 vim.keymap.set({'n', 't'}, '<C-j>', '<CMD>NavigatorDown<CR>')
 vim.keymap.set({'n', 't'}, '<C-p>', '<CMD>NavigatorPrevious<CR>')
+
+vim.api.nvim_set_keymap("n", "<leader>ltn", "<cmd>:OtherTabNew<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>lp", "<cmd>:OtherSplit<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>lv", "<cmd>:OtherVSplit<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>lc", "<cmd>:OtherClear<CR>", { noremap = true, silent = true })
+
+-- Context specific bindings
+vim.api.nvim_set_keymap("n", "<leader>tv", "<cmd>:OtherVSplit test<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>fv", "<cmd>:OtherVSplit factories<CR>", { noremap = true, silent = true })
+
+vim.keymap.set(
+	{ "n", "o", "x" },
+	"w",
+	"<cmd>lua require('spider').motion('w')<CR>",
+	{ desc = "Spider-w" }
+)
+vim.keymap.set(
+	{ "n", "o", "x" },
+	"e",
+	"<cmd>lua require('spider').motion('e')<CR>",
+	{ desc = "Spider-e" }
+)
+vim.keymap.set(
+	{ "n", "o", "x" },
+	"b",
+	"<cmd>lua require('spider').motion('b')<CR>",
+	{ desc = "Spider-b" }
+)
+vim.keymap.set("n", "-", require("oil").open, { desc = "Open parent directory" })

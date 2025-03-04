@@ -35,6 +35,8 @@ call plug#begin(stdpath('config') . '/plugged')
     Plug 'JoosepAlviste/nvim-ts-context-commentstring'
     " Folds
     Plug 'chrisgrieser/nvim-origami'
+    Plug 'kevinhwang91/promise-async'
+    Plug 'kevinhwang91/nvim-ufo'
     " Sorting movement 
     Plug 'christoomey/vim-sort-motion'
     " Surround stuff quickly
@@ -48,6 +50,7 @@ call plug#begin(stdpath('config') . '/plugged')
     Plug 'nvim-treesitter/playground' 
     Plug 'nvim-treesitter/nvim-treesitter-textobjects'
     Plug 'nvim-treesitter/nvim-treesitter-refactor'
+    Plug 'RRethy/nvim-treesitter-endwise'
     Plug 'rmagatti/goto-preview'
     Plug 'johann2357/nvim-smartbufs'
   "" SQL Stuff
@@ -215,10 +218,6 @@ set updatetime=500 " 500 ms to update signs
 set autowrite     " Automatically :write before running commands
 set backspace=2   " Backspace deletes like most programs in insert mode
 set expandtab " Tab => spaces
-set nofoldenable                     " Disable folding at startup.
-set foldlevel=4
-set foldmethod=expr
-set foldexpr=nvim_treesitter#foldexpr()
 set history=50
 set incsearch     " do incremental searching
 set laststatus=2  " Always display the status line
