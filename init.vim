@@ -153,7 +153,6 @@ call plug#begin(stdpath('config') . '/plugged')
     Plug 'tpope/vim-fugitive'
     Plug 'sindrets/diffview.nvim'
     Plug 'akinsho/git-conflict.nvim'
-    Plug 'ToruIwashita/git-switcher.vim'
   
   "" Test stuff 
     " All the tests frameworks/languages :D
@@ -179,10 +178,10 @@ call plug#begin(stdpath('config') . '/plugged')
     Plug 'lukas-reineke/indent-blankline.nvim'
     Plug 'ecthelionvi/NeoColumn.nvim'
     Plug 'ecthelionvi/NeoComposer.nvim'
-    Plug 'vim-airline/vim-airline'
+    Plug 'nvim-lualine/lualine.nvim'
     Plug 'echasnovski/mini.cursorword', { 'branch': 'main' }
     Plug 'ryanoasis/vim-devicons' 
-    Plug 'kyazdani42/nvim-web-devicons'
+    Plug 'nvim-tree/nvim-web-devicons'
     "" Themes!
       Plug 'EtiamNullam/white-chocolate.nvim'
       Plug 'savq/melange-nvim'
@@ -280,24 +279,6 @@ let g:yoinkIncludeDeleteOperations=1
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {}
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['ex'] = ''
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['exs'] = ''
-
-let g:airline_mode_map = {
-    \ '__' : '-',
-    \ 'n'  : 'N',
-    \ 'i'  : 'I',
-    \ 'R'  : 'R',
-    \ 'c'  : 'C',
-    \ 'v'  : 'V',
-    \ 'V'  : 'V',
-    \ '' : 'V',
-    \ 's'  : 'S',
-    \ }
-let g:airline_powerline_fonts = 1
-let g:airline_skip_empty_sections = 1
-let g:airline_section_b = '%{airline#util#wrap(airline#extensions#branch#get_head(),0)[0:45]}'
-let g:airline_section_z = ''
-let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
-let g:airline#extensions#wordcount#formatter#default#fmt = '%d w'
 
 let g:mix_format_on_save = 1
 let g:mix_format_silent_errors = 1

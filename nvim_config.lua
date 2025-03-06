@@ -5,14 +5,63 @@ require("jabs").setup {
 }
 require('Navigator').setup()
 require("gitsigns").setup({})
+require('lualine').setup {
+  options = {
+    icons_enabled = true,
+    theme = 'auto',
+    component_separators = { left = '', right = ''},
+    section_separators = { left = '', right = ''},
+    disabled_filetypes = {
+      statusline = {},
+      winbar = {},
+    },
+    ignore_focus = {},
+    always_divide_middle = true,
+    always_show_tabline = false,
+    globalstatus = false,
+    refresh = {
+      statusline = 100,
+      tabline = 100,
+      winbar = 100,
+    }
+  },
+  sections = {
+    lualine_a = {{'mode', fmt = function(str) return str:sub(1,1) end}},
+    lualine_b = {'branch', 'diff', 'diagnostics'},
+    lualine_c = {'filename'},
+    lualine_x = {'filetype'},
+    lualine_y = {'progress'},
+    lualine_z = {
+      -- {
+      --   "filename",
+      --   path = 1,
+      --   fmt = function(str)
+      --     local sub_string = str:sub(3,-1)
+      --     local index = sub_string:find("/") - 1
+      --     return sub_string:sub(1, index)
+      --   end,
+      -- }
+    }
+  },
+  inactive_sections = {
+    lualine_a = {},
+    lualine_b = {'branch'},
+    lualine_c = {'filename'},
+    lualine_x = {'encoding', 'filetype'},
+    lualine_y = {},
+    lualine_z = {}
+  },
+  extensions = {"oil", "fugitive"}
+}
 
-require("telescope").setup(
+local telescope = require("telescope")
+telescope.setup(
   {
     defaults = {
       layout_config = {
         horizontal = { width = 0.85 }
       },
-      path_display= { "filename_first" } 
+      path_display= { "filename_first" }
     },
   pickers = {
         live_grep = {
