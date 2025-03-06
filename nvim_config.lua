@@ -72,8 +72,6 @@ telescope.setup(
     },
   }
 )
-
-local telescope = require("telescope")
 telescope.load_extension("fzf")
 telescope.load_extension("undo")
 telescope.load_extension("dir")
@@ -217,7 +215,7 @@ require('nvim-treesitter.configs').setup(
         },
       },
     },
-    highlight = { 
+    highlight = {
       enable = true
     },
   }
@@ -272,7 +270,7 @@ require("NeoColumn").setup({
   })
 
 require("eyeliner").setup({
-  highlight_on_key = true, 
+  highlight_on_key = true,
   dim = false,
   })
 
@@ -350,7 +348,7 @@ require("dooing").setup({})
 require('white-chocolate').setup()
 
 
-cmp = require('cmp')
+local cmp = require('cmp')
 cmp.setup({
     sources = cmp.config.sources({
         { name = 'nvim_lsp' },
@@ -368,6 +366,17 @@ cmp.setup({
 -- Set up lspconfig.
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 require('lspconfig').ruby_lsp.setup { capabilities = capabilities }
+-- capabilities.diagnostic.globals=["vim"]
+require('lspconfig').lua_ls.setup {
+  capabilities = capabilities,
+  settings = {
+    Lua = {
+      diagnostics = {
+        globals = {'vim'},  -- Recognize 'vim' as a global variable
+      },
+    },
+  },
+}
 require('lint').linters_by_ft = {
   ruby = {'rubocop'},
 }
