@@ -4,7 +4,7 @@ require("jabs").setup {
   border = 'double', -- none, single, double, rounded, solid, shadow, (or an array or
 }
 require('Navigator').setup()
-require("gitsigns").setup({})
+require("gitsigns").setup()
 require('lualine').setup {
   options = {
     icons_enabled = true,
@@ -304,7 +304,7 @@ require("auto-dark-mode").setup({
 
 require("buffer-vacuum").setup({
     -- The maximum number of buffers to keep (excluding modified buffer)
-    max_buffers = 20,
+    max_buffers = 40,
 
     -- Change to True if you want pinned buffers to count to the
     -- maximum number buffers
@@ -380,6 +380,31 @@ require('lspconfig').lua_ls.setup {
 require('lint').linters_by_ft = {
   ruby = {'rubocop'},
 }
+local fmt_util = require "formatter.util"
+require("formatter").setup {
+  -- Enable or disable logging
+  logging = true,
+  -- Set the log level
+  log_level = vim.log.levels.WARN,
+  -- All formatter configurations are opt-in
+  filetype = {
+    ruby = {
+      function()
+        return {
+          exe = "bundle exec rubocop",
+          args = {
+            "--autocorrect",
+            "--stdin",
+            fmt_util.escape_path(fmt_util.get_current_buffer_file_name()),
+            "--format files",
+            "| awk 'f; /^====================$/{f=1}'",
+          },
+          stdin = true,
+        }
+      end
+    }
+  }
+}
 
 -- folds!
 vim.o.foldcolumn = '0' -- '0' is not bad
@@ -387,10 +412,38 @@ vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decr
 vim.o.foldlevelstart = 99
 vim.o.foldenable = true
 local ufo = require('ufo')
+local handler = function(virtText, lnum, endLnum, width, truncate)
+    local newVirtText = {}
+    local suffix = (' 󰁂 %d '):format(endLnum - lnum)
+    local sufWidth = vim.fn.strdisplaywidth(suffix)
+    local targetWidth = width - sufWidth
+    local curWidth = 0
+    for _, chunk in ipairs(virtText) do
+        local chunkText = chunk[1]
+        local chunkWidth = vim.fn.strdisplaywidth(chunkText)
+        if targetWidth > curWidth + chunkWidth then
+            table.insert(newVirtText, chunk)
+        else
+            chunkText = truncate(chunkText, targetWidth - curWidth)
+            local hlGroup = chunk[2]
+            table.insert(newVirtText, {chunkText, hlGroup})
+            chunkWidth = vim.fn.strdisplaywidth(chunkText)
+            -- str width returned from truncate() may less than 2nd argument, need padding
+            if curWidth + chunkWidth < targetWidth then
+                suffix = suffix .. (' '):rep(targetWidth - curWidth - chunkWidth)
+            end
+            break
+        end
+        curWidth = curWidth + chunkWidth
+    end
+    table.insert(newVirtText, {suffix, 'MoreMsg'})
+    return newVirtText
+end
 ufo.setup({
-    provider_selector = function(bufnr, filetype, buftype)
+    provider_selector = function(_, _, _)
         return {'treesitter', 'indent'}
     end,
+    fold_virt_text_handler = handler,
     enable_get_fold_virt_text = true
 })
 vim.keymap.set('n', 'zR', ufo.openAllFolds)

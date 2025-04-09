@@ -81,7 +81,7 @@ call plug#begin(stdpath('config') . '/plugged')
   ""
   "" Window movements/resizing
     " Resize window automatically
-    Plug 'beauwilliams/focus.nvim'
+    Plug 'nvim-focus/focus.nvim'
     " Undo the closing of a window
     Plug 'AndrewRadev/undoquit.vim'
     " Wezterm integration. YAY :D 
@@ -159,17 +159,16 @@ call plug#begin(stdpath('config') . '/plugged')
     Plug 'janko/vim-test'
  
   "" Autocompletion/linting
-    " Autocompletion source
-    " Plug 'wellle/tmux-complete.vim'
     Plug 'neovim/nvim-lspconfig'
     Plug 'hrsh7th/cmp-nvim-lsp'
     Plug 'hrsh7th/cmp-buffer'
     Plug 'hrsh7th/cmp-path'
     Plug 'hrsh7th/cmp-cmdline'
     Plug 'hrsh7th/nvim-cmp'
-    "Linter
+    " Linter
     Plug 'mfussenegger/nvim-lint'
-    " Plug 'w0rp/ale'
+    " Formatting
+    Plug 'mhartington/formatter.nvim'
 
   "" Visual Stuff
     Plug 'folke/twilight.nvim'
@@ -319,7 +318,6 @@ command! Config :e ~/.vimrc
 command! YankCurrentFilePath let @+ = expand("%")
 command! PrettifyJson %!jq '.'
 command! Source source ~/config_files/init.vim
-command! -nargs=0 Format :call CocAction('format')
 command! SourceAndInstall source ~/config_files/init.vim <bar> :PlugInstall
 command! AC :execute "e " . eval('rails#buffer().alternate()')
 
