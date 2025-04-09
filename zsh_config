@@ -39,6 +39,11 @@ function weather_in() {
   curl wttr.in/$1
 }
 
+function gcap() {
+  git commit -m $1 
+  git push
+}
+
 function weather_CF() {
   curl wttr.in/\?format=j1 --connect-timeout 5 | jq '.current_condition[0] | .temp_C, .temp_F' | tr -d '"'| tr '\n' ' ' |awk '{print $1 " celsius, fahrenheit " $2 }' 
 }
