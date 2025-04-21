@@ -1,14 +1,14 @@
 -- Pull in the wezterm API
 local wezterm = require('wezterm')
+
+-- Plugins
 local workspace_switcher = wezterm.plugin.require("https://github.com/MLFlexer/smart_workspace_switcher.wezterm")
 local tabline = wezterm.plugin.require("https://github.com/michaelbrusegard/tabline.wez")
+local resurrect = wezterm.plugin.require("https://github.com/MLFlexer/resurrect.wezterm")
+-- End Plugins
 local act = wezterm.action
 
-local function get_date()
-	return fonts.fa_clock_o .. "  " .. wezterm.strftime("%A, %-d %B  %I:%M %p  ")
-end
-
-local function isViProcess(pane) 
+local function isViProcess(pane)
   return pane:get_foreground_process_name():find('n?vim') ~= nil or pane:get_title():find("n?vim") ~= nil
 end
 
@@ -60,6 +60,24 @@ local function get_appearance()
   return 'Light'
 end
 
+-- loads the state whenever I create a new workspace
+wezterm.on("smart_workspace_switcher.workspace_switcher.created", function(window, _, label)
+  local workspace_state = resurrect.workspace_state
+  
+  workspace_state.restore_workspace(resurrect.state_manager.load_state(label, "workspace"), {
+    window = window,
+    relative = true,
+    restore_text = true,
+    on_pane_restore = resurrect.tab_state.default_on_pane_restore,
+  })
+end)
+
+-- Saves the state whenever I select a workspace
+wezterm.on("smart_workspace_switcher.workspace_switcher.selected", function(window, _, label)
+  local workspace_state = resurrect.workspace_state
+  resurrect.state_manager.save_state(workspace_state.get_workspace_state())
+end)
+
 -- This table will hold the configuration.
 local config = {}
 
@@ -71,7 +89,7 @@ end
 
 -- Font configuration
 
-config.font = wezterm.font { 
+config.font = wezterm.font {
   family ='FiraCode Nerd Font',
 }
 
@@ -119,7 +137,7 @@ config.harfbuzz_features = {"cv02", "ss05", "ss07", "ss09"}
 -- tab configuration
 config.enable_tab_bar = true
 config.tab_bar_at_bottom = true
-config.window_background_opacity = 0.99
+config.window_background_opacity = 1
 config.use_fancy_tab_bar = false
 
 local color = get_appearance()
@@ -143,21 +161,22 @@ tabline.setup({
     },
   },
   sections = {
-    tabline_a = { 
+    tabline_a = {
       {
         'mode',
         fmt = function(mode, window)
+          local key_table = window:active_key_table()
           if window:leader_is_active() then
             return wezterm.nerdfonts.oct_rocket
-          elseif mode == "NORMAL" then
-            return "N " .. wezterm.nerdfonts.cod_terminal
+          elseif key_table == "move_pane" then
+            return "M " .. wezterm.nerdfonts.cod_layout_panel_justify
           elseif mode == "COPY" then
             return "C " .. wezterm.nerdfonts.md_scissors_cutting
           elseif mode == "SEARCH" then
             return "S " .. wezterm.nerdfonts.oct_search
+          elseif mode == "NORMAL" then
+            return "N " .. wezterm.nerdfonts.cod_terminal
           end
-
-          return mode
         end,
       }
     },
@@ -165,7 +184,7 @@ tabline.setup({
     tabline_c = { 'tabs' },
     tabline_x = { 'ram', 'cpu' },
     tabline_y = { 'datetime' },
-    tabline_z = { 'battery', wezterm.nerdfonts.cod_coffee, "hostname" },
+    tabline_z = { 'battery', wezterm.nerdfonts.cod_coffee, "hostname", "  " },
     tab_active = {
       'index',
       { 'process', padding = { left = 0, right = 1 } },
@@ -186,12 +205,12 @@ config.keys = {
   {
     key = "_",
     mods = "LEADER",
-    action = act.SplitHorizontal { domain = 'CurrentPaneDomain' },
+    action = act.SplitHorizontal { domain = "CurrentPaneDomain" },
   },
   {
     key = "-",
     mods = "LEADER",
-    action = act.SplitVertical { domain = 'CurrentPaneDomain' },
+    action = act.SplitVertical { domain = "CurrentPaneDomain" },
   },
   {
     key = "z",
@@ -201,81 +220,92 @@ config.keys = {
   {
     key = "h",
     mods = "CTRL",
-    action = act.EmitEvent('ActivatePaneDirection-left'),
+    action = act.EmitEvent("ActivatePaneDirection-left"),
   },
   {
     key = "j",
     mods = "CTRL",
-    action = act.EmitEvent('ActivatePaneDirection-down'),
+    action = act.EmitEvent("ActivatePaneDirection-down"),
   },
   {
     key = "k",
     mods = "CTRL",
-    action = act.EmitEvent('ActivatePaneDirection-up'),
+    action = act.EmitEvent("ActivatePaneDirection-up"),
   },
   {
     key = "l",
     mods = "CTRL",
-    action = act.EmitEvent('ActivatePaneDirection-right'),
+    action = act.EmitEvent("ActivatePaneDirection-right"),
   },
   {
-    key = 'h',
-    mods = 'SUPER',
-    action = act.AdjustPaneSize { 'Left', 5 },
+    key = "h",
+    mods = "SUPER",
+    action = act.AdjustPaneSize { "Left", 5 },
   },
   {
-    key = 'j',
-    mods = 'SUPER',
-    action = act.AdjustPaneSize { 'Down', 5 },
+    key = "j",
+    mods = "SUPER",
+    action = act.AdjustPaneSize { "Down", 5 },
   },
   {
-    key = 'k',
-    mods = 'SUPER',
-    action = act.AdjustPaneSize { 'Up', 5 },
+    key = "k",
+    mods = "SUPER",
+    action = act.AdjustPaneSize { "Up", 5 },
   },
   {
-    key = 'l',
-    mods = 'SUPER',
-    action = act.AdjustPaneSize { 'Right', 5 },
+    key = "l",
+    mods = "SUPER",
+    action = act.AdjustPaneSize { "Right", 5 },
   },
   {
-    key = '[',
-    mods = 'ALT',
-    action = act.ActivateTabRelative(-1) 
+    key = "[",
+    mods = "ALT",
+    action = act.ActivateTabRelative(-1)
   },
   {
-    key = ']',
-    mods = 'ALT',
-    action = act.ActivateTabRelative(1) 
+    key = "]",
+    mods = "ALT",
+    action = act.ActivateTabRelative(1)
   },
   {
-    key = '[',
-    mods = 'CMD',
-    action = act.MoveTabRelative(-1) 
+    key = "[",
+    mods = "CMD",
+    action = act.MoveTabRelative(-1)
   },
   {
-    key = ']',
-    mods = 'CMD',
-    action = act.MoveTabRelative(1) 
+    key = "]",
+    mods = "CMD",
+    action = act.MoveTabRelative(1)
   },
   {
-    key = 'c',
-    mods = 'LEADER',
-    action = act.SpawnTab 'CurrentPaneDomain',
+    key = "c",
+    mods = "LEADER",
+    action = act.SpawnTab "CurrentPaneDomain",
   },
   {
-    key = 'n',
-    mods = 'LEADER',
-    action = act.SwitchToWorkspace
+    key = "n",
+    mods = "LEADER",
+    action = wezterm.action.PromptInputLine({
+			description = "Enter name for new workspace",
+			action = wezterm.action_callback(function(window, pane, line)
+				if line then
+          local name = nil
+          if line ~= "" then
+            name = line
+          end
+					window:perform_action(wezterm.action.SwitchToWorkspace({ name = name }), pane)
+				end
+			end),
+		}),
   },
   {
-    key = ')',
-    mods = 'LEADER',
+    key = ")",
+    mods = "LEADER",
     action = act.SwitchWorkspaceRelative(1),
   },
   {
-    key = '(',
-    mods = 'LEADER',
+    key = "(",
+    mods = "LEADER",
     action = act.SwitchWorkspaceRelative(-1),
   },
   {
@@ -286,15 +316,17 @@ config.keys = {
   {
     key = "S",
     mods = "LEADER",
-    action = workspace_switcher.switch_to_prev_workspace(),
+    action = wezterm.action_callback(function(_, _)
+        resurrect.state_manager.save_state(resurrect.workspace_state.get_workspace_state())
+      end),
   },
   {
     key = ",",
     mods = "LEADER",
     action = act.PromptInputLine {
-      description = 'New tab name',
-      initial_value = '',
-      action = wezterm.action_callback(function(window, pane, line)
+      description = "New tab name",
+      initial_value = "",
+      action = wezterm.action_callback(function(window, _, line)
         if line then
           window:active_tab():set_title(line)
         end
@@ -302,25 +334,135 @@ config.keys = {
     },
   },
   {
-    key = 'x',
-    mods = 'LEADER',
+    key = "x",
+    mods = "LEADER",
     action = wezterm.action.CloseCurrentPane { confirm = true },
   },
   {
     key = "r",
     mods = "LEADER",
     action = act.PromptInputLine {
-      description = 'Enter for workspace',
+      description = "Enter for workspace",
       initial_value = wezterm.mux.get_active_workspace(),
-      action = wezterm.action_callback(function(window, pane, line)
+      action = wezterm.action_callback(function(_, _, line)
         if line then
           wezterm.mux.rename_workspace(wezterm.mux.get_active_workspace(), line)
         end
       end),
     },
   },
+  {
+    key = "b",
+    mods = "LEADER",
+    action = wezterm.action_callback(function(_, pane)
+      local tab, _ = pane:move_to_new_tab()
+      tab:activate()
+    end),
+  },
+  {
+    key = "!",
+    mods = "LEADER",
+    action = wezterm.action_callback(function(_, pane)
+      local _, window = pane:move_to_new_window()
+      window:activate()
+    end),
+  },
+  {
+    key = "Enter",
+    mods = "LEADER",
+    action = act.ActivateCopyMode
+  },
+  {
+    key = "M",
+    mods = "LEADER",
+    action = act.ActivateKeyTable {
+      name = "move_pane",
+      one_shot = false,
+    },
+  },
+  {
+    key = "r",
+    mods = "ALT",
+    action = wezterm.action_callback(function(win, pane)
+      resurrect.fuzzy_loader.fuzzy_load(win, pane, function(id, _)
+        local type = string.match(id, "^([^/]+)") -- match before "/"
+        id = string.match(id, "([^/]+)$") -- match after "/"
+        id = string.match(id, "(.+)%..+$") -- remove file extention
+        local opts = {
+          relative = true,
+          restore_text = true,
+          on_pane_restore = resurrect.tab_state.default_on_pane_restore,
+        }
+        if type == "workspace" then
+          local state = resurrect.state_manager.load_state(id, "workspace")
+          resurrect.workspace_state.restore_workspace(state, opts)
+        elseif type == "window" then
+          local state = resurrect.state_manager.load_state(id, "window")
+          resurrect.window_state.restore_window(pane:window(), state, opts)
+        elseif type == "tab" then
+          local state = resurrect.state_manager.load_state(id, "tab")
+          resurrect.tab_state.restore_tab(pane:tab(), state, opts)
+        end
+      end)
+    end),
+  },
+}
+
+config.key_tables = {
+  -- Defines the keys that are active in our move-pane mode.
+  -- Since we're likely to want to make multiple adjustments,
+  -- we made the activation one_shot=false. We therefore need
+  -- to define a key assignment for getting out of this mode.
+  -- 'move-pane' here corresponds to the name="resize_pane" in
+  -- the key assignments above.
+  move_pane = {
+    { key = 'LeftArrow', action = act.AdjustPaneSize { 'Left', 1 } },
+    { key = 'h', action = act.AdjustPaneSize { 'Left', 1 } },
+
+    { key = 'RightArrow', action = act.AdjustPaneSize { 'Right', 1 } },
+    { key = 'l', action = act.AdjustPaneSize { 'Right', 1 } },
+
+    { key = 'UpArrow', action = act.AdjustPaneSize { 'Up', 1 } },
+    { key = 'k', action = act.AdjustPaneSize { 'Up', 1 } },
+
+    { key = 'DownArrow', action = act.AdjustPaneSize { 'Down', 1 } },
+    { key = 'j', action = act.AdjustPaneSize { 'Down', 1 } },
+
+    -- Cancel the mode by pressing escape
+    { key = 'Escape', action = 'PopKeyTable' },
+    { key = 'c', mods = "CTRL", action = 'PopKeyTable' },
+  },
 }
 -- override defaults to never skip confirmation
 config.skip_close_confirmation_for_processes_named = {}
+config.window_padding = {
+  left = '0.5cell',
+  right = '0.5cell',
+  top = '0.5cell',
+  bottom = 0,
+}
+local resurrect_event_listeners = {
+  "resurrect.error",
+  "resurrect.state_manager.save_state.finished",
+}
+local is_periodic_save = false
+wezterm.on("resurrect.periodic_save", function()
+  is_periodic_save = true
+end)
+for _, event in ipairs(resurrect_event_listeners) do
+  wezterm.on(event, function(...)
+    if event == "resurrect.state_manager.save_state.finished" and is_periodic_save then
+      is_periodic_save = false
+      return
+    end
+    local args = { ... }
+    local msg = event
+    for _, v in ipairs(args) do
+      msg = msg .. " " .. tostring(v)
+    end
+    wezterm.gui.gui_windows()[1]:toast_notification("Wezterm - resurrect", msg, nil, 4000)
+  end)
+end
+
 
 return config
