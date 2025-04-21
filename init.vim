@@ -365,9 +365,6 @@ nnoremap <Leader>z :TZFocus <CR>
 nnoremap <Leader>x :FocusAutoresize<CR>
 nnoremap <Leader>} :Gitsigns next_hunk <CR>
 nnoremap <Leader>{ :Gitsigns prev_hunk <CR>
-nnoremap <Leader>af :ALEFix <CR>
-nnoremap <Leader>an :ALENextWrap <CR>
-nnoremap <Leader>ap :ALEPreviousWrap <CR>
 nnoremap <Leader>bb :JABSOpen<CR>
 nnoremap <Leader>bl :Git blame<CR>
 nnoremap <Leader>bp obinding.pry<ESC>
@@ -390,6 +387,7 @@ nnoremap <Leader>nh :noh <CR>
 nnoremap <Leader>of :Telescope oldfiles<CR>
 nnoremap <Leader>op o<ESC>"+p
 nnoremap <Leader>Op  O<ESC>"+p
+nnoremap <Leader>od :lua vim.diagnostic.open_float()<CR>
 nnoremap <Leader>rc :TestFile<CR>
 nnoremap <Leader>rs :TestNearest<CR>
 nnoremap <Leader>rl :TestLast<CR>
