@@ -171,6 +171,7 @@ call plug#begin(stdpath('config') . '/plugged')
     Plug 'mhartington/formatter.nvim'
 
   "" Visual Stuff
+    Plug 'onsails/lspkind.nvim'
     Plug 'folke/twilight.nvim'
     Plug 'junegunn/rainbow_parentheses.vim'
     Plug 'machakann/vim-highlightedyank'
