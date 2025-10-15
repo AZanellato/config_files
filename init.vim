@@ -23,7 +23,6 @@ call plug#begin(stdpath('config') . '/plugged')
     " Language syntax for every language
     Plug 'sheerun/vim-polyglot'
     " Formatting for Elixir 
-    Plug 'mhinz/vim-mix-format'
     Plug 'CraneStation/cranelift.vim'
     " Some usefull stuff for ruby/rails
     Plug 'tpope/vim-rails'
@@ -169,6 +168,8 @@ call plug#begin(stdpath('config') . '/plugged')
     Plug 'mfussenegger/nvim-lint'
     " Formatting
     Plug 'mhartington/formatter.nvim'
+    " Typescript LSP
+    Plug 'pmizio/typescript-tools.nvim'
 
   "" Visual Stuff
     Plug 'onsails/lspkind.nvim'
@@ -279,9 +280,6 @@ let g:yoinkIncludeDeleteOperations=1
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {}
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['ex'] = ''
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['exs'] = ''
-
-let g:mix_format_on_save = 1
-let g:mix_format_silent_errors = 1
 
 let g:rustfmt_autosave = 1
 

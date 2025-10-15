@@ -386,7 +386,6 @@ cmp.setup({
 -- Set up lspconfig.
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 require('lspconfig').ruby_lsp.setup { capabilities = capabilities }
-require('lspconfig').ts_ls.setup { capabilities = capabilities }
 -- capabilities.diagnostic.globals=["vim"]
 require('lspconfig').lua_ls.setup {
   capabilities = capabilities,
@@ -398,6 +397,7 @@ require('lspconfig').lua_ls.setup {
     },
   },
 }
+require("typescript-tools").setup {}
 require('lint').linters_by_ft = {
   ruby = {'rubocop'},
 }
