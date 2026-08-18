@@ -260,8 +260,7 @@ complete -o nospace -C /usr/local/bin/bitcomplete bit
 if [ "$PWD" = "$HOME" ]; then
   echo "Syncing configuration for you so you don't forget it"
   echo "Status:"
-  cd ~/config_files
-  git pull --rebase
+  cd ~/Projects/config_files && git pull --rebase
 fi
 export DATABASE_HOST="127.0.0.1"
 export PATH="/usr/local/opt/postgresql@16/bin:$PATH"
